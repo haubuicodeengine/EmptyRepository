@@ -1,0 +1,144 @@
+body {
+	margin: 0;
+	font-family: arial,tahoma,sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+	direction: ltr;
+  	background: #fff;
+}
+
+button:focus {
+    outline: none !important;
+    border:1px solid #ddd;
+    box-shadow: 0 0 10px #ddd;
+}
+
+.red {
+	color: #DF013A;
+}
+
+.blue {
+	color: blue;
+}
+
+.error::-webkit-input-placeholder {
+    color: #DF013A;
+    font-weight: bold;
+ }
+
+.text-title {
+	text-align: center;
+}
+
+.form {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.form label {
+	font-weight: bold;
+}
+
+.input-item {
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    border-radius: 20px;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.input-item:focus {
+    outline: none !important;
+    border:1px solid grey;
+    box-shadow: 0 0 10px #ddd;
+}
+
+.input-item::-webkit-input-placeholder {
+	font-family: arial,tahoma,sans-serif;
+	font-size: 16px;
+}
+
+.buton-save {
+	background: #088A29;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    padding: 12px 30px;
+    color: #fff;
+    margin-right: 15px;
+    font-size: 16px;
+}
+
+.button-cancel {
+	background: #F4FA58;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    padding: 12px 24px;
+    color: #000;
+    font-size: 16px;
+}	
+
+.footer-items {
+	display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.table-list {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+    border-radius: 15px;
+ 	overflow: hidden;
+}
+
+.table-list, .book-item {
+	border: 1px solid #ddd;
+}
+
+.list-books {
+	background: #fafafa;
+}
+.book-title-item {
+	padding: 10px;
+	background: #151515;
+    color: #fff;
+}
+
+.book-item {
+	height: 40px;
+}
+
+.button-add-new {
+    background: #088A29;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.header-modal {
+	width: 100%;
+}
+
+.icon-confirm {
+	width: 150px;
+	height: 150px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.modal-body {
+	margin: 0 auto;
+}
+
+.modal-body button {
+	padding: 5px 50px;
+}
