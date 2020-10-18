@@ -68,7 +68,7 @@ public class AddBookServlet extends HttpServlet {
 			BookManagement.addBook(bookId, bookName, author);
 
 			request.setAttribute("data", BookManagement.getBooks());
-			response.sendRedirect("/BookManagement/books");
+			response.sendRedirect(request.getContextPath() + "/books");
 		}
 
 	}

@@ -33,7 +33,7 @@ public class DeleteBookServlet extends HttpServlet {
 		BookManagement.deleteBook(bookId);
 
 		request.setAttribute("data", BookManagement.getBooks());
-		response.sendRedirect("/BookManagement/books");  
+		response.sendRedirect(request.getContextPath() + "/books");
 	}
 
 	/**

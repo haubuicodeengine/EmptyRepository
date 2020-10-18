@@ -6,26 +6,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Book Management</title>
-
-<link href="./static/css/main.css" rel="stylesheet" type="text/css">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script></head>
+	<title>The book</title>
+	
+	<link rel="icon" href="https://img.icons8.com/cute-clipart/344/book.png" type="image/gif" sizes="16x16">
+	<link href="./static/css/main.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700,900|Google+Sans+Display:400,500" rel="stylesheet" nonce="fSXOtZ5Ye0RE8N7b_mEygA">
+</head>
 <body>
-	<h1 class="text-title">List Books</h1>
+	<h1 class="text-center heading">The Book</h1>
 	<div class="container">
-		<a href="addBook"><button type="button" class="button-add-new">Add new a book</button></a>
+		<div class="book-actions">
+			<a href="addBook" class="btn-add">
+				<span>Add new a book</span>
+			</a>
+		</div>
 		<table class="table-list">
 			<tr class="book-title">
 				<th class="book-title-item">No.</th>
-				<th class="book-title-item">Book Name</th>
+				<th class="book-title-item">Book name</th>
 				<th class="book-title-item">Author</th>
-				<th class="book-title-item">Action</th>
+				<th class="book-title-item">Actions</th>
 			</tr>
 			<tbody class="list-books">
 				<%
@@ -71,6 +72,10 @@
 		  </div>
 		
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	<script type="text/javascript">
 		function confirmation(href, action) {
 			$('#button-confirm').attr("href", href);
