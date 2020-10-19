@@ -12,21 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.codeenginestudio.bookManagement.manage.ManageBook;
 
 /**
- * Servlet implementation class DeleteBook
+ * Servlet implementation class DeleteBookServlet
  */
-@WebServlet("/DeleteBook")
+@WebServlet("/DeleteBookServlet")
 public class DeleteBookServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
-	private static ManageBook manageBook = new ManageBook();
+    public void displayView(HttpServletRequest request, HttpServletResponse response, String fileName)
+			throws ServletException, IOException {
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeleteBookServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(fileName);
+		dispatcher.forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,8 +32,9 @@ public class DeleteBookServlet extends HttpServlet {
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
 		manageBook.deleteBook(bookId);
     	request.setAttribute("listBooks", manageBook.getListBooks());
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/Home.jsp");
-		dispatcher.forward(request, response);
+		displayView(request, response, "/view/Home.jsp");
 	}
 
+	private static final long serialVersionUID = 1L;
+	private ManageBook manageBook = new ManageBook();
 }

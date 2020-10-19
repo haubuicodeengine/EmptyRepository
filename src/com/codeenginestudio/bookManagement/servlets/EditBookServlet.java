@@ -11,22 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.codeenginestudio.bookManagement.manage.ManageBook;
 import com.codeenginestudio.bookManagement.models.Book;
-import com.codeenginestudio.bookManagement.utils.BookUtil;
 
 /**
- * Servlet implementation class EditBook
+ * Servlet implementation class EditBookServlet
  */
-@WebServlet("/EditBook")
+@WebServlet("/EditBookServlet")
 public class EditBookServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private static ManageBook manageBook = new ManageBook();
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EditBookServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
     public void displayView(HttpServletRequest request, HttpServletResponse response, String fileName)
 			throws ServletException, IOException {
@@ -41,11 +31,9 @@ public class EditBookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
-		request.setAttribute("url", "/EditBook");
+		request.setAttribute("url", "/Book/EditBook");
 		request.setAttribute("book", manageBook.getOneBook(bookId));
-		RequestDispatcher dispatcher = this.getServletContext()
-                .getRequestDispatcher("/AddOrEditBook.jsp");
-        dispatcher.forward(request, response);
+		displayView(request, response, "/view/AddOrEditBook.jsp");
 	}
 
 	/**
@@ -61,14 +49,16 @@ public class EditBookServlet extends HttpServlet {
 
 			request.setAttribute("book", new Book(bookId, bookName, bookAuthor));
 			request.setAttribute("bookNameErr", "Name of book could not be blank");
-			request.setAttribute("url", "/EditBook");
-			displayView(request, response, "/AddOrEditBook.jsp");
+			request.setAttribute("url", "/Book/EditBook");
+			displayView(request, response, "/view/AddOrEditBook.jsp");
 		}else {
 
 			manageBook.editBook(bookId, bookName, bookAuthor);
 			request.setAttribute("listBooks", manageBook.getListBooks());
-			displayView(request, response, "/Home.jsp");
+			displayView(request, response, "/view/Home.jsp");
 		}
 	}
 
+	private static final long serialVersionUID = 1L;
+	private ManageBook manageBook = new ManageBook();
 }

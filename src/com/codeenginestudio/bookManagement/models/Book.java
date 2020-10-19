@@ -1,10 +1,7 @@
 package com.codeenginestudio.bookManagement.models;
 
 public class Book {
-	private int bookId;
-	private String bookName;
-	private String bookAuthor;
-	
+
 	public Book() {
 		super();
 	}
@@ -22,27 +19,31 @@ public class Book {
 		this.bookAuthor = bookAuthor;
 	}
 
-	public int getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
+	public String getBookAuthor() {
+		return bookAuthor;
 	}
 
 	public String getBookName() {
 		return bookName;
 	}
 
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
-
-	public String getBookAuthor() {
-		return bookAuthor;
+	public int getBookId() {
+		return bookId;
 	}
 
 	public void setBookAuthor(String bookAuthor) {
 		this.bookAuthor = bookAuthor;
 	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+
+	private String bookAuthor;
+	private String bookName;
+	private int bookId;
 }

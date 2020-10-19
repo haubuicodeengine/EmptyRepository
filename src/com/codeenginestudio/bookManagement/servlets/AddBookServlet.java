@@ -11,23 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.codeenginestudio.bookManagement.manage.ManageBook;
 import com.codeenginestudio.bookManagement.models.Book;
-import com.codeenginestudio.bookManagement.utils.BookUtil;
+
 /**
- * Servlet implementation class AddBook
+ * Servlet implementation class AddBookServlet
  */
-@WebServlet("/AddBook")
+@WebServlet("/AddBookServlet")
 public class AddBookServlet extends HttpServlet {
-
-	private static final long serialVersionUID = 1L;
-	private static ManageBook manageBook = new ManageBook();
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddBookServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
     public void displayView(HttpServletRequest request, HttpServletResponse response, String fileName)
 			throws ServletException, IOException {
@@ -40,8 +29,9 @@ public class AddBookServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("url", "/AddBook");
-		displayView(request, response, "/AddOrEditBook.jsp");
+
+		request.setAttribute("url", "/Book/Add");
+		displayView(request, response, "/view/AddOrEditBook.jsp");
 	}
 
 	/**
@@ -56,15 +46,16 @@ public class AddBookServlet extends HttpServlet {
 
 			request.setAttribute("book", new Book(bookName, bookAuthor));
 			request.setAttribute("bookNameErr", "Name of book could not be blank");
-			request.setAttribute("url", "/AddBook");
-			displayView(request, response, "/AddOrEditBook.jsp");
+			request.setAttribute("url", "/Book/Add");
+			displayView(request, response, "/view/AddOrEditBook.jsp");
 		} else {
 
 			manageBook.addNewBook(bookName, bookAuthor);
 			request.setAttribute("listBooks", manageBook.getListBooks());
-			displayView(request, response, "/Home.jsp");
+			displayView(request, response, "/view/Home.jsp");
 		}
-
 	}
 
+	private static final long serialVersionUID = 1L;
+	private ManageBook manageBook = new ManageBook();
 }

@@ -6,29 +6,41 @@ import java.util.List;
 import com.codeenginestudio.bookManagement.models.Book;
 
 public class ManageBook {
-	private static List<Book> books = new ArrayList();
-	private static int bookId = 1;
 
 	public List<Book> getListBooks() {
-		return books;
+
+		return _books;
 	}
 
 	public void addNewBook(String bookName, String bookAuthor) {
 
-		books.add(new Book(bookId, bookName, bookAuthor));
-		bookId ++;
+		Book book = new Book(_bookId, bookName, bookAuthor);
+		_books.add(book);
+		_bookId ++;
+	}
+
+	public void deleteBook(int bookId) {
+		
+		for (Book book : _books) {
+
+			if(bookId == book.getBookId()) {
+
+				_books.remove(book);
+				break;
+			}
+		}
 	}
 
 	public void editBook(int bookId, String bookName, String bookAuthor) {
 
-		Book changableBook = getOneBook(bookId);
-		changableBook.setBookName(bookName);
-		changableBook.setBookAuthor(bookAuthor);
+		Book book = getOneBook(bookId);
+		book.setBookName(bookName);
+		book.setBookAuthor(bookAuthor);
 	}
 
 	public Book getOneBook (int bookId) {
 
-		for (Book book : books) {
+		for (Book book : _books) {
 
 			if(bookId == book.getBookId()) {
 				return book;
@@ -38,14 +50,6 @@ public class ManageBook {
 		return null;
 	}
 
-	public void deleteBook(int bookId) {
-		
-		for (Book book : books) {
-
-			if(bookId == book.getBookId()) {
-				books.remove(book);
-				break;
-			}
-		}
-	}
+	private static List<Book> _books = new ArrayList();
+	private static int _bookId = 1;
 }
