@@ -6,7 +6,7 @@
 	<display-name>Book - Management</display-name>
 
 	<welcome-file-list>
-		<welcome-file>Welcome.jsp</welcome-file>
+		<welcome-file>view/Welcome.jsp</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
@@ -31,22 +31,22 @@
 
 	<servlet-mapping>
 	    <servlet-name>Book</servlet-name>
-	    <url-pattern>/Book</url-pattern>
+	    <url-pattern>/Book/</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
 	    <servlet-name>AddBook</servlet-name>
-	    <url-pattern>/AddBook</url-pattern>
+	    <url-pattern>/Book/Add</url-pattern>
 	</servlet-mapping>
 	
-		<servlet-mapping>
+	<servlet-mapping>
 	    <servlet-name>EditBook</servlet-name>
-	    <url-pattern>/EditBook</url-pattern>
+	    <url-pattern>/Book/EditBook</url-pattern>
 	</servlet-mapping>
 	
-		<servlet-mapping>
+	<servlet-mapping>
 	    <servlet-name>DeleteBook</servlet-name>
-	    <url-pattern>/DeleteBook</url-pattern>
+	    <url-pattern>/Book/DeleteBook</url-pattern>
 	</servlet-mapping>
 
 </web-app>
