@@ -211,17 +211,17 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="text-title">a book</h1>
+		<h1 class="text-title">${bookEdit == null ? "Add" : "Edit"} a book</h1>
 
-		<form class="form" action="<%=request.getContextPath()%>/addBook" method="POST">
-			<input type="hidden" name="id" class="input-item" value="0">
+		<form class="form" action="<%=request.getContextPath()%>/${bookEdit == null ? "addBook" : "editBook"}" method="POST">
+			<input type="hidden" name="id" class="input-item" value="${bookEdit == null ? 0 : bookEdit.getBookId()}">
 			<div class="form-group">
 				<label class="text-label" for="book-name">Book name</label>
-				<input type="text" name="name" class="input-item ${error == null ? "" : "error"}" placeholder="${error == null ? "Enter the book's name " : error}">
+				<input type="text" name="name" value="${bookEdit == null ? "" : bookEdit.getBookName()}" class="input-item ${error == null ? "" : "error"}" placeholder="${error == null ? "Enter the book's name " : error}">
 			</div>
 			<div class="form-group">
 				<label class="text-label" for="author">Author</label>
-				<input type="text" name="author" class="input-item" placeholder="Enter the book's author">
+				<input type="text" name="author" value="${bookEdit == null ? "" : bookEdit.getAuthor()}" class="input-item" placeholder="Enter the book's author">
 			</div>
 			<div class="footer-items">
 				<button type="submit" class="buton-save">Save</button>
