@@ -50,4 +50,69 @@ public class BookDao {
 		}
 	}
 
+	public Book getBookById(int id) {
+
+		Transaction transaction = null;
+		Book book = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			// start a transaction
+			transaction = session.beginTransaction();
+			// get an user object
+			book = session.get(Book.class, id);
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return book;
+	}
+
+	public void updateBook(Book book) {
+		Transaction transaction = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			// start a transaction
+			transaction = session.beginTransaction();
+			// save the student object
+			session.update(book);
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Delete book
+	 * 
+	 * @param id
+	 */
+	public void deleteBook(int id) {
+
+		Transaction transaction = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			// start a transaction
+			transaction = session.beginTransaction();
+
+			// Delete a user object
+			Book book = session.get(Book.class, id);
+			if (book != null) {
+				session.delete(book);
+			}
+
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+
 }
