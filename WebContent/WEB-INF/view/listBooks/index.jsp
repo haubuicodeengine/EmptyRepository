@@ -7,10 +7,10 @@
 	<title>The book</title>
 	
 	<link rel="icon" href="https://img.icons8.com/cute-clipart/344/book.png" type="image/gif" sizes="16x16">
-	<link href=../static/css/main.css" rel="stylesheet" type="text/css">
+	<link href="/WebContent/static/css/main.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700,900|Google+Sans+Display:400,500" rel="stylesheet" nonce="fSXOtZ5Ye0RE8N7b_mEygA">
-	
+
 	<style>
 		body {
 			margin: 0;
@@ -208,7 +208,7 @@
 		
 		.error {
 			border: 1px solid #df013a;
-		}	
+		}
 	</style>
 </head>
 <body>
@@ -224,8 +224,6 @@
 				<th class="book-title-item">No.</th>
 				<th class="book-title-item">Book name</th>
 				<th class="book-title-item">Author name</th>
-				<th class="book-title-item">Price</th>
-				<th class="book-title-item">Quantity</th>
 				<th class="book-title-item">Actions</th>
 			</tr>
 			<tbody class="list-books">
@@ -234,8 +232,6 @@
 					<td class="book-item-description">${book.getBookId()}</td>
 					<td class="book-item-description">${book.getBookName()}</td>
 					<td class="book-item-description">${book.getAuthor()}</td>
-					<td class="book-item-description">${book.getPrice()}</td>
-					<td class="book-item-description">${book.getQuantity()}</td>
 					<td class="book-item-description">
 						<i onclick="confirmation('deleteBook?id=${book.getBookId()}', 'delete')" class="fas fa-trash red" data-toggle="modal" data-target="#myModal"></i>&emsp;
 						<a href="editBook?id=${book.getBookId()}"><i class="fas fa-pen blue"></i></a>

@@ -17,36 +17,41 @@ import hibernate.entities.Book;
  * Servlet implementation class BookServlet
  */
 @WebServlet("/")
-public class BookServlet extends HttpServlet {
+public class ListBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookDao bookDao;
 
-    public void init() {
-    	bookDao = new BookDao();
-    }
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BookServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		List < Book > listBooks = bookDao.getAllBook();
-        request.setAttribute("listBooks", listBooks);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/listBooks/index.jsp");
-        dispatcher.forward(request, response);
+	public void init() {
+		bookDao = new BookDao();
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ListBookServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		List<Book> listBooks = bookDao.getAllBook();
+		request.setAttribute("listBooks", listBooks);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/listBooks/index.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
