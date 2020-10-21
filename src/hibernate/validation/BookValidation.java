@@ -1,4 +1,4 @@
-package Hibernate.validation;
+package hibernate.validation;
 
 import java.util.List;
 

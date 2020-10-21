@@ -1,6 +1,8 @@
 package hibernate.servlets;
 
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Hibernate.validation.BookValidation;
+import hibernate.validation.BookValidation;
+import hibernate.dao.AuthorDao;
 import hibernate.dao.BookDao;
+import hibernate.entities.Author;
 import hibernate.entities.Book;
+import hibernate.service.AuthorServiceImp;
 
 /**
  * Servlet implementation class AddBookServlet
@@ -20,6 +25,8 @@ import hibernate.entities.Book;
 public class AddBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookDao bookDao;
+	private AuthorDao authorDao;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -27,9 +34,10 @@ public class AddBookServlet extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public void init() {
 		bookDao = new BookDao();
+		authorDao = new AuthorDao();
 	}
 
 	/**
@@ -39,6 +47,8 @@ public class AddBookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		List<Author> listAuthors = authorDao.getAllAuthor();
+		request.setAttribute("listAuthors", listAuthors);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -51,28 +61,28 @@ public class AddBookServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int id = Integer.parseInt(request.getParameter("id"));
-        String name = request.getParameter("name");
-        String author = request.getParameter("author");
-        
-        if (!BookValidation.checkEmpty(name)) {
-        	request.setAttribute("error", "The book's name is not null.");
+		String name = request.getParameter("name");
+		int authorId = Integer.parseInt(request.getParameter("author.authorId"));
+
+		if (!BookValidation.checkEmpty(name)) {
+			request.setAttribute("error", "The book's name is not null.");
 
 			RequestDispatcher dispatcher = this.getServletContext()
 					.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
 			dispatcher.forward(request, response);
 
-        }else if(!BookValidation.checkExisted(id, name, bookDao.getAllBook())) {
-        	request.setAttribute("error", "The book's name is existed.");
+		} else if (!BookValidation.checkExisted(id, name, bookDao.getAllBook())) {
+			request.setAttribute("error", "The book's name is existed.");
 
 			RequestDispatcher dispatcher = this.getServletContext()
 					.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
 			dispatcher.forward(request, response);
 
-        }else {
-            Book newBook = new Book(name, author);
-            bookDao.saveBook(newBook);
-            response.sendRedirect("books");
-        }
+		} else {
+			Book newBook = new Book(name, AuthorServiceImp.getAuthorByAuthorId(authorDao.getAllAuthor(), authorId));
+			bookDao.saveBook(newBook);
+			response.sendRedirect("books");
+		}
 	}
 
 }

@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import hibernate.entities.Author;
 import hibernate.entities.Book;
 
 public class HibernateUtil {
@@ -30,10 +31,11 @@ public class HibernateUtil {
 
 				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-				settings.put(Environment.HBM2DDL_AUTO, "create-drop");
-
+				settings.put(Environment.HBM2DDL_AUTO, "update");
+				System.out.println("UPdate");
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(Book.class);
+				configuration.addAnnotatedClass(Author.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();

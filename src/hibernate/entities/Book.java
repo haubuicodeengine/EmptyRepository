@@ -1,10 +1,13 @@
 package hibernate.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,21 +21,22 @@ public class Book {
 	@Column(name = "name")
 	private String bookName;
 
-	@Column(name = "author")
-	private String author;
+	@OneToOne(cascade = CascadeType.DETACH)
+	@JoinColumn(name = "authorId", referencedColumnName = "authorId")
+	private Author author;
 
 	public Book() {
 		super();
 	}
 
-	public Book(int bookId, String bookName, String author) {
+	public Book(int bookId, String bookName, Author author) {
 		super();
 		this.bookId = bookId;
 		this.bookName = bookName;
 		this.author = author;
 	}
 
-	public Book(String bookName, String author) {
+	public Book(String bookName, Author author) {
 		super();
 		this.bookName = bookName;
 		this.author = author;
@@ -54,11 +58,11 @@ public class Book {
 		this.bookName = bookName;
 	}
 
-	public String getAuthor() {
+	public Author getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(String author) {
+	public void setAuthor(Author author) {
 		this.author = author;
 	}
 }

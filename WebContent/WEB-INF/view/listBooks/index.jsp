@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" %>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>The book</title>
 	<link rel="icon" href="https://img.icons8.com/cute-clipart/344/book.png" type="image/gif" sizes="16x16">
-	<link href="./static/css/main.css" rel="stylesheet" >
+	<link href="WEB-INF/static/css/main.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700,900|Google+Sans+Display:400,500" rel="stylesheet" nonce="fSXOtZ5Ye0RE8N7b_mEygA">
 </head>
@@ -30,7 +30,7 @@
 				<tr class="book-item">
 					<td class="book-item-description">${book.getBookId()}</td>
 					<td class="book-item-description">${book.getBookName()}</td>
-					<td class="book-item-description">${book.getAuthor()}</td>
+					<td class="book-item-description">${book.getAuthor().getAuthorName()}</td>
 					<td class="book-item-description">
 						<i onclick="confirmation('deleteBook?id=${book.getBookId()}', 'delete')" class="fas fa-trash red" data-toggle="modal" data-target="#myModal"></i>&emsp;
 						<a href="editBook?id=${book.getBookId()}"><i class="fas fa-pen blue"></i></a>

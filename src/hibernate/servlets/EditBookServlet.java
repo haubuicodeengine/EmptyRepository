@@ -1,6 +1,7 @@
 package hibernate.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Hibernate.validation.BookValidation;
+import hibernate.validation.BookValidation;
+import hibernate.dao.AuthorDao;
 import hibernate.dao.BookDao;
+import hibernate.entities.Author;
 import hibernate.entities.Book;
+import hibernate.service.AuthorServiceImp;
 
 /**
  * Servlet implementation class EditBookServlet
@@ -20,6 +24,7 @@ import hibernate.entities.Book;
 public class EditBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookDao bookDao;
+	private AuthorDao authorDao;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -31,6 +36,7 @@ public class EditBookServlet extends HttpServlet {
 
 	public void init() {
 		bookDao = new BookDao();
+		authorDao = new AuthorDao();
 	}
 
 	/**
@@ -42,8 +48,10 @@ public class EditBookServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int id = Integer.parseInt(request.getParameter("id"));
 		Book bookEdit = bookDao.getBookById(id);
-		request.setAttribute("bookEdit", bookEdit);
+		List<Author> listAuthors = authorDao.getAllAuthor();
 
+		request.setAttribute("bookEdit", bookEdit);
+		request.setAttribute("listAuthors", listAuthors);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -57,7 +65,7 @@ public class EditBookServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int id = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("name");
-		String author = request.getParameter("author");
+		int authorId = Integer.parseInt(request.getParameter("author.authorId"));
 
 		if (!BookValidation.checkEmpty(name)) {
 			request.setAttribute("error", "The book's name is not null.");
@@ -74,7 +82,7 @@ public class EditBookServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 
 		} else {
-			Book book = new Book(id, name, author);
+			Book book = new Book(id, name, AuthorServiceImp.getAuthorByAuthorId(authorDao.getAllAuthor(), authorId));
 			bookDao.updateBook(book);
 			response.sendRedirect("books");
 		}
