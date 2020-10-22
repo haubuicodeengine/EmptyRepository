@@ -70,6 +70,7 @@ a {
     font-size: 16px;
     margin: 10px 0;
     box-sizing: border-box;
+    background: #fff;
 }
 
 .input-item:focus {

@@ -52,8 +52,7 @@ public class EditBookServlet extends HttpServlet {
 
 		request.setAttribute("bookEdit", bookEdit);
 		request.setAttribute("listAuthors", listAuthors);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
-		dispatcher.forward(request, response);
+		getFile(request, response);
 	}
 
 	/**
@@ -69,22 +68,23 @@ public class EditBookServlet extends HttpServlet {
 
 		if (!BookValidation.checkEmpty(name)) {
 			request.setAttribute("error", "The book's name is not null.");
-
-			RequestDispatcher dispatcher = this.getServletContext()
-					.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
-			dispatcher.forward(request, response);
+			getFile(request, response);
 
 		} else if (!BookValidation.checkExisted(id, name, bookDao.getAllBook())) {
 			request.setAttribute("error", "The book's name is existed.");
-
-			RequestDispatcher dispatcher = this.getServletContext()
-					.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
-			dispatcher.forward(request, response);
+			getFile(request, response);
 
 		} else {
-			Book book = new Book(id, name, AuthorServiceImp.getAuthorByAuthorId(authorDao.getAllAuthor(), authorId));
+			Book book = new Book(id, name, authorDao.getAuthorById(authorId));
 			bookDao.updateBook(book);
 			response.sendRedirect("books");
 		}
+	}
+
+	public void getFile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		RequestDispatcher dispatcher = this.getServletContext()
+				.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
+		dispatcher.forward(request, response);
 	}
 }

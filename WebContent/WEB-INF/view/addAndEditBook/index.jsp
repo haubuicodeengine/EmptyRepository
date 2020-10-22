@@ -4,15 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>The book - Add book</title>
+	<title>The book</title>
 	<link rel="icon" href="https://img.icons8.com/cute-clipart/344/book.png" type="image/gif" sizes="16x16">
-	<link href="WEB-INF/static/css/main.css" rel="stylesheet" type="text/css">
+	<link href="./static/css/main.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700,900|Google+Sans+Display:400,500" rel="stylesheet" nonce="fSXOtZ5Ye0RE8N7b_mEygA">
 </head>
 <body>
 	<div class="container">
 		<h1 class="text-title">${bookEdit == null ? "Add" : "Edit"} a book</h1>
-
 		<form class="form" action="<%=request.getContextPath()%>/${bookEdit == null ? "addBook" : "editBook"}" method="POST">
 			<input type="hidden" name="id" class="input-item" value="${bookEdit == null ? 0 : bookEdit.getBookId()}">
 			<div class="form-group">

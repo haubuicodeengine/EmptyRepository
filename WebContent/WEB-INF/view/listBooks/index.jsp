@@ -1,14 +1,13 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" %>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>The book</title>
 	<link rel="icon" href="https://img.icons8.com/cute-clipart/344/book.png" type="image/gif" sizes="16x16">
-	<link href="WEB-INF/static/css/main.css" rel="stylesheet" type="text/css">
+	<link type="text/css" href="./static/css/main.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700,900|Google+Sans+Display:400,500" rel="stylesheet" nonce="fSXOtZ5Ye0RE8N7b_mEygA">
+
 </head>
 <body>
 	<h1 class="text-center heading">The Book</h1>
@@ -26,9 +25,9 @@
 				<th class="book-title-item">Actions</th>
 			</tr>
 			<tbody class="list-books">
-			<c:forEach var="book" items="${listBooks}">
+			<c:forEach var="book" items="${listBooks}" varStatus="status">
 				<tr class="book-item">
-					<td class="book-item-description">${book.getBookId()}</td>
+					<td class="book-item-description">${status.index + 1}</td>
 					<td class="book-item-description">${book.getBookName()}</td>
 					<td class="book-item-description">${book.getAuthor().getAuthorName()}</td>
 					<td class="book-item-description">
@@ -42,14 +41,11 @@
 		<div class="modal fade" id="myModal">
 		    <div class="modal-dialog">
 		      <div class="modal-content">
-		        <!-- Modal Header -->
 		        <div class="header-modal">
 		        	<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<img class="icon-confirm" alt="confirm-icon" src="https://img.freepik.com/free-vector/cute-happy-smiling-intestine-apple-character-flat-cartoon-illustration-icon-design-isolated-white-background-intestine-apple-fruit-character-concept_92289-1502.jpg?size=626&ext=jpg">
 		        	<h5 id="content-confirm-title" class="text-title"></h5>
 		        </div>
-		        
-		        <!-- Modal body -->
 		        <div class="modal-body">
 					<a id="button-confirm">
 						<button type="button" class="btn btn-primary">Confirm</button>

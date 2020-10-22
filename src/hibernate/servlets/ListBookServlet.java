@@ -16,7 +16,7 @@ import hibernate.entities.Book;
 /**
  * Servlet implementation class BookServlet
  */
-@WebServlet("/")
+@WebServlet("/books")
 public class ListBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookDao bookDao;

@@ -1,7 +1,6 @@
 package hibernate.servlets;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -49,8 +48,7 @@ public class AddBookServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		List<Author> listAuthors = authorDao.getAllAuthor();
 		request.setAttribute("listAuthors", listAuthors);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
-		dispatcher.forward(request, response);
+		getFile(request, response);
 	}
 
 	/**
@@ -66,23 +64,24 @@ public class AddBookServlet extends HttpServlet {
 
 		if (!BookValidation.checkEmpty(name)) {
 			request.setAttribute("error", "The book's name is not null.");
-
-			RequestDispatcher dispatcher = this.getServletContext()
-					.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
-			dispatcher.forward(request, response);
+			getFile(request, response);
 
 		} else if (!BookValidation.checkExisted(id, name, bookDao.getAllBook())) {
 			request.setAttribute("error", "The book's name is existed.");
-
-			RequestDispatcher dispatcher = this.getServletContext()
-					.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
-			dispatcher.forward(request, response);
-
+			getFile(request, response);
+			
 		} else {
-			Book newBook = new Book(name, AuthorServiceImp.getAuthorByAuthorId(authorDao.getAllAuthor(), authorId));
+			Book newBook = new Book(name, authorDao.getAuthorById(authorId));
 			bookDao.saveBook(newBook);
 			response.sendRedirect("books");
 		}
+	}
+
+	public void getFile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		RequestDispatcher dispatcher = this.getServletContext()
+				.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
