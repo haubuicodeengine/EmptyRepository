@@ -1,5 +1,9 @@
 package hibernate.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,9 +27,13 @@ public class Book {
 	@Column(name = "name")
 	private String bookName;
 
-	@OneToOne(cascade = CascadeType.DETACH)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "authorId", referencedColumnName = "authorId")
 	private Author author;
+
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "book_type", joinColumns = @JoinColumn(name = "bookId"), inverseJoinColumns = @JoinColumn(name = "bookTypeId"))
+	private List<BookType> bookType = new ArrayList<>();
 
 	public Book() {
 		super();
@@ -65,4 +75,5 @@ public class Book {
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
+
 }
