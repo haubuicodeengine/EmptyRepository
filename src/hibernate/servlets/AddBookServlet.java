@@ -15,7 +15,6 @@ import hibernate.dao.AuthorDao;
 import hibernate.dao.BookDao;
 import hibernate.entities.Author;
 import hibernate.entities.Book;
-import hibernate.service.AuthorServiceImp;
 
 /**
  * Servlet implementation class AddBookServlet
