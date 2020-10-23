@@ -25,7 +25,7 @@
 				<th class="book-title-item">Actions</th>
 			</tr>
 			<tbody class="list-books">
-			<c:forEach var="book" items="${listBooks}" varStatus="status">
+			<c:forEach var="book" items="${listBook}" varStatus="status">
 				<tr class="book-item">
 					<td class="book-item-description">${status.index + 1}</td>
 					<td class="book-item-description">${book.getBookName()}</td>
