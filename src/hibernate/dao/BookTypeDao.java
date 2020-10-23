@@ -5,21 +5,20 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import hibernate.entities.Author;
+import hibernate.entities.BookType;
 import hibernate.util.HibernateUtil;
 
-public class AuthorDao {
-
-	public List<Author> getAllAuthor() {
+public class BookTypeDao {
+	public List<BookType> getAllBookType() {
 
 		Transaction transaction = null;
-		List<Author> listOfAuthor = null;
+		List<BookType> listOfBookType = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an book object
 
-			listOfAuthor = session.createQuery("from Author").getResultList();
+			listOfBookType = session.createQuery("from BookType").getResultList();
 
 			// commit transaction
 			transaction.commit();
@@ -29,18 +28,18 @@ public class AuthorDao {
 			}
 			e.printStackTrace();
 		}
-		return listOfAuthor;
+		return listOfBookType;
 	}
 	
-	public Author getAuthorById(int id) {
+	public BookType getBookTypeById(int id) {
 
 		Transaction transaction = null;
-		Author author = null;
+		BookType bookType = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an user object
-			author = session.get(Author.class, id);
+			bookType = session.get(BookType.class, id);
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
@@ -49,25 +48,6 @@ public class AuthorDao {
 			}
 			e.printStackTrace();
 		}
-		return author;
-	}
-
-	public Author getAuthorByName(String name) {
-		Transaction transaction = null;
-		Author author = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			// start a transaction
-			transaction = session.beginTransaction();
-			// get an author object
-			author = session.get(Author.class, name);
-			// commit transaction
-			transaction.commit();
-		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			e.printStackTrace();
-		}
-		return author;
+		return bookType;
 	}
 }
