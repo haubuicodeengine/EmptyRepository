@@ -11,6 +11,7 @@ import org.hibernate.service.ServiceRegistry;
 import hibernate.entities.Author;
 import hibernate.entities.Book;
 import hibernate.entities.BookType;
+import hibernate.entities.Book_BookType;
 
 public class HibernateUtil {
 	private static SessionFactory sessionFactory;
@@ -32,13 +33,14 @@ public class HibernateUtil {
 
 				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-				settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+				settings.put(Environment.HBM2DDL_AUTO, "update");
 				System.out.println("UPdate");
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(Book.class);
 				configuration.addAnnotatedClass(Author.class);
 				configuration.addAnnotatedClass(BookType.class);
-
+				configuration.addAnnotatedClass(Book_BookType.class);
+				
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
 				System.out.println("Hibernate Java Config serviceRegistry created");
