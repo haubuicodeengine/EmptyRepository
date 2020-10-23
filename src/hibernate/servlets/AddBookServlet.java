@@ -13,8 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import hibernate.validation.BookValidation;
 import hibernate.dao.AuthorDao;
 import hibernate.dao.BookDao;
+import hibernate.dao.BookTypeDao;
+import hibernate.dao.Book_BookTypeDao;
 import hibernate.entities.Author;
 import hibernate.entities.Book;
+import hibernate.entities.BookType;
 
 /**
  * Servlet implementation class AddBookServlet
@@ -24,8 +27,12 @@ public class AddBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookDao bookDao;
 	private AuthorDao authorDao;
+	private BookTypeDao bookTypeDao;
+	private Book_BookTypeDao book_bookTypeDao;
 
 	/**
+	 * bookTypeDao
+	 * 
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public AddBookServlet() {
@@ -36,6 +43,8 @@ public class AddBookServlet extends HttpServlet {
 	public void init() {
 		bookDao = new BookDao();
 		authorDao = new AuthorDao();
+		bookTypeDao = new BookTypeDao();
+		book_bookTypeDao = new Book_BookTypeDao();
 	}
 
 	/**
@@ -45,8 +54,6 @@ public class AddBookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<Author> listAuthors = authorDao.getAllAuthor();
-		request.setAttribute("listAuthors", listAuthors);
 		getFile(request, response);
 	}
 
@@ -61,6 +68,9 @@ public class AddBookServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		int authorId = Integer.parseInt(request.getParameter("author.authorId"));
 
+		String[] listbookType = request.getParameterValues("bookTypeSelected");
+
+		System.out.println(listbookType);
 		if (!BookValidation.checkEmpty(name)) {
 			request.setAttribute("error", "The book's name is not null.");
 			getFile(request, response);
@@ -68,16 +78,26 @@ public class AddBookServlet extends HttpServlet {
 		} else if (!BookValidation.checkExisted(id, name, bookDao.getAllBook())) {
 			request.setAttribute("error", "The book's name is existed.");
 			getFile(request, response);
-			
+
 		} else {
 			Book newBook = new Book(name, authorDao.getAuthorById(authorId));
 			bookDao.saveBook(newBook);
+
+			for (String item : listbookType) {
+				book_bookTypeDao.saveItem(newBook, bookTypeDao.getBookTypeById(Integer.parseInt(item)));
+			}
 			response.sendRedirect("books");
 		}
 	}
 
 	public void getFile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		List<Author> listAuthor = authorDao.getAllAuthor();
+		List<BookType> listBookType = bookTypeDao.getAllBookType();
+
+		request.setAttribute("listAuthor", listAuthor);
+		request.setAttribute("listBookType", listBookType);
+
 		RequestDispatcher dispatcher = this.getServletContext()
 				.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
 		dispatcher.forward(request, response);

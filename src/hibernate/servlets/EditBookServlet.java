@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import hibernate.validation.BookValidation;
 import hibernate.dao.AuthorDao;
 import hibernate.dao.BookDao;
+import hibernate.dao.BookTypeDao;
 import hibernate.entities.Author;
 import hibernate.entities.Book;
+import hibernate.entities.BookType;
 
 /**
  * Servlet implementation class EditBookServlet
@@ -24,6 +26,7 @@ public class EditBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookDao bookDao;
 	private AuthorDao authorDao;
+	private BookTypeDao bookTypeDao;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -36,6 +39,7 @@ public class EditBookServlet extends HttpServlet {
 	public void init() {
 		bookDao = new BookDao();
 		authorDao = new AuthorDao();
+		bookTypeDao = new BookTypeDao();
 	}
 
 	/**
@@ -45,12 +49,6 @@ public class EditBookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
-		Book bookEdit = bookDao.getBookById(id);
-		List<Author> listAuthors = authorDao.getAllAuthor();
-
-		request.setAttribute("bookEdit", bookEdit);
-		request.setAttribute("listAuthors", listAuthors);
 		getFile(request, response);
 	}
 
@@ -82,6 +80,16 @@ public class EditBookServlet extends HttpServlet {
 
 	public void getFile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		Book bookEdit = bookDao.getBookById(id);
+		List<Author> listAuthor = authorDao.getAllAuthor();
+		List<BookType> listBookType = bookTypeDao.getAllBookType();
+
+		request.setAttribute("bookEdit", bookEdit);
+		request.setAttribute("listAuthor", listAuthor);
+		request.setAttribute("listBookType", listBookType);
+
 		RequestDispatcher dispatcher = this.getServletContext()
 				.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
 		dispatcher.forward(request, response);

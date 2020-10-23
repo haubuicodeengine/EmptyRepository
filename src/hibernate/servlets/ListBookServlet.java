@@ -40,8 +40,8 @@ public class ListBookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<Book> listBooks = bookDao.getAllBook();
-		request.setAttribute("listBooks", listBooks);
+		List<Book> listBook = bookDao.getAllBook();
+		request.setAttribute("listBook", listBook);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/listBooks/index.jsp");
 		dispatcher.forward(request, response);
 	}
