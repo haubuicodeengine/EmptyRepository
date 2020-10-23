@@ -2,7 +2,6 @@ package hibernate.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,13 +26,9 @@ public class Book {
 	@Column(name = "name")
 	private String bookName;
 
-	@ManyToOne(cascade = CascadeType.DETACH)
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "authorId", referencedColumnName = "authorId")
 	private Author author;
-
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "book_type", joinColumns = @JoinColumn(name = "bookId"), inverseJoinColumns = @JoinColumn(name = "bookTypeId"))
-	private List<BookType> bookType = new ArrayList<>();
 
 	public Book() {
 		super();
