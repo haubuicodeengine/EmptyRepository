@@ -1,23 +1,27 @@
 package hibernate.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import hibernate.entities.Author;
 import hibernate.entities.Book;
 import hibernate.entities.BookType;
 import hibernate.entities.Book_BookType;
 import hibernate.util.HibernateUtil;
 
 public class Book_BookTypeDao {
-	
+
 	public List<Book_BookType> getAllBook_BookType() {
 
 		Transaction transaction = null;
 		List<Book_BookType> listOfBook_BookType = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an Book_BookType object
@@ -31,6 +35,10 @@ public class Book_BookTypeDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 		return listOfBook_BookType;
 	}
@@ -38,7 +46,11 @@ public class Book_BookTypeDao {
 	public void saveItem(Book book, BookType bookType) {
 
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 			// save the Book_BookType object
@@ -51,6 +63,10 @@ public class Book_BookTypeDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 	}
 
@@ -58,7 +74,11 @@ public class Book_BookTypeDao {
 
 		Transaction transaction = null;
 		Book_BookType book_BookType = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an user object
@@ -70,13 +90,21 @@ public class Book_BookTypeDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 		return book_BookType;
 	}
 
 	public void updateBook_BookType(Book_BookType book_BookType) {
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 			// save the student object
@@ -88,6 +116,10 @@ public class Book_BookTypeDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 	}
 
@@ -99,7 +131,11 @@ public class Book_BookTypeDao {
 	public void deleteBook_BookType(int id) {
 
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 
@@ -116,6 +152,44 @@ public class Book_BookTypeDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 	}
+
+	public void deleteBook_BookTypeDaoByBookId(int bookId) {
+
+		List<Book_BookType> listBook_BookType = getAllBook_BookType();
+		for (Book_BookType item : listBook_BookType) {
+			if (item.getBook().getBookId() == bookId) {
+				deleteBook_BookType(item.getId());
+			}
+		}
+	}
+	
+
+	public void deleteBook_BookTypeByBookTypeId(Integer bookTypeId) {
+		List<Book_BookType> listBook_BookType = getAllBook_BookType();
+		for (Book_BookType item : listBook_BookType) {
+			if (item.getBookType().getBookTypeId() == bookTypeId) {
+				listBook_BookType.remove(item);
+			}
+		}
+		
+	}
+
+	public List<Integer> getListBook_BookTypeIdByBookId(int bookId) {
+		List<Book_BookType> listBook_BookType = getAllBook_BookType();
+		List<Integer> listBook_BookTypeId = new ArrayList<Integer>();
+
+		for (Book_BookType item : listBook_BookType) {
+			if (item.getBook().getBookId() == bookId) {
+				listBook_BookTypeId.add(bookId);
+			}
+		}
+		return listBook_BookTypeId;
+	}
+
 }

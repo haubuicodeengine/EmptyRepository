@@ -14,7 +14,11 @@ public class AuthorDao {
 
 		Transaction transaction = null;
 		List<Author> listOfAuthor = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an book object
@@ -28,15 +32,24 @@ public class AuthorDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
+
 		return listOfAuthor;
 	}
-	
+
 	public Author getAuthorById(int id) {
 
 		Transaction transaction = null;
 		Author author = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an user object
@@ -48,6 +61,10 @@ public class AuthorDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 		return author;
 	}
@@ -55,7 +72,11 @@ public class AuthorDao {
 	public Author getAuthorByName(String name) {
 		Transaction transaction = null;
 		Author author = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an author object
@@ -67,6 +88,10 @@ public class AuthorDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 		return author;
 	}

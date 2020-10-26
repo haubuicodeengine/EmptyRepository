@@ -13,8 +13,11 @@ public class BookTypeDao {
 
 		Transaction transaction = null;
 		List<BookType> listOfBookType = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			// start a transaction
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession(); // start a transaction
 			transaction = session.beginTransaction();
 			// get an book object
 
@@ -27,16 +30,23 @@ public class BookTypeDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 		return listOfBookType;
 	}
-	
+
 	public BookType getBookTypeById(int id) {
 
 		Transaction transaction = null;
 		BookType bookType = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			// start a transaction
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession(); // start a transaction
 			transaction = session.beginTransaction();
 			// get an user object
 			bookType = session.get(BookType.class, id);
@@ -47,6 +57,10 @@ public class BookTypeDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 		return bookType;
 	}

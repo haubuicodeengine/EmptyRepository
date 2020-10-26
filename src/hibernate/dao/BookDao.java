@@ -14,13 +14,14 @@ public class BookDao {
 
 		Transaction transaction = null;
 		List<Book> listOfBook = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		Session session = null;
+
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an book object
-
 			listOfBook = session.createQuery("from Book").getResultList();
-
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
@@ -28,6 +29,10 @@ public class BookDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 		return listOfBook;
 	}
@@ -35,8 +40,11 @@ public class BookDao {
 	public void saveBook(Book book) {
 
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			// start a transaction
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession(); // start a transaction
 			transaction = session.beginTransaction();
 			// save the book object
 			session.save(book);
@@ -47,6 +55,10 @@ public class BookDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 	}
 
@@ -54,8 +66,11 @@ public class BookDao {
 
 		Transaction transaction = null;
 		Book book = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			// start a transaction
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession(); // start a transaction
 			transaction = session.beginTransaction();
 			// get an user object
 			book = session.get(Book.class, id);
@@ -66,14 +81,21 @@ public class BookDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 		return book;
 	}
 
 	public void updateBook(Book book) {
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			// start a transaction
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession(); // start a transaction
 			transaction = session.beginTransaction();
 			// save the student object
 			session.update(book);
@@ -84,6 +106,10 @@ public class BookDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 	}
 
@@ -95,8 +121,11 @@ public class BookDao {
 	public void deleteBook(int id) {
 
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			// start a transaction
+		Session session = null;
+
+		try {
+
+			session = HibernateUtil.getSessionFactory().openSession(); // start a transaction
 			transaction = session.beginTransaction();
 
 			// Delete a user object
@@ -112,6 +141,10 @@ public class BookDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 	}
 
