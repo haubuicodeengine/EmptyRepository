@@ -82,13 +82,17 @@ public class AddBookServlet extends HttpServlet {
 		} else {
 			Book newBook = new Book(name, authorDao.getAuthorById(authorId));
 			bookDao.saveBook(newBook);
-
-			for (String item : listbookType) {
-				book_bookTypeDao.saveItem(newBook, bookTypeDao.getBookTypeById(Integer.parseInt(item)));
+			
+			if(listbookType != null) {
+				for (String item : listbookType) {
+					book_bookTypeDao.saveItem(newBook, bookTypeDao.getBookTypeById(Integer.parseInt(item)));
+				}
 			}
+
 			response.sendRedirect("books");
 		}
 	}
+
 
 	public void getFile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

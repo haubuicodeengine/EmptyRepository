@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import hibernate.dao.BookDao;
+import hibernate.dao.Book_BookTypeDao;
 
 /**
  * Servlet implementation class DeleteBookServlet
@@ -16,6 +17,7 @@ import hibernate.dao.BookDao;
 public class DeleteBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookDao bookDao;
+	private Book_BookTypeDao book_bookTypeDao;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -27,6 +29,8 @@ public class DeleteBookServlet extends HttpServlet {
 
 	public void init() {
 		bookDao = new BookDao();
+		book_bookTypeDao = new Book_BookTypeDao();
+
 	}
 
 	/**
@@ -37,8 +41,8 @@ public class DeleteBookServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int bookId = Integer.parseInt(request.getParameter("id"));
+		book_bookTypeDao.deleteBook_BookTypeDaoByBookId(bookId);
 		bookDao.deleteBook(bookId);
-
 		response.sendRedirect(request.getContextPath() + "/books");
 
 	}
