@@ -1,6 +1,7 @@
-<%@ page import="com.codeenginestudio.bookManagement.models.Book"%>
+<%@ page import="com.codeenginestudio.bookManagement.model.Book"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,7 @@
 		String bookNameErr = (String) request.getAttribute("bookNameErr");
 
 		if (url == null) {
-			url = "./Book/AddBook";
+			url = "./book/insert";
 		}
 
 		if (bookNameErr == null) {
@@ -54,8 +55,21 @@
 					<div class="form-group row form-content">
 						<label for="bookAuthor" class="col-sm-3 col-form-label">Book Author : </label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" name="bookAuthor"
-								value="<%=book == null ? "" : book.getBookAuthor()%>" placeholder="Enter author of the book here">
+							<select class="form-control" name="bookAuthorId">
+								<c:forEach items="${authors}" var="author">
+									<option value="${author.authorId}">${author.authorName}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group row form-content">
+						<label for="bookAuthor" class="col-sm-3 col-form-label">Book Type : </label>
+						<div class="col-sm-9">
+							<c:forEach items="${bookTypes}" var="bookType" varStatus="index">
+								<input type="checkbox" name="bookTypeId" value="${bookType.bookTypeId}">
+									<p>${bookType.bookTypeName}</p>
+							</c:forEach>
 						</div>
 					</div>
 

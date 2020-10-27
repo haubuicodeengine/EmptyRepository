@@ -2,7 +2,8 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.codeenginestudio.bookManagement.models.Book"%>
+<%@ page import="com.codeenginestudio.bookManagement.model.Book"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,36 +29,46 @@
 				<table class="table table-striped table-hover">
 					<thead >
 						<tr class="table-title">
-							<th colspan="4">List Of Books</th>
+							<th colspan="5">List Of Books</th>
 						</tr>
 						<tr class="table-col-title">
 							<th scope="col">Book ID</th>
 							<th scope="col">Book Name</th>
 							<th scope="col">Book Author</th>
+							<th scope="col">Book Type</th>
 							<th scope="col">Options</th>
 						</tr>
 					</thead>
 					<tbody>
-						<%
-							List<Book> books = (List) request.getAttribute("listBooks");
-							for (Book book : books) {
-							%>
-								<tr>
-									<td><%=book.getBookId()%></td>
-									<td><%=book.getBookName()%></td>
-									<td><%=book.getBookAuthor()%></td>
-									<td>
-										<a href="./EditBook?bookId=<%=book.getBookId()%>"><button class="btn btn-success">Edit</button></a>
-										<a href="./DeleteBook?bookId=<%=book.getBookId()%>"><button class="btn btn-danger">Delete</button></a>
-									</td>
-								</tr>
-							<%
-							}
-						%>
+						<c:choose>
+							<c:when test = "${listBooks == null || listBooks.size() == 0}">
+								<th colspan="5">No Data</th>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${listBooks}" var="book" varStatus="status">
+									<tr>
+										<td>${book.getBookId()}</td>
+										<td>${book.getBookName()}</td>
+										<td>${book.getBookAuthor().getAuthorName()}</td>
+										<td>
+											<c:forEach items="${listBookAndtype}" var="bookAndType" varStatus="status">
+												${bookAndType.getBook().getBookId() ==  book.getBookId() ? bookAndType.getBookType().getBookTypeName() : ''}
+											</c:forEach>
+											
+										
+										</td>
+										<td>
+											<a href="./edit?bookId=${book.getBookId()}"><button class="btn btn-success">Edit</button></a>
+											<a href="./delete?bookId=${book.getBookId()}"><button class="btn btn-danger">Delete</button></a>
+										</td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+					      </c:choose>
 					</tbody>
 				</table>
 
-				<a href="./Add">
+				<a href="./add">
 					<button class="btn btn-primary">Add New Book</button>
 				</a>
 			</div>

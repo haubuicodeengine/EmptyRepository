@@ -14,7 +14,7 @@
 		</div>
 
 		<div class="welcome-banel">
-			<a href="./Book/"><button class="btn-start">Go!</button></a>
+			<a href="./book/"><button class="btn-start">Go!</button></a>
 		</div>
 	</div>
 </body>
