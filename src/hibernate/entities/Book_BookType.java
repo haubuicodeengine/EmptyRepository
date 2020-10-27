@@ -16,11 +16,11 @@ public class Book_BookType {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.DETACH})
 	@JoinColumn(name = "bookId")
 	Book book;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.DETACH})
 	@JoinColumn(name = "bookTypeId")
 	BookType bookType;
 
