@@ -129,7 +129,6 @@ public class Book_BookTypeDao {
 	 * @param id
 	 */
 	public void deleteBook_BookType(int id) {
-
 		Transaction transaction = null;
 		Session session = null;
 
@@ -168,16 +167,14 @@ public class Book_BookTypeDao {
 			}
 		}
 	}
-	
 
-	public void deleteBook_BookTypeByBookTypeId(Integer bookTypeId) {
+	public void deleteBook_BookTypeByBookTypeId(int bookTypeId) {
 		List<Book_BookType> listBook_BookType = getAllBook_BookType();
 		for (Book_BookType item : listBook_BookType) {
 			if (item.getBookType().getBookTypeId() == bookTypeId) {
-				listBook_BookType.remove(item);
+				deleteBook_BookType(item.getId());
 			}
 		}
-		
 	}
 
 	public List<Integer> getListBook_BookTypeIdByBookId(int bookId) {
