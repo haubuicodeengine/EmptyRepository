@@ -13,11 +13,11 @@ public class BookValidation {
 		}
 		return true;
 	}
-	
+
 	public static Boolean checkExisted(int bookId, String bookName, List<Book> listBooks) {
-		for(Book book: listBooks) {
-			if(book.getBookId() != bookId) {
-				if(book.getBookName().equals(bookName)) {
+		for (Book book : listBooks) {
+			if (book.getBookId() != bookId) {
+				if (book.getBookName().equals(bookName)) {
 					return false;
 				}
 			}
@@ -26,9 +26,9 @@ public class BookValidation {
 	}
 
 	public static boolean checkBookTypeExisted(List<Book_BookType> listBook_BookType, int bookId, int bookTypeId) {
-		for(Book_BookType item: listBook_BookType) {
-			if(item.getBook().getBookId() == bookId) {
-				if(item.getBookType().getBookTypeId() == bookTypeId) {
+		for (Book_BookType item : listBook_BookType) {
+			if (item.getBook().getBookId() == bookId) {
+				if (item.getBookType().getBookTypeId() == bookTypeId) {
 					return false;
 				}
 			}

@@ -1,7 +1,6 @@
 package hibernate.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -61,6 +60,7 @@ public class EditBookServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -69,11 +69,6 @@ public class EditBookServlet extends HttpServlet {
 		int authorId = Integer.parseInt(request.getParameter("author.authorId"));
 
 		String[] listbookType = request.getParameterValues("bookTypeSelected");
-		List<Integer> listBookTypeId = new ArrayList<Integer>();
-
-		for (int i = 0; i < listbookType.length; i++) {
-			listBookTypeId.add(Integer.parseInt(listbookType[i]));
-		}
 
 		if (!BookValidation.checkEmpty(name)) {
 			request.setAttribute("error", "The book's name is not null.");
@@ -88,21 +83,23 @@ public class EditBookServlet extends HttpServlet {
 			bookDao.updateBook(book);
 
 			List<Integer> listBookTypeChecked = book_bookTypeDao.getListBook_BookTypeIdByBookId(bookId);
-			if (listBookTypeId != null) {
+			if (listbookType != null) {
 				// check bookType existed in db
-				for (Integer bookTypeId : listBookTypeId) {
+				for (String bookTypeId : listbookType) {
 					if (BookValidation.checkBookTypeExisted(book_bookTypeDao.getAllBook_BookType(), bookId,
-							bookTypeId)) {
-						book_bookTypeDao.saveItem(book, bookTypeDao.getBookTypeById(bookTypeId));
+							Integer.parseInt(bookTypeId))) {
+						book_bookTypeDao.saveItem(book, bookTypeDao.getBookTypeById(Integer.parseInt(bookTypeId)));
 					}
 				}
 				// check bookType is removed
-				for (Integer bookTypeId : listBookTypeChecked) {
-					if (!listBookTypeId.contains(bookTypeId)) {
-						book_bookTypeDao.deleteBook_BookTypeByBookTypeId(bookTypeId);
+				for (int i = 0; i < listbookType.length; i++) {
+					for (int bookTypeId : listBookTypeChecked) {
+						if (bookTypeId == Integer.parseInt(listbookType[i])) {
+							book_bookTypeDao.deleteBook_BookTypeByBookTypeId(bookTypeId);
+						}
 					}
 				}
-			} // check list remove all
+			} // check list bookType remove all
 			else {
 				book_bookTypeDao.deleteBook_BookTypeDaoByBookId(bookId);
 			}
@@ -117,12 +114,12 @@ public class EditBookServlet extends HttpServlet {
 		Book bookEdit = bookDao.getBookById(bookId);
 		List<Author> listAuthor = authorDao.getAllAuthor();
 		List<BookType> listBookType = bookTypeDao.getAllBookType();
-//		List<Integer> listBookTypeIdSelected = book_bookTypeDao.getListBook_BookTypeIdByBookId(bookId);
+		List<Integer> listBookTypeIdSelected = book_bookTypeDao.getListBook_BookTypeIdByBookId(bookId);
 
 		request.setAttribute("bookEdit", bookEdit);
 		request.setAttribute("listAuthor", listAuthor);
 		request.setAttribute("listBookType", listBookType);
-//		request.setAttribute("listBookTypeSelected", listBookTypeIdSelected);
+		request.setAttribute("listBookTypeSelected", listBookTypeIdSelected);
 
 		RequestDispatcher dispatcher = this.getServletContext()
 				.getRequestDispatcher("/WEB-INF/view/addAndEditBook/index.jsp");
