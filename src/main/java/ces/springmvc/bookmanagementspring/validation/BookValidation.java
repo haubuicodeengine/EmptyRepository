@@ -14,7 +14,7 @@ public class BookValidation {
 		return true;
 	}
 
-	public static Boolean checkExisted(int bookId, String bookName, List<BookEntity> listBook) {
+	public static Boolean checkExisted(Long bookId, String bookName, List<BookEntity> listBook) {
 		for (BookEntity book : listBook) {
 			if (book.getBookId() != bookId) {
 				if (book.getBookName().equals(bookName)) {
@@ -25,7 +25,7 @@ public class BookValidation {
 		return true;
 	}
 
-	public static boolean checkBookTypeExisted(List<Book_BookTypeEntity> listBook_BookType, int bookId, int bookTypeId) {
+	public static boolean checkBookTypeExisted(List<Book_BookTypeEntity> listBook_BookType, Long bookId, Long bookTypeId) {
 		for (Book_BookTypeEntity item : listBook_BookType) {
 			if (item.getBook().getBookId() == bookId) {
 				if (item.getBookType().getBookTypeId() == bookTypeId) {
