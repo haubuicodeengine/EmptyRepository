@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -49,10 +50,30 @@ public class BookController {
 		return "addAndEditBook/index";
 	}
 
+	@GetMapping("/editBook/bookId={bookId}")
+	public String showEditForm(Model model, @PathVariable(name = "bookId") Long bookId) {
+
+		model.addAttribute("url", "/saveEditBook");
+		model.addAttribute("bookEdit", bookService.getBookByBookId(bookId));
+		model.addAttribute("listBookTypeSelected", book_bookTypeService.getListBookTypeIdByBookId(bookId));
+		_GetFile(model);
+
+		return "addAndEditBook/index";
+	}
+	
+
+	@GetMapping("/deleteBook/bookId={bookId}")
+	public String deleteClass(@PathVariable(name = "bookId") Long bookId) {
+
+		bookService.deleteBook(bookId);
+
+		return "redirect:/books";
+	}
+
 	@PostMapping("/saveAddBook")
-	public String saveAddClass(Model model, @RequestParam("bookId") int bookId, @RequestParam("name") String bookName,
-			@RequestParam("author.authorId") int authorId,
-			@RequestParam(required = false, name = "bookTypeSelected") List<Integer> listbookTypeId) {
+	public String saveAddClass(Model model, @RequestParam("bookId") Long bookId, @RequestParam("name") String bookName,
+			@RequestParam("author.authorId") Long authorId,
+			@RequestParam(required = false, name = "bookTypeSelected") List<Long> listbookTypeId) {
 
 		if (!BookValidation.checkEmpty(bookName)) {
 
@@ -71,9 +92,55 @@ public class BookController {
 			bookService.saveBook(newBook);
 
 			if (listbookTypeId != null) {
-				for (Integer bookTypeId : listbookTypeId) {
+				for (Long bookTypeId : listbookTypeId) {
 					book_bookTypeService.saveBook_BookType(newBook, bookTypeService.getBookTypeById(bookTypeId));
 				}
+			}
+		}
+		return "redirect:/books";
+	}
+
+	@PostMapping("/saveEditBook")
+	public String saveEditClass(Model model, @RequestParam("bookId") Long bookId, @RequestParam("name") String bookName,
+			@RequestParam("author.authorId") Long authorId,
+			@RequestParam(required = false, name = "bookTypeSelected") List<Long> listbookTypeId) {
+
+		if (!BookValidation.checkEmpty(bookName)) {
+
+			model.addAttribute("error", "The book's name is not null.");
+			_GetFile(model);
+			return "addAndEditBook/index";
+
+		} else if (!BookValidation.checkExisted(bookId, bookName, bookService.getAllBooks())) {
+
+			model.addAttribute("error", "The book's name is existed.");
+			_GetFile(model);
+			return "addAndEditBook/index";
+
+		} else {
+			BookEntity book = new BookEntity(bookId, bookName, authorService.getAuthorById(authorId));
+			bookService.updateBook(book);
+
+			List<Long> listBookTypeChecked = book_bookTypeService.getListBookTypeIdByBookId(bookId);
+			if (listbookTypeId != null) {
+				// check bookType existed in db
+				for (Long bookTypeId : listbookTypeId) {
+					if (BookValidation.checkBookTypeExisted(book_bookTypeService.getAllBook_BookType(), bookId,
+							bookTypeId)) {
+						book_bookTypeService.saveBook_BookType(book, bookTypeService.getBookTypeById(bookTypeId));
+					}
+				}
+				// check bookType is removed
+				for (Long bookTypeId : listbookTypeId) {
+					for (Long number : listBookTypeChecked) {
+						if (bookTypeId == number) {
+							book_bookTypeService.deleteBook_BookTypeByBookTypeId(bookTypeId);
+						}
+					}
+				}
+			} // check list bookType remove all
+			else {
+				book_bookTypeService.deleteBook_BookTypeDaoByBookId(bookId);
 			}
 		}
 		return "redirect:/books";
@@ -85,7 +152,6 @@ public class BookController {
 
 		model.addAttribute("listAuthor", listAuthor);
 		model.addAttribute("listBookType", listBookType);
-
 	}
 
 }
