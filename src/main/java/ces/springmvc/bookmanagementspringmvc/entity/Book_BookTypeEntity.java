@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Book_BookTypeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int id;
+	Long id;
 
 	@ManyToOne(cascade = {CascadeType.DETACH})
 	@JoinColumn(name = "bookId")
@@ -34,18 +34,18 @@ public class Book_BookTypeEntity {
 		this.bookType = bookType;
 	}
 	
-	public Book_BookTypeEntity(int id, BookEntity book, BookTypeEntity bookType) {
+	public Book_BookTypeEntity(Long id, BookEntity book, BookTypeEntity bookType) {
 		super();
 		this.id = id;
 		this.book = book;
 		this.bookType = bookType;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

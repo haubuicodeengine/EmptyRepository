@@ -13,7 +13,7 @@ public class BookTypeEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int bookTypeId;
+	private Long bookTypeId;
 
 	@Column(name = "bookTypeName")
 	private String bookTypeName;
@@ -22,17 +22,17 @@ public class BookTypeEntity {
 		super();
 	}
 
-	public BookTypeEntity(int bookTypeId, String bookTypeName) {
+	public BookTypeEntity(Long bookTypeId, String bookTypeName) {
 		super();
 		this.bookTypeId = bookTypeId;
 		this.bookTypeName = bookTypeName;
 	}
 
-	public int getBookTypeId() {
+	public Long getBookTypeId() {
 		return bookTypeId;
 	}
 
-	public void setBookTypeId(int bookTypeId) {
+	public void setBookTypeId(Long bookTypeId) {
 		this.bookTypeId = bookTypeId;
 	}
 

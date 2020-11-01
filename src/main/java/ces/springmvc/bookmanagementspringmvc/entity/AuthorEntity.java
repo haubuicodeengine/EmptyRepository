@@ -13,13 +13,13 @@ public class AuthorEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int authorId;
+	private Long authorId;
 
 	@Column(name = "authorName")
 	private String authorName;
 
 	@Column(name = "authorAge")
-	private int age;
+	private Long age;
 
 	@Column(name = "authorEmail")
 	private String email;
@@ -28,7 +28,7 @@ public class AuthorEntity {
 		super();
 	}
 
-	public AuthorEntity(int authorId, String authorName, int age, String email) {
+	public AuthorEntity(Long authorId, String authorName, Long age, String email) {
 		super();
 		this.authorId = authorId;
 		this.authorName = authorName;
@@ -36,11 +36,11 @@ public class AuthorEntity {
 		this.email = email;
 	}
 
-	public int getAuthorId() {
+	public Long getAuthorId() {
 		return authorId;
 	}
 
-	public void setAuthorId(int authorId) {
+	public void setAuthorId(Long authorId) {
 		this.authorId = authorId;
 	}
 
@@ -52,11 +52,11 @@ public class AuthorEntity {
 		this.authorName = authorName;
 	}
 
-	public int getAge() {
+	public Long getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Long age) {
 		this.age = age;
 	}
 
