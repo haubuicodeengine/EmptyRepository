@@ -21,7 +21,7 @@ public class BookTypeServiceImpl implements BookTypeService {
 	}
 
 	@Override
-	public BookTypeEntity getBookTypeById(Integer bookTypeId) {
+	public BookTypeEntity getBookTypeById(Long bookTypeId) {
 		return bookTypeDAO.getOne(bookTypeId);
 	}
 

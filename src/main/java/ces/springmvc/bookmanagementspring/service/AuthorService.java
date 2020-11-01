@@ -11,6 +11,6 @@ public interface AuthorService {
 
 	List<AuthorEntity> getAllAuthors();
 
-	AuthorEntity getAuthorById(int authorId);
+	AuthorEntity getAuthorById(Long authorId);
 
 }

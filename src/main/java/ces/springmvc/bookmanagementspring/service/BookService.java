@@ -10,8 +10,10 @@ public interface BookService {
 
 	void saveBook(BookEntity book);
 
-	BookEntity getBookByBookId(int bookId);
+	BookEntity getBookByBookId(Long bookId);
 
-	void deleteBook(int bookId);
+	void deleteBook(Long bookId);
+
+	void updateBook(BookEntity book);
 
 }
