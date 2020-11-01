@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import ces.springmvc.bookmanagementspringmvc.entity.BookTypeEntity;
 
 @Repository
-public interface BookTypeDAO extends JpaRepository<BookTypeEntity, Integer>{
+public interface BookTypeDAO extends JpaRepository<BookTypeEntity, Long>{
 
 }

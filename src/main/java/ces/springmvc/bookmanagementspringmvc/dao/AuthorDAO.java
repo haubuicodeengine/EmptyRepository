@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import ces.springmvc.bookmanagementspringmvc.entity.AuthorEntity;
 
 @Repository
-public interface AuthorDAO extends JpaRepository<AuthorEntity, Integer>{
+public interface AuthorDAO extends JpaRepository<AuthorEntity, Long>{
 
 }
