@@ -42,7 +42,7 @@ public class ListBookServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		List<Book> listBook = bookDao.getAllBook();
 		request.setAttribute("listBook", listBook);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/listBooks/index.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/listBook/index.jsp");
 		dispatcher.forward(request, response);
 	}
 

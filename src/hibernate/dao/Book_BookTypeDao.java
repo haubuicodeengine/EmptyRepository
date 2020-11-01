@@ -177,16 +177,16 @@ public class Book_BookTypeDao {
 		}
 	}
 
-	public List<Integer> getListBook_BookTypeIdByBookId(int bookId) {
+	public List<Integer> getListBookTypeIdByBookId(int bookId) {
 		List<Book_BookType> listBook_BookType = getAllBook_BookType();
-		List<Integer> listBook_BookTypeId = new ArrayList<Integer>();
+		List<Integer> listBookTypeId = new ArrayList<Integer>();
 
 		for (Book_BookType item : listBook_BookType) {
 			if (item.getBook().getBookId() == bookId) {
-				listBook_BookTypeId.add(bookId);
+				listBookTypeId.add(item.getBookType().getBookTypeId());
 			}
 		}
-		return listBook_BookTypeId;
+		return listBookTypeId;
 	}
 
 }

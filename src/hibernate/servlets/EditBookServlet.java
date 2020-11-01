@@ -82,7 +82,7 @@ public class EditBookServlet extends HttpServlet {
 			Book book = new Book(bookId, name, authorDao.getAuthorById(authorId));
 			bookDao.updateBook(book);
 
-			List<Integer> listBookTypeChecked = book_bookTypeDao.getListBook_BookTypeIdByBookId(bookId);
+			List<Integer> listBookTypeChecked = book_bookTypeDao.getListBookTypeIdByBookId(bookId);
 			if (listbookType != null) {
 				// check bookType existed in db
 				for (String bookTypeId : listbookType) {
@@ -114,7 +114,7 @@ public class EditBookServlet extends HttpServlet {
 		Book bookEdit = bookDao.getBookById(bookId);
 		List<Author> listAuthor = authorDao.getAllAuthor();
 		List<BookType> listBookType = bookTypeDao.getAllBookType();
-		List<Integer> listBookTypeIdSelected = book_bookTypeDao.getListBook_BookTypeIdByBookId(bookId);
+		List<Integer> listBookTypeIdSelected = book_bookTypeDao.getListBookTypeIdByBookId(bookId);
 
 		request.setAttribute("bookEdit", bookEdit);
 		request.setAttribute("listAuthor", listAuthor);
