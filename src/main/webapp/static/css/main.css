@@ -108,7 +108,7 @@ a {
 .footer-items {
 	display: flex;
 	justify-content: center;
-	margin-top: 20px;
+	margin-top: 50px;
 }
 
 .container {
@@ -202,70 +202,47 @@ a {
 	margin: 10px 0;
 }
 
-.MultiCheckBox {
-	border: 1px solid #e2e2e2;
-	padding: 12px 15px;
-	border-radius: 5px;
-	cursor: pointer;
-	max-width: 100%;
-}
-
-.MultiCheckBox .k-icon {
-	font-size: 15px;
-	float: right;
-	font-weight: bolder;
-	margin-top: -7px;
-	height: 10px;
-	width: 14px;
-	color: #787878;
-}
-
-.MultiCheckBoxDetail {
+.d-none {
 	display: none;
-	position: absolute;
-	border: 1px solid #e2e2e2;
-	overflow-y: hidden;
+}
+
+.book-type-dropdown {
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	padding: 12px 15px;
 	width: 100%;
+	margin-top: 10px;
+	background: #fff;
 }
 
-.MultiCheckBoxDetailBody {
-	overflow-y: scroll;
-}
-
-.MultiCheckBoxDetail .cont {
-	clear: both;
-	overflow: hidden;
-	padding: 2px;
-}
-
-.MultiCheckBoxDetail .cont:hover {
-	background-color: #cfcfcf;
-}
-
-.MultiCheckBoxDetailBody>div>div {
+.dropdown-text {
 	float: left;
+	font-size: 16px;
 }
 
-.MultiCheckBoxDetail>div>div:nth-child(1) {
-	
+.book-type-list {
+	list-style-type: none;
+	padding: 0;
 }
 
-.MultiCheckBoxDetailHeader {
-	overflow: hidden;
-	position: relative;
-	height: 28px;
-	background-color: #000;
+.book-type-list-item {
+	border-bottom: 1px solid #ddd;
+	padding: 5px 0;
 }
 
-.MultiCheckBoxDetailHeader>input {
-	position: absolute;
-	top: 4px;
-	left: 3px;
+.caret {
+	float: left;
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 4px;
+	margin-top: 8px;
+	vertical-align: middle;
+	border-top: 4px dashed;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
 }
 
-.MultiCheckBoxDetailHeader>div {
-	position: absolute;
-	top: 5px;
-	left: 24px;
-	color: #fff;
+input[type="checkbox"] {
+	margin-right: 10px;
 }
