@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ces.springmvc.bookmanagementspring.service.Book_BookTypeService;
+import ces.springmvc.bookmanagementspringmvc.dao.BookDAO;
 import ces.springmvc.bookmanagementspringmvc.dao.Book_BookTypeDAO;
 import ces.springmvc.bookmanagementspringmvc.entity.BookEntity;
 import ces.springmvc.bookmanagementspringmvc.entity.BookTypeEntity;
@@ -18,16 +19,18 @@ public class Book_BookTypeServiceImpl implements Book_BookTypeService {
 	@Autowired
 	private Book_BookTypeDAO book_BookTypeDAO;
 
+	@Autowired
+	private BookDAO bookDAO;
+
 	@Override
 	public List<Book_BookTypeEntity> getAllBook_BookType() {
 		return book_BookTypeDAO.findAll();
 	}
 
 	@Override
-	public void saveBook_BookType(BookEntity newBook, BookTypeEntity bookType) {
-
-		Book_BookTypeEntity newItem = new Book_BookTypeEntity(newBook, bookType);
-		book_BookTypeDAO.save(newItem);
+	public void saveBook_BookType(BookEntity book, BookTypeEntity bookType) {
+		Book_BookTypeEntity newItem = new Book_BookTypeEntity(bookDAO.getBookByBookName(book.getBookName()), bookType);
+		book_BookTypeDAO.saveAndFlush(newItem);
 	}
 
 	@Override

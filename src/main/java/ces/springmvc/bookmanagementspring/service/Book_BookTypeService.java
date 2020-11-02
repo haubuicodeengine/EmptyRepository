@@ -8,7 +8,7 @@ import ces.springmvc.bookmanagementspringmvc.entity.Book_BookTypeEntity;
 
 public interface Book_BookTypeService {
 
-	void saveBook_BookType(BookEntity newBook, BookTypeEntity bookTypeById);
+	void saveBook_BookType(BookEntity book, BookTypeEntity bookType);
 
 	void deleteBook_BookTypeById(Long bookId);
 

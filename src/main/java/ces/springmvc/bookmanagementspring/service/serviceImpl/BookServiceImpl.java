@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ces.springmvc.bookmanagementspring.service.BookService;
+import ces.springmvc.bookmanagementspring.service.Book_BookTypeService;
 import ces.springmvc.bookmanagementspringmvc.dao.AuthorDAO;
 import ces.springmvc.bookmanagementspringmvc.dao.BookDAO;
 import ces.springmvc.bookmanagementspringmvc.entity.BookEntity;
@@ -18,6 +19,9 @@ public class BookServiceImpl implements BookService {
 	
 	@Autowired
 	AuthorDAO authorDAO;
+	
+	@Autowired
+	Book_BookTypeService book_BookTypeService;
 
 	@Override
 	public List<BookEntity> getAllBooks() {
@@ -31,12 +35,22 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public void deleteBook(Long bookId) {
+		book_BookTypeService.deleteBook_BookTypeDaoByBookId(bookId);
 		bookDAO.deleteById(bookId);
 	}
 
 	@Override
 	public void saveBook(BookEntity book) {
-		bookDAO.save(book);
+		BookEntity bookEntity = new BookEntity();
+		bookEntity.setBookName(book.getBookName());
+		Long authorId = book.getAuthor().getAuthorId();
+		
+		if(authorId == null) {
+			bookEntity.setAuthor(null);
+		}else {
+			bookEntity.setAuthor(authorDAO.getOne(authorId));
+		}
+		bookDAO.saveAndFlush(bookEntity);
 	}
 
 	@Override
