@@ -71,7 +71,7 @@ public class BookController {
 	}
 
 	@PostMapping("/saveAddBook")
-	public String saveAddClass(Model model, @RequestParam("bookId") Long bookId, @RequestParam("name") String bookName,
+	public String saveAddClass(Model model, @RequestParam("bookId") Long bookId, @RequestParam("bookName") String bookName,
 			@RequestParam("author.authorId") Long authorId,
 			@RequestParam(required = false, name = "bookTypeSelected") List<Long> listbookTypeId) {
 
@@ -101,7 +101,7 @@ public class BookController {
 	}
 
 	@PostMapping("/saveEditBook")
-	public String saveEditClass(Model model, @RequestParam("bookId") Long bookId, @RequestParam("name") String bookName,
+	public String saveEditClass(Model model, @RequestParam("bookId") Long bookId, @RequestParam("bookName") String bookName,
 			@RequestParam("author.authorId") Long authorId,
 			@RequestParam(required = false, name = "bookTypeSelected") List<Long> listbookTypeId) {
 
