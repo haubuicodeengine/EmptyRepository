@@ -54,8 +54,6 @@
 											<c:forEach items="${listBookAndtype}" var="bookAndType" varStatus="status">
 												${bookAndType.getBook().getBookId() ==  book.getBookId() ? bookAndType.getBookType().getBookTypeName() : ''}
 											</c:forEach>
-											
-										
 										</td>
 										<td>
 											<a href="./edit?bookId=${book.getBookId()}"><button class="btn btn-success">Edit</button></a>

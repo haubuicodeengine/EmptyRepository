@@ -1,7 +1,6 @@
 package com.codeenginestudio.bookManagement.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,6 +33,7 @@ public class BookServlet extends HttpServlet {
 	private AuthorDao authorDao;
 
 	public void init() {
+
 		bookDao = new BookDao();
 		bookAndBookTypeDao = new BookAndBookTypeDao();
 		authorDao = new AuthorDao();
@@ -42,11 +42,13 @@ public class BookServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+
         doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+
         String action = request.getServletPath();
 
         switch (action) {
@@ -75,7 +77,7 @@ public class BookServlet extends HttpServlet {
     }
 
 	private void insertBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String bookName = request.getParameter("bookName");
 		String[] bookTypeIds = request.getParameterValues("bookTypeId");
 		int authorId = Integer.parseInt(request.getParameter("bookAuthorId"));
@@ -95,6 +97,7 @@ public class BookServlet extends HttpServlet {
 			bookDao.saveBook(newBook);
 
 			for (int i = 0; i < bookTypeIds.length; i++) {
+
 				int idType = Integer.parseInt(bookTypeIds[i].toString());
 				BookType bookType = bookTypeDao.getOneBookType(idType);
 				bookAndBookTypeDao.saveBookAndBookType(new BookAndBookType(newBook, bookType));
@@ -119,10 +122,11 @@ public class BookServlet extends HttpServlet {
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
 		int authorId = Integer.parseInt(request.getParameter("bookAuthorId"));
 		String[] bookTypeIds = request.getParameterValues("bookTypeId");
-		List<String> newListIdType = Arrays.asList(bookTypeIds);
+		List<String> newListIdTypes = Arrays.asList(bookTypeIds);
 		String bookName = request.getParameter("bookName");
 		Author bookAuthor = authorDao.getOneAuthor(authorId);
-
+		List<String> currentTypes = bookTypeDao.getListIdOfTypeByBookId(bookId);
+		
 		if(bookName.equals("")) {
 
 			request.setAttribute("book", new Book(bookId, bookName, bookAuthor));
@@ -132,67 +136,47 @@ public class BookServlet extends HttpServlet {
 			displayView(request, response, "/view/AddOrEditBook.jsp");
 
 		}else {
+
 			// update Book
 			Book book = bookDao.getOneBook(bookId);
         	book.setBookName(bookName);
         	book.setBookAuthor(bookAuthor);
         	bookDao.updateBook(book);
-        	
         	//update type of the book
-			List<BookAndBookType> bookAndType = bookAndBookTypeDao.getAllBookAndBooksTypeByBookId(bookId);
-			
-			int maxFor = _findMax(bookTypeIds.length, bookAndType.size());
+			for(int i = 0; i < newListIdTypes.size(); i++) {
 
-			for(int i = 0; i < maxFor; i++) {
-				
 				int typeId = Integer.parseInt(bookTypeIds[i].toString());
 
-				if(!_checkDuplicateBooktype(bookAndType, typeId)) {
-					
+				if(!_checkDuplicateBooktype(currentTypes, newListIdTypes.get(i))) {
+
 					BookType newBookType = bookTypeDao.getOneBookType(typeId);
 					BookAndBookType newBookAndBookType = new BookAndBookType(book, newBookType);
 					bookAndBookTypeDao.saveBookAndBookType(newBookAndBookType);
 				}
 			}
 
-			for(int i = 0; i < maxFor; i++) {
-				
-				
-				int typeId = Integer.parseInt(bookTypeIds[i].toString());
+			for(int i = 0; i < currentTypes.size(); i++) {
 
-				if(!newListIdType.contains(bookAndType.get(i).getBookType().getBookTypeId())) {
-					
-					bookAndBookTypeDao.deleteBookAndBookType(bookAndType.get(i).getBookAndBookTypeId());
+				if(!newListIdTypes.contains(currentTypes.get(i))) {
+
+					int id = Integer.parseInt(currentTypes.get(i));
+					bookAndBookTypeDao.deleteBookAndBookType(id);
 				}
 			}
 
 			request.setAttribute("listBooks", bookDao.getAllBook());
+			request.setAttribute("listBookAndtype", bookAndBookTypeDao.getAllBookAndBookType());
 			displayView(request, response, "/view/Home.jsp");
 		}
 	}
 
-	public static int _findMax(int size1, int size2) {
-		
-		int max;
+	private Boolean _checkDuplicateBooktype(List<String> currentTypes, String typeId) {
 
-		if(size1 >= size2) {
-
-			max = size1;
-
-		}else {
-
-			max = size2;
-
+		if(currentTypes == null) {
+			return false;
 		}
-
-		return max;
-	}
-
-	private Boolean _checkDuplicateBooktype(List<BookAndBookType> bookAndType, int typeId) {
 		
-		BookType newBookType = bookTypeDao.getOneBookType(typeId);
-
-		if (bookAndType.contains(newBookType.getBookTypeId())) {
+		if (currentTypes.contains(typeId)) {
 			return true;
 		}
 

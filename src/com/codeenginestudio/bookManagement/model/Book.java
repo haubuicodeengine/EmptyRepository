@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Book")
 public class Book {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="bookId")
@@ -26,39 +26,23 @@ public class Book {
 
 	@Column(name="bookName")
 	protected String bookName;
-	
-//	@ManyToOne(cascade = CascadeType.DETACH)
-//	@JoinColumn(name="bookAndBookTypeId", referencedColumnName = "bookAndBookTypeId",nullable=false)
-//	protected BookAndBookType bookAndBookType;
 
 	public Book() {
 		super();
 	}
 
 	public Book(String bookName, Author bookAuthor) {
-//		, BookAndBookType bookAndBookType
 		super();
 		this.bookName = bookName;
 		this.bookAuthor = bookAuthor;
-//		this.bookAndBookType = bookAndBookType;
 	}
 
 	public Book(int bookId, String bookName, Author bookAuthor) {
-//		, BookAndBookType bookAndBookType
 		super();
 		this.bookId = bookId;
 		this.bookName = bookName;
 		this.bookAuthor = bookAuthor;
-//		this.bookAndBookType = bookAndBookType;
 	}
-
-//	public BookAndBookType getBookAndBookType() {
-//		return bookAndBookType;
-//	}
-//
-//	public void setBookAndBookType(BookAndBookType bookAndBookType) {
-//		this.bookAndBookType = bookAndBookType;
-//	}
 
 	public Author getBookAuthor() {
 		return bookAuthor;

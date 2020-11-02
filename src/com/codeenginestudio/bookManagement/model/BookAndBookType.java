@@ -18,7 +18,7 @@ public class BookAndBookType {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="bookAndBookTypeId")
 	protected int bookAndBookTypeId;
-	
+
 	@OneToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "bookId", referencedColumnName = "bookId")
 	protected Book book;
@@ -60,6 +60,4 @@ public class BookAndBookType {
 	public void setBookType(BookType bookType) {
 		this.bookType = bookType;
 	}
-	
-	
 }

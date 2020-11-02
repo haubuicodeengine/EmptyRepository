@@ -1,61 +1,78 @@
 package com.codeenginestudio.bookManagement.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.codeenginestudio.bookManagement.model.BookAndBookType;
 import com.codeenginestudio.bookManagement.model.BookType;
 import com.codeenginestudio.bookManagement.utl.HibernateUtil;
 
 public class BookTypeDao {
+	
+	private BookAndBookTypeDao bookAndBookTypeDao = new BookAndBookTypeDao();
 
-	    public BookType getOneBookType(int bookId) {
+    @SuppressWarnings("unchecked")
+    public List < BookType > getAllBookType() {
 
-	        Transaction transaction = null;
-	        BookType bookType = null;
+        Transaction transaction = null;
+        List < BookType > listOfBookType = null;
 
-	        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtil._getSessionFactory().openSession()) {
 
-	            transaction = session.beginTransaction();
-	            bookType = session.get(BookType.class, bookId);
-	            transaction.commit();
+            transaction = session.beginTransaction();
+            listOfBookType = session.createQuery("from BookType").getResultList();
+            transaction.commit();
 
-	        } catch (Exception e) {
+        } catch (Exception e) {
 
-	            if (transaction != null) {
+            if (transaction != null) {
 
-	                transaction.rollback();
-	            }
+                transaction.rollback();
+            }
 
-	            e.printStackTrace();
-	        }
+            e.printStackTrace();
+        }
 
-	        return bookType;
-	    }
+        return listOfBookType;
+    }
 
-	    @SuppressWarnings("unchecked")
-	    public List < BookType > getAllBookType() {
+    public BookType getOneBookType(int bookId) {
 
-	        Transaction transaction = null;
-	        List < BookType > listOfBookType = null;
+        Transaction transaction = null;
+        BookType bookType = null;
 
-	        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtil._getSessionFactory().openSession()) {
 
-	            transaction = session.beginTransaction();
-	            listOfBookType = session.createQuery("from BookType").getResultList();
-	            transaction.commit();
+            transaction = session.beginTransaction();
+            bookType = session.get(BookType.class, bookId);
+            transaction.commit();
 
-	        } catch (Exception e) {
+        } catch (Exception e) {
 
-	            if (transaction != null) {
+            if (transaction != null) {
 
-	                transaction.rollback();
-	            }
+                transaction.rollback();
+            }
 
-	            e.printStackTrace();
-	        }
+            e.printStackTrace();
+        }
 
-	        return listOfBookType;
-	    }
+        return bookType;
+    }
+
+    public List<String> getListIdOfTypeByBookId(int bookId) {
+
+        List<BookAndBookType> listBookAndTypeByBookId = bookAndBookTypeDao.getAllBookAndBooksTypeByBookId(bookId);
+        List<String> listTypeOfBooks = new ArrayList<>();
+        
+        for (BookAndBookType bookAndBookType : listBookAndTypeByBookId) {
+        	String id = String.valueOf(bookAndBookType.getBookType().getBookTypeId()) ;
+        	listTypeOfBooks.add(id);
+		}
+
+        return listTypeOfBooks;
+    }
 }

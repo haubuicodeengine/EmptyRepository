@@ -15,16 +15,15 @@ import com.codeenginestudio.bookManagement.model.BookType;
 
 public class HibernateUtil {
 
-	private static SessionFactory sessionFactory;
+	private static SessionFactory _sessionFactory;
 
-	public static SessionFactory getSessionFactory() {
+	public static SessionFactory _getSessionFactory() {
 
-		 if (sessionFactory == null) {
+		 if (_sessionFactory == null) {
 
 		  	try {
 
 				Configuration configuration = new Configuration();
-
 				// Hibernate settings equivalent to hibernate.cfg.xml's properties
 				Properties settings = new Properties();
 				settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
@@ -32,11 +31,8 @@ public class HibernateUtil {
 				settings.put(Environment.USER, "root");
 				settings.put(Environment.PASS, "123456");
 				settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
-
 				settings.put(Environment.SHOW_SQL, "true");
-
 				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-
 				settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
 				configuration.setProperties(settings);
@@ -48,17 +44,16 @@ public class HibernateUtil {
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 				  .applySettings(configuration.getProperties()).build();
 				System.out.println("Hibernate Java Config serviceRegistry created");
-				sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+				_sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-				return sessionFactory;
+				return _sessionFactory;
 
 		  	} catch (Exception e) {
 	
 		  		e.printStackTrace();
 		  	}
-
 		 }
 
-		 return sessionFactory;
+		 return _sessionFactory;
 	}
 }
