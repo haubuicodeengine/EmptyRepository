@@ -11,15 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.codeenginestudio.bookManagement.manage.ManageBook;
 
-/**
- * Servlet implementation class BookServlet
- */
 @WebServlet("/BookServlet")
 public class BookServlet extends HttpServlet {
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setAttribute("listBooks", manageBook.getListBooks());

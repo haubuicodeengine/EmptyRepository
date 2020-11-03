@@ -26,11 +26,13 @@
 		}
 	%>
 	<div class="container-fluid">
+
 		<div class="header">
 			<h2 style="margin:5px">Book Management Application</h2>
 		</div>
 
 		<div class="row body-content">
+
 			<div class="col-sm-2"></div>
 
 			<div class="col-sm-6">
@@ -47,7 +49,7 @@
 						<div class="col-sm-9">
 							<input type="text" class="form-control" name="bookName"
 								value="<%=book == null ? "" : book.getBookName()%>" placeholder="Enter name of the book here">
-								<p class="error"><%= bookNameErr %></p>
+							<p class="error"><%= bookNameErr %></p>
 						</div>
 					</div>
 
@@ -65,7 +67,9 @@
 			</div>
 
 			<div class="col-sm-2"></div>
+
 		</div>
+
 	</div>
 
 </body>

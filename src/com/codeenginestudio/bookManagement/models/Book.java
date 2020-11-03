@@ -7,12 +7,14 @@ public class Book {
 	}
 
 	public Book(String bookName, String bookAuthor) {
+
 		super();
 		this.bookName = bookName;
 		this.bookAuthor = bookAuthor;
 	}
 
 	public Book(int bookId, String bookName, String bookAuthor) {
+
 		super();
 		this.bookId = bookId;
 		this.bookName = bookName;

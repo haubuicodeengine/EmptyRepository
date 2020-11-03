@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.codeenginestudio.bookManagement.manage.ManageBook;
 import com.codeenginestudio.bookManagement.models.Book;
 
-/**
- * Servlet implementation class AddBookServlet
- */
+
 @WebServlet("/AddBookServlet")
 public class AddBookServlet extends HttpServlet {
 
@@ -25,18 +23,12 @@ public class AddBookServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setAttribute("url", "/Book/Add");
 		displayView(request, response, "/view/AddOrEditBook.jsp");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String bookName = request.getParameter("bookName");

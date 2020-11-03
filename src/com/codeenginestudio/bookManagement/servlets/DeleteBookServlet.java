@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.codeenginestudio.bookManagement.manage.ManageBook;
 
-/**
- * Servlet implementation class DeleteBookServlet
- */
 @WebServlet("/DeleteBookServlet")
 public class DeleteBookServlet extends HttpServlet {
 
@@ -24,9 +21,6 @@ public class DeleteBookServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
