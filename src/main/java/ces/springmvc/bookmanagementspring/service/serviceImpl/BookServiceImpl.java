@@ -16,22 +16,12 @@ public class BookServiceImpl implements BookService {
 
 	@Autowired
 	BookDAO bookDAO;
-	
+
 	@Autowired
 	AuthorDAO authorDAO;
-	
+
 	@Autowired
 	Book_BookTypeService book_BookTypeService;
-
-	@Override
-	public List<BookEntity> getAllBooks() {
-		return bookDAO.findAll();
-	}
-
-	@Override
-	public BookEntity getBookByBookId(Long bookId) {
-		return bookDAO.getOne(bookId);
-	}
 
 	@Override
 	public void deleteBook(Long bookId) {
@@ -40,31 +30,41 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public void saveBook(BookEntity book) {
-		BookEntity bookEntity = new BookEntity();
+	public void updateBook(BookEntity book) {
+		BookEntity bookEntity = bookDAO.getOne(book.getBookId());
 		bookEntity.setBookName(book.getBookName());
 		Long authorId = book.getAuthor().getAuthorId();
-		
-		if(authorId == null) {
+
+		if (authorId == 0) {
 			bookEntity.setAuthor(null);
-		}else {
+		} else {
 			bookEntity.setAuthor(authorDAO.getOne(authorId));
 		}
 		bookDAO.saveAndFlush(bookEntity);
 	}
 
 	@Override
-	public void updateBook(BookEntity book) {
-		BookEntity bookEntity = bookDAO.getOne(book.getBookId());
+	public void saveBook(BookEntity book) {
+		BookEntity bookEntity = new BookEntity();
 		bookEntity.setBookName(book.getBookName());
 		Long authorId = book.getAuthor().getAuthorId();
-		
-		if(authorId == null) {
+
+		if (authorId == 0) {
 			bookEntity.setAuthor(null);
-		}else {
+		} else {
 			bookEntity.setAuthor(authorDAO.getOne(authorId));
 		}
 		bookDAO.saveAndFlush(bookEntity);
+	}
+
+	@Override
+	public BookEntity getBookByBookId(Long bookId) {
+		return bookDAO.getOne(bookId);
+	}
+
+	@Override
+	public List<BookEntity> getAllBooks() {
+		return bookDAO.findAll();
 	}
 
 }

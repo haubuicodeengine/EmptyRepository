@@ -17,34 +17,10 @@ import ces.springmvc.bookmanagementspringmvc.entity.Book_BookTypeEntity;
 public class Book_BookTypeServiceImpl implements Book_BookTypeService {
 
 	@Autowired
-	private Book_BookTypeDAO book_BookTypeDAO;
-
-	@Autowired
 	private BookDAO bookDAO;
 
-	@Override
-	public List<Book_BookTypeEntity> getAllBook_BookType() {
-		return book_BookTypeDAO.findAll();
-	}
-
-	@Override
-	public void saveBook_BookType(BookEntity book, BookTypeEntity bookType) {
-		Book_BookTypeEntity newItem = new Book_BookTypeEntity(bookDAO.getBookByBookName(book.getBookName()), bookType);
-		book_BookTypeDAO.saveAndFlush(newItem);
-	}
-
-	@Override
-	public List<Long> getListBookTypeIdByBookId(Long bookId) {
-		List<Book_BookTypeEntity> listBook_BookType = book_BookTypeDAO.findAll();
-		List<Long> listBookTypeId = new ArrayList<Long>();
-
-		for (Book_BookTypeEntity item : listBook_BookType) {
-			if (item.getBook().getBookId() == bookId) {
-				listBookTypeId.add(item.getBookType().getBookTypeId());
-			}
-		}
-		return listBookTypeId;
-	}
+	@Autowired
+	private Book_BookTypeDAO book_BookTypeDAO;
 
 	@Override
 	public void deleteBook_BookTypeById(Long bookId) {
@@ -71,6 +47,30 @@ public class Book_BookTypeServiceImpl implements Book_BookTypeService {
 				deleteBook_BookTypeById(item.getId());
 			}
 		}
+	}
+
+	@Override
+	public void saveBook_BookType(BookEntity book, BookTypeEntity bookType) {
+		Book_BookTypeEntity newItem = new Book_BookTypeEntity(bookDAO.getBookByBookName(book.getBookName()), bookType);
+		book_BookTypeDAO.saveAndFlush(newItem);
+	}
+
+	@Override
+	public List<Long> getListBookTypeIdByBookId(Long bookId) {
+		List<Book_BookTypeEntity> listBook_BookType = book_BookTypeDAO.findAll();
+		List<Long> listBookTypeId = new ArrayList<Long>();
+
+		for (Book_BookTypeEntity item : listBook_BookType) {
+			if (item.getBook().getBookId() == bookId) {
+				listBookTypeId.add(item.getBookType().getBookTypeId());
+			}
+		}
+		return listBookTypeId;
+	}
+
+	@Override
+	public List<Book_BookTypeEntity> getAllBook_BookType() {
+		return book_BookTypeDAO.findAll();
 	}
 
 }

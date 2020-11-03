@@ -9,8 +9,8 @@ import ces.springmvc.bookmanagementspringmvc.entity.AuthorEntity;
 @Service
 public interface AuthorService {
 
-	List<AuthorEntity> getAllAuthors();
-
 	AuthorEntity getAuthorById(Long authorId);
+
+	List<AuthorEntity> getAllAuthors();
 
 }

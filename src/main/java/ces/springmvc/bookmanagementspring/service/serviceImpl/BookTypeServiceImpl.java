@@ -14,16 +14,15 @@ public class BookTypeServiceImpl implements BookTypeService {
 
 	@Autowired
 	BookTypeDAO bookTypeDAO;
-	
-	@Override
-	public List<BookTypeEntity> getAllBookTypes() {
-		return bookTypeDAO.findAll();
-	}
 
 	@Override
 	public BookTypeEntity getBookTypeById(Long bookTypeId) {
 		return bookTypeDAO.getOne(bookTypeId);
 	}
 
+	@Override
+	public List<BookTypeEntity> getAllBookTypes() {
+		return bookTypeDAO.findAll();
+	}
 
 }

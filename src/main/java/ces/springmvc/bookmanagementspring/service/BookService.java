@@ -6,14 +6,14 @@ import ces.springmvc.bookmanagementspringmvc.entity.BookEntity;
 
 public interface BookService {
 
-	List<BookEntity> getAllBooks();
+	void deleteBook(Long bookId);
+
+	void updateBook(BookEntity book);
 
 	void saveBook(BookEntity book);
 
 	BookEntity getBookByBookId(Long bookId);
 
-	void deleteBook(Long bookId);
-
-	void updateBook(BookEntity book);
+	List<BookEntity> getAllBooks();
 
 }

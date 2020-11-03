@@ -23,10 +23,10 @@ import ces.springmvc.bookmanagementspringmvc.entity.BookTypeEntity;
 public class BookController {
 
 	@Autowired
-	private BookService bookService;
+	private AuthorService authorService;
 
 	@Autowired
-	private AuthorService authorService;
+	private BookService bookService;
 
 	@Autowired
 	private BookTypeService bookTypeService;
@@ -45,24 +45,23 @@ public class BookController {
 	public String showAddForm(Model model) {
 
 		model.addAttribute("url", "/saveAddBook");
-		_GetFile(model);
+		_getFile(model);
 
 		return "addAndEditBook/index";
 	}
 
-	@GetMapping("/editBook/bookId={bookId}")
+	@GetMapping("/editBook/{bookId}")
 	public String showEditForm(Model model, @PathVariable(name = "bookId") Long bookId) {
 
 		model.addAttribute("url", "/saveEditBook");
 		model.addAttribute("bookEdit", bookService.getBookByBookId(bookId));
 		model.addAttribute("listBookTypeSelected", book_bookTypeService.getListBookTypeIdByBookId(bookId));
-		_GetFile(model);
+		_getFile(model);
 
 		return "addAndEditBook/index";
 	}
-	
 
-	@GetMapping("/deleteBook/bookId={bookId}")
+	@GetMapping("/deleteBook/{bookId}")
 	public String deleteClass(@PathVariable(name = "bookId") Long bookId) {
 
 		bookService.deleteBook(bookId);
@@ -71,20 +70,22 @@ public class BookController {
 	}
 
 	@PostMapping("/saveAddBook")
-	public String saveAddClass(Model model, @RequestParam("bookId") Long bookId, @RequestParam("bookName") String bookName,
-			@RequestParam("author.authorId") Long authorId,
+	public String saveAddClass(Model model, @RequestParam("bookId") Long bookId,
+			@RequestParam("bookName") String bookName, @RequestParam("author.authorId") Long authorId,
 			@RequestParam(required = false, name = "bookTypeSelected") List<Long> listbookTypeId) {
 
-		if (!BookValidation.checkEmpty(bookName)) {
+		if (!BookValidation._checkEmpty(bookName)) {
 
 			model.addAttribute("error", "The book's name is not null.");
-			_GetFile(model);
+			model.addAttribute("url", "/saveAddBook");
+			_getFile(model);
 			return "addAndEditBook/index";
 
-		} else if (!BookValidation.checkExisted(bookId, bookName, bookService.getAllBooks())) {
+		} else if (!BookValidation._checkExisted(bookId, bookName, bookService.getAllBooks())) {
 
 			model.addAttribute("error", "The book's name is existed.");
-			_GetFile(model);
+			model.addAttribute("url", "/saveAddBook");
+			_getFile(model);
 			return "addAndEditBook/index";
 
 		} else {
@@ -101,20 +102,22 @@ public class BookController {
 	}
 
 	@PostMapping("/saveEditBook")
-	public String saveEditClass(Model model, @RequestParam("bookId") Long bookId, @RequestParam("bookName") String bookName,
-			@RequestParam("author.authorId") Long authorId,
+	public String saveEditClass(Model model, @RequestParam("bookId") Long bookId,
+			@RequestParam("bookName") String bookName, @RequestParam("author.authorId") Long authorId,
 			@RequestParam(required = false, name = "bookTypeSelected") List<Long> listbookTypeId) {
 
-		if (!BookValidation.checkEmpty(bookName)) {
+		if (!BookValidation._checkEmpty(bookName)) {
 
 			model.addAttribute("error", "The book's name is not null.");
-			_GetFile(model);
+			model.addAttribute("url", "/saveEditBook");
+			_getFile(model);
 			return "addAndEditBook/index";
 
-		} else if (!BookValidation.checkExisted(bookId, bookName, bookService.getAllBooks())) {
+		} else if (!BookValidation._checkExisted(bookId, bookName, bookService.getAllBooks())) {
 
 			model.addAttribute("error", "The book's name is existed.");
-			_GetFile(model);
+			model.addAttribute("url", "/saveEditBook");
+			_getFile(model);
 			return "addAndEditBook/index";
 
 		} else {
@@ -125,7 +128,7 @@ public class BookController {
 			if (listbookTypeId != null) {
 				// check bookType existed in db
 				for (Long bookTypeId : listbookTypeId) {
-					if (BookValidation.checkBookTypeExisted(book_bookTypeService.getAllBook_BookType(), bookId,
+					if (BookValidation._checkBookTypeExisted(book_bookTypeService.getAllBook_BookType(), bookId,
 							bookTypeId)) {
 						book_bookTypeService.saveBook_BookType(book, bookTypeService.getBookTypeById(bookTypeId));
 					}
@@ -146,7 +149,7 @@ public class BookController {
 		return "redirect:/books";
 	}
 
-	public void _GetFile(Model model) {
+	public void _getFile(Model model) {
 		List<AuthorEntity> listAuthor = authorService.getAllAuthors();
 		List<BookTypeEntity> listBookType = bookTypeService.getAllBookTypes();
 

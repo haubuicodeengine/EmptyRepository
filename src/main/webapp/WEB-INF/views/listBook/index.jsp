@@ -2,19 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>The book</title>
-<link rel="icon" href="https://img.icons8.com/cute-clipart/344/book.png"
-	type="image/gif" sizes="16x16">
-<link type="text/css" href="./static/css/main.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700,900|Google+Sans+Display:400,500" rel="stylesheet" nonce="fSXOtZ5Ye0RE8N7b_mEygA">
-
+	<title>The book</title>
+	<link rel="icon" href="https://img.icons8.com/cute-clipart/344/book.png" type="image/gif" sizes="16x16">
+	<link type="text/css" href="./static/css/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700,900|Google+Sans+Display:400,500" rel="stylesheet" nonce="fSXOtZ5Ye0RE8N7b_mEygA">
 </head>
 <body>
 	<h1 class="text-center heading">The Book</h1>
 	<div class="container">
 		<div class="book-actions">
-			<a href="addBook" class="btn-add"> <span>Add new a book</span>
+			<a href="addBook" class="btn-add">
+				<span>Add new a book</span>
 			</a>
 		</div>
 		<table class="table-list">
@@ -31,8 +30,9 @@
 						<td class="book-item-description">${book.getBookName()}</td>
 						<td class="book-item-description">${book.getAuthor().getAuthorName()}</td>
 						<td class="book-item-description">
-							<i onclick="confirmation('deleteBook/bookId=${book.getBookId()}', 'delete')" class="fas fa-trash red" data-toggle="modal"data-target="#myModal"></i>&emsp; 
-							<a href="editBook/bookId=${book.getBookId()}">
+							<i onclick="confirmation('deleteBook/${book.getBookId()}', 'delete')" class="fas fa-trash red" data-toggle="modal"
+								data-target="#myModal"></i>&emsp; 
+							<a href="<%=request.getContextPath()%>/editBook/${book.getBookId()}">
 								<i class="fas fa-pen blue"></i>
 							</a>
 						</td>
@@ -63,10 +63,10 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	<script type="text/javascript">
-			function confirmation(href, action) {
-				$('#button-confirm').attr("href", href);
-				$('#content-confirm-title').html('Are you sure you want to ' + action + ' this book ?');
-			}
-		</script>
+		function confirmation(href, action) {
+			$('#button-confirm').attr("href", href);
+			$('#content-confirm-title').html('Are you sure you want to ' + action + ' this book ?');
+		}
+	</script>
 </body>
 </html>

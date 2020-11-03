@@ -16,13 +16,13 @@ public class AuthorServiceImpl implements AuthorService {
 	private AuthorDAO authorDAO;
 
 	@Override
-	public List<AuthorEntity> getAllAuthors() {
-		return authorDAO.findAll();
+	public AuthorEntity getAuthorById(Long authorId) {
+		return authorDAO.getOne(authorId);
 	}
 
 	@Override
-	public AuthorEntity getAuthorById(Long authorId) {
-		return authorDAO.getOne(authorId);
+	public List<AuthorEntity> getAllAuthors() {
+		return authorDAO.findAll();
 	}
 
 }

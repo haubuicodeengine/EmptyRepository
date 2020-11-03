@@ -1,12 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>The book</title>
-	<link rel="icon" href="https://img.icons8.com/cute-clipart/344/book.png" type="image/gif" sizes="16x16">
-	<link href="./static/css/main.css" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700,900|Google+Sans+Display:400,500" rel="stylesheet" nonce="fSXOtZ5Ye0RE8N7b_mEygA">
+<title>The book</title>
+<link rel="icon" href="https://img.icons8.com/cute-clipart/344/book.png" type="image/gif" sizes="16x16">
+<link href="./static/css/main.css" rel="stylesheet" type="text/css">
+<link type="text/css" href="../static/css/main.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700,900|Google+Sans+Display:400,500" rel="stylesheet" nonce="fSXOtZ5Ye0RE8N7b_mEygA">
 </head>
 <body>
 	<div class="container">
@@ -15,13 +17,13 @@
 			<input type="hidden" name="bookId" class="input-item" value="${bookEdit == null ? 0 : bookEdit.getBookId()}">
 			<div class="form-group">
 				<label class="text-label" for="book-name">Book name</label> 
-				<input type="text" name="bookName" value="${bookEdit == null ? "" : bookEdit.getBookName()}" 
+				<input type="text" name="bookName" value="${bookEdit == null ? "" : bookEdit.getBookName()}"
 				class="input-item ${error == null ? "" : "error"}" placeholder="${error == null ? " Enter the book's name " : error}">
 			</div>
 			<div class="form-group">
-				<label class="text-label" for="author">Author</label> <select
-					class="input-item" name="author.authorId">
-					<option value="0" ${bookEdit.getAuthor().getAuthorId() == null ? 'selected="selected"' : ''}>None</option>
+				<label class="text-label" for="author">Author</label> 
+				<select class="input-item" name="author.authorId">
+				<option value="0" ${bookEdit.getAuthor().getAuthorId() == null ? 'selected="selected"' : ''}>None</option>
 					<c:forEach var="author" items="${listAuthor}">
 						<option value="${author.getAuthorId()}" ${bookEdit.getAuthor().getAuthorId() == author.getAuthorId() ? 'selected="selected"' : ''}>${author.getAuthorName()}</option>
 					</c:forEach>
@@ -36,7 +38,9 @@
 				<ul class="book-type-list d-none">
 					<c:forEach var="author" items="${listBookType}">
 						<li class="multiselect-item multiselect-all book-type-list-item">
-							<input type="checkbox" value="${author.getBookTypeId()}" name="bookTypeSelected" ${listBookTypeSelected.contains(author.getBookTypeId()) ? 'checked' : ''}/>
+							<input type="checkbox" value="${author.getBookTypeId()}"
+							name="bookTypeSelected"
+							${listBookTypeSelected.contains(author.getBookTypeId()) ? 'checked' : ''} />
 							<strong>${author.getBookTypeName()}</strong>
 						</li>
 					</c:forEach>
@@ -44,7 +48,7 @@
 			</div>
 			<div class="footer-items">
 				<button type="submit" class="buton-save">Save</button>
-				<a href="books">
+				<a href="<%=request.getContextPath()%>/books">
 					<button type="button" class="button-cancel">Cancel</button>
 				</a>
 			</div>
