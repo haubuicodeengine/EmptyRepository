@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>BookManagementServlet</display-name>
+
+	<welcome-file-list>
+		<welcome-file>/WEB-INF/view/listBooks/index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>listBooks</servlet-name>
+		<servlet-class>servletTutorial.servlets.ListBooksServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>addBook</servlet-name>
+		<servlet-class>servletTutorial.servlets.AddBookServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>editBook</servlet-name>
+		<servlet-class>servletTutorial.servlets.EditBookServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>deleteBook</servlet-name>
+		<servlet-class>servletTutorial.servlets.DeleteBookServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>listBooks</servlet-name>
+		<url-pattern>/books</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>addBook</servlet-name>
+		<url-pattern>/addBook</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>editBook</servlet-name>
+		<url-pattern>/editBook</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>deleteBook</servlet-name>
+		<url-pattern>/deleteBook</url-pattern>
+	</servlet-mapping>
+</web-app>
