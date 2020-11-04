@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codeenginestudio.bookmanagement.dto.BookDto;
+import com.codeenginestudio.bookmanagement.entity.BookAndBookTypeEntity;
 import com.codeenginestudio.bookmanagement.entity.BookEntity;
 import com.codeenginestudio.bookmanagement.mapper.BookMapper;
+import com.codeenginestudio.bookmanagement.repository.BookAndBookTypeRepository;
 import com.codeenginestudio.bookmanagement.repository.BookRepository;
 import com.codeenginestudio.bookmanagement.service.BookService;
 
@@ -17,6 +19,9 @@ public class BookServiceImpl implements BookService{
 
 	@Autowired
 	private BookRepository bookrepository;
+
+	@Autowired
+	private BookAndBookTypeRepository bookAndBookTypeRepository;
 	
 	@Override
 	public List<BookDto> getAllBooks() {
@@ -41,6 +46,13 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	public void deleteBook(Long id) {
+
+		BookEntity theBook = bookrepository.getOne(id);
+		List<BookAndBookTypeEntity> listBookAndBookTypes = bookAndBookTypeRepository.findByBook(theBook);
+
+		for (BookAndBookTypeEntity bookAndBookTypeEntity : listBookAndBookTypes) {
+			bookAndBookTypeRepository.delete(bookAndBookTypeEntity);
+		}
 
 		bookrepository.delete(id);
 	}
