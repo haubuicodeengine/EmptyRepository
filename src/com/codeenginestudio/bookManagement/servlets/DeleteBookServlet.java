@@ -10,31 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.codeenginestudio.bookManagement.manage.ManageBook;
+import com.codeenginestudio.bookManagement.util.BookUtil;
 
-/**
- * Servlet implementation class DeleteBookServlet
- */
 @WebServlet("/DeleteBookServlet")
 public class DeleteBookServlet extends HttpServlet {
 
-    public void displayView(HttpServletRequest request, HttpServletResponse response, String fileName)
-			throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(fileName);
-		dispatcher.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
-		manageBook.deleteBook(bookId);
-    	request.setAttribute("listBooks", manageBook.getListBooks());
-		displayView(request, response, "/view/Home.jsp");
+		ManageBook.deleteBook(bookId);
+    	request.setAttribute("listBooks", ManageBook.getListBooks());
+    	BookUtil._displayView(request, response, "/view/Home.jsp");
 	}
 
 	private static final long serialVersionUID = 1L;
-	private ManageBook manageBook = new ManageBook();
 }

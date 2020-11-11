@@ -10,23 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.codeenginestudio.bookManagement.manage.ManageBook;
+import com.codeenginestudio.bookManagement.util.BookUtil;
 
-/**
- * Servlet implementation class BookServlet
- */
 @WebServlet("/BookServlet")
 public class BookServlet extends HttpServlet {
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setAttribute("listBooks", manageBook.getListBooks());
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/view/Home.jsp");
-		dispatcher.forward(request, response);
+		request.setAttribute("listBooks", ManageBook.getListBooks());
+		BookUtil._displayView(request, response, "/view/Home.jsp");
 	}
 
 	private static final long serialVersionUID = 1L;
-	private ManageBook manageBook = new ManageBook();
 }

@@ -47,8 +47,8 @@
 									<td><%=book.getBookName()%></td>
 									<td><%=book.getBookAuthor()%></td>
 									<td>
-										<a href="./EditBook?bookId=<%=book.getBookId()%>"><button class="btn btn-success">Edit</button></a>
-										<a href="./DeleteBook?bookId=<%=book.getBookId()%>"><button class="btn btn-danger">Delete</button></a>
+										<a href="./Edit?bookId=<%=book.getBookId()%>"><button class="btn btn-success">Edit</button></a>
+										<a href="./Delete?bookId=<%=book.getBookId()%>"><button class="btn btn-danger">Delete</button></a>
 									</td>
 								</tr>
 							<%

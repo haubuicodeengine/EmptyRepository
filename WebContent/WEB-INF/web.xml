@@ -41,12 +41,12 @@
 	
 	<servlet-mapping>
 	    <servlet-name>EditBook</servlet-name>
-	    <url-pattern>/Book/EditBook</url-pattern>
+	    <url-pattern>/Book/Edit</url-pattern>
 	</servlet-mapping>
 	
 	<servlet-mapping>
 	    <servlet-name>DeleteBook</servlet-name>
-	    <url-pattern>/Book/DeleteBook</url-pattern>
+	    <url-pattern>/Book/Delete</url-pattern>
 	</servlet-mapping>
 
 </web-app>
