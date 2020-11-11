@@ -14,10 +14,10 @@ public class BookUtil {
 	public static void _displayView(HttpServletRequest request, HttpServletResponse response, String fileName)
 			throws ServletException, IOException {
 
-		HttpSession session = request.getSession();      
-        ServletContext sc = session.getServletContext();
-        RequestDispatcher dispatcher = sc.getRequestDispatcher(fileName);
+		HttpSession session = request.getSession();
+		ServletContext sc = session.getServletContext();
+		RequestDispatcher dispatcher = sc.getRequestDispatcher(fileName);
 		dispatcher.forward(request, response);
 	}
-	
+
 }

@@ -5,12 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link href="../static/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
 <link href="../static/css/Style.css" rel="stylesheet" type="text/css">
 <title>Add or Edit Book</title>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
 </head>
 <body>
 	<%
@@ -24,6 +23,7 @@
 		}
 	%>
 	<div class="container-fluid">
+
 		<div class="header">
 			<h2 style="margin: 5px">Book Management Application</h2>
 		</div>
@@ -75,6 +75,6 @@
 		</div>
 
 	</div>
-
+	<script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

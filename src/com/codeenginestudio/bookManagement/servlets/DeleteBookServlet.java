@@ -15,12 +15,13 @@ import com.codeenginestudio.bookManagement.util.BookUtil;
 @WebServlet("/DeleteBookServlet")
 public class DeleteBookServlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
 		ManageBook.deleteBook(bookId);
-    	request.setAttribute("listBooks", ManageBook.getListBooks());
-    	BookUtil._displayView(request, response, "/view/Home.jsp");
+		request.setAttribute("listBooks", ManageBook.getListBooks());
+		BookUtil._displayView(request, response, "/view/Home.jsp");
 	}
 
 	private static final long serialVersionUID = 1L;

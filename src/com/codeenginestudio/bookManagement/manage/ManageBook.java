@@ -16,14 +16,14 @@ public class ManageBook {
 
 		Book book = new Book(_bookId, bookName, bookAuthor);
 		_books.add(book);
-		_bookId ++;
+		_bookId++;
 	}
 
 	public static void deleteBook(int bookId) {
-		
+
 		for (Book book : _books) {
 
-			if(bookId == book.getBookId()) {
+			if (bookId == book.getBookId()) {
 
 				_books.remove(book);
 				break;
@@ -38,11 +38,11 @@ public class ManageBook {
 		book.setBookAuthor(bookAuthor);
 	}
 
-	public static Book getOneBook (int bookId) {
+	public static Book getOneBook(int bookId) {
 
 		for (Book book : _books) {
 
-			if(bookId == book.getBookId()) {
+			if (bookId == book.getBookId()) {
 				return book;
 			}
 		}

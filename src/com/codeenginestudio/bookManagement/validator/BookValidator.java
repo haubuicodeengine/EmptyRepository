@@ -4,7 +4,7 @@ public class BookValidator {
 
 	public static Boolean _checkNullValue(String value) {
 
-		if(value == "" || value == null) {
+		if (value == "" || value == null) {
 
 			return true;
 		}

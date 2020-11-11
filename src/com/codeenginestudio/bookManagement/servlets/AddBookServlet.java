@@ -17,17 +17,19 @@ import com.codeenginestudio.bookManagement.util.BookUtil;
 @WebServlet("/AddBookServlet")
 public class AddBookServlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		BookUtil._displayView(request, response, "/view/AddOrEditBook.jsp");
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String bookName = request.getParameter("bookName");
 		String bookAuthor = request.getParameter("bookAuthor");
 
-		if(BookValidator._checkNullValue(bookName)) {
+		if (BookValidator._checkNullValue(bookName)) {
 
 			request.setAttribute("book", new Book(bookName, bookAuthor));
 			request.setAttribute("bookNameErr", "Name of book could not be blank");

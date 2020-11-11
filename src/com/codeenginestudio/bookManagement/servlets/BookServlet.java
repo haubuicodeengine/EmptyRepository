@@ -15,7 +15,8 @@ import com.codeenginestudio.bookManagement.util.BookUtil;
 @WebServlet("/BookServlet")
 public class BookServlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		request.setAttribute("listBooks", ManageBook.getListBooks());
 		BookUtil._displayView(request, response, "/view/Home.jsp");
