@@ -19,5 +19,4 @@ public class BookUtil {
 		RequestDispatcher dispatcher = sc.getRequestDispatcher(fileName);
 		dispatcher.forward(request, response);
 	}
-
 }

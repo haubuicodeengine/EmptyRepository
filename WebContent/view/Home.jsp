@@ -1,8 +1,4 @@
-<%@ page import="java.util.List"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="com.codeenginestudio.bookManagement.models.Book"%>
+<%@ include file="../common/import.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +7,6 @@
 	rel="stylesheet" type="text/css">
 <link href="../static/css/Style.css" rel="stylesheet" type="text/css">
 <title>Book management - Home</title>
-
 </head>
 <body>
 	<div class="container-fluid">
@@ -42,14 +37,11 @@
 							<td><%=book.getBookId()%></td>
 							<td><%=book.getBookName()%></td>
 							<td><%=book.getBookAuthor()%></td>
-							<td>
-								<a href="./Edit?bookId=<%=book.getBookId()%>">
+							<td><a href="./Edit?bookId=<%=book.getBookId()%>">
 									<button class="btn btn-success">Edit</button>
-								</a>
-								<a href="./Delete?bookId=<%=book.getBookId()%>">
+							</a> <a href="./Delete?bookId=<%=book.getBookId()%>">
 									<button class="btn btn-danger">Delete</button>
-								</a>
-							</td>
+							</a></td>
 						</tr>
 						<%
 							}

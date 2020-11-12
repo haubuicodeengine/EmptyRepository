@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ include file="../common/import.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +9,7 @@
 <body>
 	<div class="col-sm-5">
 		<div class="welcome-banel">
-			<img alt="" src="https://i.pinimg.com/originals/56/81/be/5681bea15facfe14aafcc0865cd2facb.jpg">
+			<img alt="" src="./static/image/welcomeImage.jpg">
 		</div>
 
 		<div class="welcome-banel">

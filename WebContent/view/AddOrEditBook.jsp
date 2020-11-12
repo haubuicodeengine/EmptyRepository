@@ -1,6 +1,4 @@
-<%@ page import="com.codeenginestudio.bookManagement.models.Book"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ include file="../common/import.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +7,6 @@
 	rel="stylesheet" type="text/css">
 <link href="../static/css/Style.css" rel="stylesheet" type="text/css">
 <title>Add or Edit Book</title>
-
 </head>
 <body>
 	<%

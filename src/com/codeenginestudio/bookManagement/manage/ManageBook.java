@@ -7,11 +7,6 @@ import com.codeenginestudio.bookManagement.models.Book;
 
 public class ManageBook {
 
-	public static List<Book> getListBooks() {
-
-		return _books;
-	}
-
 	public static void addNewBook(String bookName, String bookAuthor) {
 
 		Book book = new Book(_bookId, bookName, bookAuthor);
@@ -50,6 +45,11 @@ public class ManageBook {
 		return null;
 	}
 
-	private static List<Book> _books = new ArrayList();
+	public static List<Book> getListBooks() {
+
+		return _books;
+	}
+
+	private static List<Book> _books = new ArrayList<>();
 	private static int _bookId = 1;
 }
