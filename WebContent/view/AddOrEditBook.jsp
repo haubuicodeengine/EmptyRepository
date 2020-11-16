@@ -12,15 +12,22 @@
 	<%
 		Book book = (Book) request.getAttribute("book");
 		String url = "/Book/Add";
-		String bookNameErr = (String) request.getAttribute("bookNameErr");
+		List<Map<String, String>> bookErr = (List) request.getAttribute("bookErr");
 
 		if (book != null) {
 
-			url = "/Book/Edit";
-		}
-	%>
-	<div class="container-fluid">
+			if(book.getBookId() == 0){
 
+				url = "/Book/Add";
+
+			}else{
+
+				url = "/Book/Edit";
+			}
+		}
+
+%>
+	<div class="container-fluid">
 		<div class="header">
 			<h2 style="margin: 5px">Book Management Application</h2>
 		</div>
@@ -32,7 +39,7 @@
 			<div class="col-sm-6">
 
 				<form action="<%=request.getContextPath() + url%>" method="post">
-
+				
 					<div class="row form-title">
 						<h2 class="form-text-title">Create New Book</h2>
 					</div>
@@ -47,7 +54,7 @@
 							<input type="text" class="form-control" name="bookName"
 								value="<%=book == null ? "" : book.getBookName()%>"
 								placeholder="Enter name of the book here">
-							<p class="error"><%=bookNameErr == null ? "" : bookNameErr%></p>
+							<p class="error"> <%= bookErr == null ? "" : bookErr.get(0).get("bookNameError") %></p>
 						</div>
 					</div>
 

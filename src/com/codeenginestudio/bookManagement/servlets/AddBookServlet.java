@@ -1,6 +1,8 @@
 package com.codeenginestudio.bookManagement.servlets;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,12 +29,15 @@ public class AddBookServlet extends HttpServlet {
 
 		String bookName = request.getParameter("bookName");
 		String bookAuthor = request.getParameter("bookAuthor");
+		List<Map<String, String>> bookInputErrors = BookValidator._validate(bookName);
 
-		if (BookValidator._checkNullValue(bookName)) {
+		if (!bookInputErrors.get(0).isEmpty()) {
 
-			request.setAttribute("book", new Book(bookName, bookAuthor));
-			request.setAttribute("bookNameErr", "Name of book could not be blank");
+			Book inValid = new Book(bookName, bookAuthor);
+			request.setAttribute("book", inValid);
+			request.setAttribute("bookErr", bookInputErrors);
 			BookUtil._displayView(request, response, "/view/AddOrEditBook.jsp");
+
 		} else {
 
 			ManageBook.addNewBook(bookName, bookAuthor);
