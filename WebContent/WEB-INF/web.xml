@@ -6,27 +6,27 @@
 	<display-name>Book - Management</display-name>
 
 	<welcome-file-list>
-		<welcome-file>view/Welcome.jsp</welcome-file>
+		<welcome-file>static/view/book/welcome.jsp</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
 		<servlet-name>Book</servlet-name>
-		<servlet-class>com.codeenginestudio.bookManagement.servlets.BookServlet</servlet-class>
+		<servlet-class>com.codeenginestudio.management.book.servlets.BookServlet</servlet-class>
 	</servlet>
 
 	<servlet>
 		<servlet-name>AddBook</servlet-name>
-		<servlet-class>com.codeenginestudio.bookManagement.servlets.AddBookServlet</servlet-class>
+		<servlet-class>com.codeenginestudio.management.book.servlets.AddBookServlet</servlet-class>
 	</servlet>
 
 	<servlet>
 		<servlet-name>EditBook</servlet-name>
-		<servlet-class>com.codeenginestudio.bookManagement.servlets.EditBookServlet</servlet-class>
+		<servlet-class>com.codeenginestudio.management.book.servlets.EditBookServlet</servlet-class>
 	</servlet>
 
 	<servlet>
 		<servlet-name>DeleteBook</servlet-name>
-		<servlet-class>com.codeenginestudio.bookManagement.servlets.DeleteBookServlet</servlet-class>
+		<servlet-class>com.codeenginestudio.management.book.servlets.DeleteBookServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>

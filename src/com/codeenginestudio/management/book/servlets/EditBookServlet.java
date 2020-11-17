@@ -1,7 +1,6 @@
-package com.codeenginestudio.bookManagement.servlets;
+package com.codeenginestudio.management.book.servlets;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -10,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.codeenginestudio.bookManagement.manage.ManageBook;
-import com.codeenginestudio.bookManagement.models.Book;
-import com.codeenginestudio.bookManagement.util.BookUtil;
-import com.codeenginestudio.bookManagement.validator.BookValidator;
+import com.codeenginestudio.management.book.models.Book;
+import com.codeenginestudio.management.book.repository.BookRepository;
+import com.codeenginestudio.management.book.util.BookUtil;
+import com.codeenginestudio.management.book.validator.BookValidator;
 
 @WebServlet("/EditBookServlet")
 public class EditBookServlet extends HttpServlet {
@@ -22,8 +21,14 @@ public class EditBookServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
-		request.setAttribute("book", ManageBook.getOneBook(bookId));
-		BookUtil._displayView(request, response, "/view/AddOrEditBook.jsp");
+
+		try {
+			request.setAttribute("book", BookRepository.getBook(bookId));
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		BookUtil.displayView(request, response, "/static/view/book/book-form.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -32,18 +37,25 @@ public class EditBookServlet extends HttpServlet {
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
 		String bookName = request.getParameter("bookName");
 		String bookAuthor = request.getParameter("bookAuthor");
-		List<Map<String, String>> bookInputErrors = BookValidator._validate(bookName);
+		Book theBook = new Book(bookId, bookName, bookAuthor);
 
-		if (!bookInputErrors.get(0).isEmpty()) {
+		Map<String, String> errors = BookValidator.validate(theBook);
+
+		if (!errors.isEmpty()) {
 
 			request.setAttribute("book", new Book(bookId, bookName, bookAuthor));
-			request.setAttribute("bookErr", bookInputErrors);
-			BookUtil._displayView(request, response, "/view/AddOrEditBook.jsp");
+			request.setAttribute("errors", errors);
+			BookUtil.displayView(request, response, "/static/view/book/book-form.jsp");
 		} else {
 
-			ManageBook.editBook(bookId, bookName, bookAuthor);
-			request.setAttribute("listBooks", ManageBook.getListBooks());
-			BookUtil._displayView(request, response, "/view/Home.jsp");
+			try {
+				BookRepository.editBook(theBook);
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+
+			response.sendRedirect(request.getContextPath() + "/Book/");
 		}
 	}
 

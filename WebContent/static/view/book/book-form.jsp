@@ -5,31 +5,26 @@
 <meta charset="UTF-8">
 <link href="../static/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
-<link href="../static/css/Style.css" rel="stylesheet" type="text/css">
+<link href="../static/css/style.css" rel="stylesheet" type="text/css">
 <title>Add or Edit Book</title>
 </head>
 <body>
 	<%
 		Book book = (Book) request.getAttribute("book");
 		String url = "/Book/Add";
-		List<Map<String, String>> bookErr = (List) request.getAttribute("bookErr");
+		Map<String, String> errors = (Map) request.getAttribute("errors");
 
 		if (book != null) {
 
-			if(book.getBookId() == 0){
-
-				url = "/Book/Add";
-
-			}else{
+			if(book.getBookId() != 0){
 
 				url = "/Book/Edit";
 			}
 		}
-
 %>
 	<div class="container-fluid">
 		<div class="header">
-			<h2 style="margin: 5px">Book Management Application</h2>
+			<h2 class="header-title">Book Management Application</h2>
 		</div>
 
 		<div class="row body-content">
@@ -39,9 +34,9 @@
 			<div class="col-sm-6">
 
 				<form action="<%=request.getContextPath() + url%>" method="post">
-				
+
 					<div class="row form-title">
-						<h2 class="form-text-title">Create New Book</h2>
+						<h2 class="form-text-title"><%= url == "Book/Add" ? "Create New Book" : "Edit Book" %></h2>
 					</div>
 
 					<input type="hidden" name="bookId"
@@ -54,7 +49,7 @@
 							<input type="text" class="form-control" name="bookName"
 								value="<%=book == null ? "" : book.getBookName()%>"
 								placeholder="Enter name of the book here">
-							<p class="error"> <%= bookErr == null ? "" : bookErr.get(0).get("bookNameError") %></p>
+							<p class="error"> <%= errors == null ? "" : errors.get("bookName") %></p>
 						</div>
 					</div>
 

@@ -1,4 +1,4 @@
-package com.codeenginestudio.bookManagement.models;
+package com.codeenginestudio.management.book.models;
 
 public class Book {
 

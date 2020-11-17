@@ -1,4 +1,4 @@
-package com.codeenginestudio.bookManagement.util;
+package com.codeenginestudio.management.book.util;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 public class BookUtil {
 
-	public static void _displayView(HttpServletRequest request, HttpServletResponse response, String fileName)
+	public static void displayView(HttpServletRequest request, HttpServletResponse response, String fileName)
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();

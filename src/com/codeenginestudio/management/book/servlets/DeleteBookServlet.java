@@ -1,4 +1,4 @@
-package com.codeenginestudio.bookManagement.servlets;
+package com.codeenginestudio.management.book.servlets;
 
 import java.io.IOException;
 
@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.codeenginestudio.bookManagement.manage.ManageBook;
-import com.codeenginestudio.bookManagement.util.BookUtil;
+import com.codeenginestudio.management.book.repository.BookRepository;
 
 @WebServlet("/DeleteBookServlet")
 public class DeleteBookServlet extends HttpServlet {
@@ -18,9 +17,8 @@ public class DeleteBookServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
-		ManageBook.deleteBook(bookId);
-		request.setAttribute("listBooks", ManageBook.getListBooks());
-		BookUtil._displayView(request, response, "/view/Home.jsp");
+		BookRepository.deleteBook(bookId);
+		response.sendRedirect(request.getContextPath() + "/Book/");
 	}
 
 	private static final long serialVersionUID = 1L;
