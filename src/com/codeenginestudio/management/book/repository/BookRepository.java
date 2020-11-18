@@ -29,10 +29,10 @@ public class BookRepository {
 	public static void editBook(Book theBook) throws Exception {
 
 		Book book = getBook(theBook.getBookId());
-		book = theBook;
+		book.setBookAuthor(theBook.getBookAuthor());
+		book.setBookName(theBook.getBookName());
 	}
 
-	@SuppressWarnings("unused")
 	public static Book getBook(int bookId) throws Exception {
 
 		Book theBook = new Book();
@@ -45,8 +45,9 @@ public class BookRepository {
 			}
 		}
 
-		if (theBook == null) {
-			throw new Exception("Book not found with id=" + bookId);
+		if (theBook.getBookId() != bookId) {
+
+			throw new Exception("Book's not found with id=" + bookId);
 		}
 
 		return theBook;

@@ -21,7 +21,7 @@ public class BookValidator {
 
 	public static boolean checkNullValue(String value) {
 
-		if (value == _SPACE || value == null) {
+		if (value == null || value.trim().length() == 0) {
 
 			return true;
 		}
@@ -29,6 +29,5 @@ public class BookValidator {
 		return false;
 	}
 
-	private static final String _SPACE = "";
 	private static final String _BOOK_NAME = "bookName";
 }

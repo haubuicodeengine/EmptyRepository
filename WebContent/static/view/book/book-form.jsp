@@ -36,7 +36,7 @@
 				<form action="<%=request.getContextPath() + url%>" method="post">
 
 					<div class="row form-title">
-						<h2 class="form-text-title"><%= url == "Book/Add" ? "Create New Book" : "Edit Book" %></h2>
+						<h2 class="form-text-title"><%= url == "/Book/Add" ? "Create New Book" : "Edit Book" %></h2>
 					</div>
 
 					<input type="hidden" name="bookId"

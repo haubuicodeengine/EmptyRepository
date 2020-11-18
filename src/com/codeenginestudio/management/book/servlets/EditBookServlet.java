@@ -3,6 +3,7 @@ package com.codeenginestudio.management.book.servlets;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,11 +25,15 @@ public class EditBookServlet extends HttpServlet {
 
 		try {
 			request.setAttribute("book", BookRepository.getBook(bookId));
+			BookUtil.displayView(request, response, "/static/view/book/book-form.jsp");
+
 		} catch (Exception e) {
 
-			e.printStackTrace();
+			request.setAttribute("errors", e.getMessage());
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/static/view/book/error.jsp");
+			dispatcher.include(request, response);
 		}
-		BookUtil.displayView(request, response, "/static/view/book/book-form.jsp");
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -51,7 +56,6 @@ public class EditBookServlet extends HttpServlet {
 			try {
 				BookRepository.editBook(theBook);
 			} catch (Exception e) {
-
 				e.printStackTrace();
 			}
 
