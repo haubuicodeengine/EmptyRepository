@@ -1,4 +1,4 @@
-package com.codeenginestudio.bookManagement.model;
+package com.codeenginestudio.management.book.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,16 +14,16 @@ public class BookType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "bookTypeId")
-	protected int bookTypeId;
+	protected Long bookTypeId;
 
 	@Column(name = "bookTypeName")
 	protected String bookTypeName;
 
-	public int getBookTypeId() {
+	public Long getBookTypeId() {
 		return bookTypeId;
 	}
 
-	public void setBookTypeId(int bookTypeId) {
+	public void setBookTypeId(Long bookTypeId) {
 		this.bookTypeId = bookTypeId;
 	}
 

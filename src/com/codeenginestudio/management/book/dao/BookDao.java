@@ -1,16 +1,17 @@
-package com.codeenginestudio.bookManagement.dao;
+package com.codeenginestudio.management.book.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.codeenginestudio.bookManagement.model.Book;
-import com.codeenginestudio.bookManagement.util.HibernateUtil;
+import com.codeenginestudio.management.book.model.Book;
+import com.codeenginestudio.management.book.util.HibernateUtil;
 
 public class BookDao {
 
-	public void deleteBook(int bookId) {
+	public void deleteBook(Long bookId) {
 
 		Transaction transaction = null;
 
@@ -35,15 +36,16 @@ public class BookDao {
 				transaction.rollback();
 			}
 
+			System.out.println("deleteBook() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Book> getAllBook() {
+	public List<Book> getBooks() {
 
 		Transaction transaction = null;
-		List<Book> listOfBook = null;
+		List<Book> listOfBook = new ArrayList<>();
 
 		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
 
@@ -58,16 +60,17 @@ public class BookDao {
 				transaction.rollback();
 			}
 
+			System.out.println("getBooks() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 
 		return listOfBook;
 	}
 
-	public Book getOneBook(int bookId) {
+	public Book getBook(Long bookId) throws Exception {
 
 		Transaction transaction = null;
-		Book book = null;
+		Book book = new Book();
 
 		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
 
@@ -82,7 +85,13 @@ public class BookDao {
 				transaction.rollback();
 			}
 
+			System.out.println("getBook() failed: " + e.getMessage());
 			e.printStackTrace();
+		}
+
+		if (book == null) {
+
+			throw new Exception("book's not found with id = " + bookId);
 		}
 
 		return book;
@@ -105,6 +114,7 @@ public class BookDao {
 				transaction.rollback();
 			}
 
+			System.out.println("updateBook() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -126,6 +136,7 @@ public class BookDao {
 				transaction.rollback();
 			}
 
+			System.out.println("saveBook() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}

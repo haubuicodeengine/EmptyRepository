@@ -1,17 +1,17 @@
-package com.codeenginestudio.bookManagement.dao;
+package com.codeenginestudio.management.book.dao;
 
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.codeenginestudio.bookManagement.model.Author;
-import com.codeenginestudio.bookManagement.util.HibernateUtil;
+import com.codeenginestudio.management.book.model.Author;
+import com.codeenginestudio.management.book.util.HibernateUtil;
 
 public class AuthorDao {
 
 	@SuppressWarnings("unchecked")
-	public List<Author> getAllAuthor() {
+	public List<Author> getAuthors() {
 
 		Transaction transaction = null;
 		List<Author> listOfAuthor = null;
@@ -29,13 +29,14 @@ public class AuthorDao {
 				transaction.rollback();
 			}
 
+			System.out.println("getAuthors() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 
 		return listOfAuthor;
 	}
 
-	public Author getOneAuthor(int authorId) {
+	public Author getAuthor(Long authorId) {
 
 		Transaction transaction = null;
 		Author author = null;
@@ -53,6 +54,7 @@ public class AuthorDao {
 				transaction.rollback();
 			}
 
+			System.out.println("getAuthor() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 

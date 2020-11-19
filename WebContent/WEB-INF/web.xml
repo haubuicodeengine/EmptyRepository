@@ -6,66 +6,41 @@
 	<display-name>Book - Management</display-name>
 
 	<welcome-file-list>
-		<welcome-file>view/Welcome.jsp</welcome-file>
+		<welcome-file>view/welcome.jsp</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
-	    <servlet-name>Book</servlet-name>
-	    <servlet-class>com.codeenginestudio.bookManagement.servlet.BookServlet</servlet-class>
-	</servlet>
-
-	<servlet>
-	    <servlet-name>AddBook</servlet-name>
-	    <servlet-class>com.codeenginestudio.bookManagement.servlet.BookServlet</servlet-class>
-	</servlet>
-
-	<servlet>
-	    <servlet-name>EditBook</servlet-name>
-	    <servlet-class>com.codeenginestudio.bookManagement.servlet.BookServlet</servlet-class>
-	</servlet>
-
-	<servlet>
-	    <servlet-name>DeleteBook</servlet-name>
-	    <servlet-class>com.codeenginestudio.bookManagement.servlet.BookServlet</servlet-class>
-	</servlet>
-
-	<servlet>
-	    <servlet-name>InsertBook</servlet-name>
-	    <servlet-class>com.codeenginestudio.bookManagement.servlet.BookServlet</servlet-class>
-	</servlet>
-
-	<servlet>
-	    <servlet-name>UpdateBook</servlet-name>
-	    <servlet-class>com.codeenginestudio.bookManagement.servlet.BookServlet</servlet-class>
+	    <servlet-name>BookServlet</servlet-name>
+	    <servlet-class>com.codeenginestudio.management.book.servlet.BookServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-	    <servlet-name>Book</servlet-name>
+	    <servlet-name>BookServlet</servlet-name>
 	    <url-pattern>/book/</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-	    <servlet-name>AddBook</servlet-name>
+	    <servlet-name>BookServlet</servlet-name>
 	    <url-pattern>/book/add</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-	    <servlet-name>InsertBook</servlet-name>
+	    <servlet-name>BookServlet</servlet-name>
 	    <url-pattern>/book/insert</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-	    <servlet-name>EditBook</servlet-name>
+	    <servlet-name>BookServlet</servlet-name>
 	    <url-pattern>/book/edit</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-	    <servlet-name>UpdateBook</servlet-name>
+	    <servlet-name>BookServlet</servlet-name>
 	    <url-pattern>/book/update</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-	    <servlet-name>DeleteBook</servlet-name>
+	    <servlet-name>BookServlet</servlet-name>
 	    <url-pattern>/book/delete</url-pattern>
 	</servlet-mapping>
 

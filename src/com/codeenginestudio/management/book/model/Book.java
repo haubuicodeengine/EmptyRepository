@@ -1,4 +1,4 @@
-package com.codeenginestudio.bookManagement.model;
+package com.codeenginestudio.management.book.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +17,7 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "bookId")
-	protected int bookId;
+	protected Long bookId;
 
 	@OneToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "bookAuthorId", referencedColumnName = "authorId")
@@ -36,7 +36,7 @@ public class Book {
 		this.bookAuthor = bookAuthor;
 	}
 
-	public Book(int bookId, String bookName, Author bookAuthor) {
+	public Book(Long bookId, String bookName, Author bookAuthor) {
 		super();
 		this.bookId = bookId;
 		this.bookName = bookName;
@@ -51,7 +51,7 @@ public class Book {
 		return bookName;
 	}
 
-	public int getBookId() {
+	public Long getBookId() {
 		return bookId;
 	}
 
@@ -63,7 +63,7 @@ public class Book {
 		this.bookName = bookName;
 	}
 
-	public void setBookId(int bookId) {
+	public void setBookId(Long bookId) {
 		this.bookId = bookId;
 	}
 }

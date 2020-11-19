@@ -1,4 +1,4 @@
-package com.codeenginestudio.bookManagement.model;
+package com.codeenginestudio.management.book.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +14,7 @@ public class Author {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "authorId")
-	protected int authorId;
+	protected Long authorId;
 
 	@Column(name = "authorName")
 	protected String authorName;
@@ -23,17 +23,17 @@ public class Author {
 		super();
 	}
 
-	public Author(int authorId, String authorName) {
+	public Author(Long authorId, String authorName) {
 		super();
 		this.authorId = authorId;
 		this.authorName = authorName;
 	}
 
-	public int getAuthorId() {
+	public Long getAuthorId() {
 		return authorId;
 	}
 
-	public void setAuthorId(int authorId) {
+	public void setAuthorId(Long authorId) {
 		this.authorId = authorId;
 	}
 

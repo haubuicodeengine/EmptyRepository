@@ -1,4 +1,4 @@
-package com.codeenginestudio.bookManagement.dao;
+package com.codeenginestudio.management.book.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,16 +6,16 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.codeenginestudio.bookManagement.model.BookAndBookType;
-import com.codeenginestudio.bookManagement.model.BookType;
-import com.codeenginestudio.bookManagement.util.HibernateUtil;
+import com.codeenginestudio.management.book.model.BookAndBookType;
+import com.codeenginestudio.management.book.model.BookType;
+import com.codeenginestudio.management.book.util.HibernateUtil;
 
 public class BookTypeDao {
 
 	private BookAndBookTypeDao bookAndBookTypeDao = new BookAndBookTypeDao();
 
 	@SuppressWarnings("unchecked")
-	public List<BookType> getAllBookType() {
+	public List<BookType> getBookTypes() {
 
 		Transaction transaction = null;
 		List<BookType> listOfBookType = null;
@@ -33,13 +33,14 @@ public class BookTypeDao {
 				transaction.rollback();
 			}
 
+			System.out.println("getBookTypes() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 
 		return listOfBookType;
 	}
 
-	public BookType getOneBookType(int bookId) {
+	public BookType getBookType(Long bookId) {
 
 		Transaction transaction = null;
 		BookType bookType = null;
@@ -57,19 +58,20 @@ public class BookTypeDao {
 				transaction.rollback();
 			}
 
+			System.out.println("getBookType() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 
 		return bookType;
 	}
 
-	public List<String> getListIdOfTypeByBookId(int bookId) {
+	public List<Long> getListIdOfTypeByBookId(Long bookId) {
 
-		List<BookAndBookType> listBookAndTypeByBookId = bookAndBookTypeDao.getAllBookAndBooksTypeByBookId(bookId);
-		List<String> listTypeOfBooks = new ArrayList<>();
+		List<BookAndBookType> listBookAndTypeByBookId = bookAndBookTypeDao.getBookAndBookTypesByBookId(bookId);
+		List<Long> listTypeOfBooks = new ArrayList<>();
 
 		for (BookAndBookType bookAndBookType : listBookAndTypeByBookId) {
-			String id = String.valueOf(bookAndBookType.getBookType().getBookTypeId());
+			Long id = bookAndBookType.getBookType().getBookTypeId();
 			listTypeOfBooks.add(id);
 		}
 

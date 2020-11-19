@@ -1,4 +1,4 @@
-package com.codeenginestudio.bookManagement.dao;
+package com.codeenginestudio.management.book.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,17 +7,17 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import com.codeenginestudio.bookManagement.model.Book;
-import com.codeenginestudio.bookManagement.model.BookAndBookType;
-import com.codeenginestudio.bookManagement.model.BookType;
-import com.codeenginestudio.bookManagement.util.BookTypeUtil;
-import com.codeenginestudio.bookManagement.util.HibernateUtil;
+import com.codeenginestudio.management.book.model.Book;
+import com.codeenginestudio.management.book.model.BookAndBookType;
+import com.codeenginestudio.management.book.model.BookType;
+import com.codeenginestudio.management.book.util.BookTypeUtil;
+import com.codeenginestudio.management.book.util.HibernateUtil;
 
 public class BookAndBookTypeDao {
 
 	public static BookTypeDao _bookTypeDao = new BookTypeDao();
 
-	public void deleteBookAndBookType(int bookAndBookTypeId) {
+	public void deleteBookAndBookType(Long bookAndBookTypeId) {
 
 		Transaction transaction = null;
 
@@ -41,13 +41,14 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
+			System.out.println("deleteBookAndBookType() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
-	public void deleteAllBookAndBookTypeByBookId(int bookId) {
+	public void deleteAllBookAndBookTypeByBookId(Long bookId) {
 
-		List<BookAndBookType> listOfBookAndBookType = getAllBookAndBooksTypeByBookId(bookId);
+		List<BookAndBookType> listOfBookAndBookType = getBookAndBookTypesByBookId(bookId);
 
 		for (BookAndBookType bookAndBookType : listOfBookAndBookType) {
 			deleteBookAndBookType(bookAndBookType.getBookAndBookTypeId());
@@ -55,10 +56,10 @@ public class BookAndBookTypeDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<BookAndBookType> getAllBookAndBookType() {
+	public List<BookAndBookType> getBookAndBookTypes() {
 
 		Transaction transaction = null;
-		List<BookAndBookType> listOfBookAndBookType = null;
+		List<BookAndBookType> listOfBookAndBookType = new ArrayList<>();
 
 		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
 
@@ -73,13 +74,14 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
+			System.out.println("getBookAndBookTypes() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 
 		return listOfBookAndBookType;
 	}
 
-	public BookAndBookType getBookAndBookTypeByBookIdAndTypeId(int bookId, int typeId) {
+	public BookAndBookType getBookAndBookTypeByBookIdAndTypeId(Long bookId, Long typeId) {
 		Transaction transaction = null;
 		BookAndBookType bookAndBookType = new BookAndBookType();
 
@@ -99,6 +101,7 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
+			System.out.println("getBookAndBookTypeByBookIdAndTypeId() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 
@@ -106,7 +109,7 @@ public class BookAndBookTypeDao {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<BookAndBookType> getAllBookAndBooksTypeByBookId(int bookId) {
+	public List<BookAndBookType> getBookAndBookTypesByBookId(Long bookId) {
 
 		Transaction transaction = null;
 		List<BookAndBookType> listOfBookAndBookType = new ArrayList<>();
@@ -126,13 +129,14 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
+			System.out.println("getBookAndBookTypesByBookId() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 
 		return listOfBookAndBookType;
 	}
 
-	public BookAndBookType getOneBookAndBookType(int bookAndBookTypeId) {
+	public BookAndBookType getBookAndBookType(Long bookAndBookTypeId) {
 
 		Transaction transaction = null;
 		BookAndBookType bookAndBookType = new BookAndBookType();
@@ -150,19 +154,20 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
+			System.out.println("getBookAndBookType() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 
 		return bookAndBookType;
 	}
 
-	public void updateBookAndBookType(int bookId, Book book, BookType bookType) {
+	public void updateBookAndBookType(Long bookId, Book book, BookType bookType) {
 
 		Transaction transaction = null;
 
 		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
 
-			BookAndBookType bookAndBookType = getOneBookAndBookType(bookId);
+			BookAndBookType bookAndBookType = getBookAndBookType(bookId);
 			bookAndBookType.setBook(book);
 			bookAndBookType.setBookType(bookType);
 			transaction = session.beginTransaction();
@@ -176,19 +181,20 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
+			System.out.println("updateBookAndBookType() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
-	public void updateBookAndBookTypeByBookId(List<String> newListIdTypes, List<String> currentTypes, Book book) {
+	public void updateBookAndBookTypeByBookId(List<Long> newListIdTypes, List<Long> currentTypes, Book book) {
 
 		for (int i = 0; i < newListIdTypes.size(); i++) {
 
-			int typeId = Integer.parseInt(newListIdTypes.get(i).toString());
+			Long typeId = newListIdTypes.get(i);
 
-			if (!BookTypeUtil._checkDuplicateBooktype(currentTypes, newListIdTypes.get(i))) {
+			if (!BookTypeUtil.checkDuplicateBooktype(currentTypes, newListIdTypes.get(i))) {
 
-				BookType newBookType = _bookTypeDao.getOneBookType(typeId);
+				BookType newBookType = _bookTypeDao.getBookType(typeId);
 				BookAndBookType newBookAndBookType = new BookAndBookType(book, newBookType);
 				saveBookAndBookType(newBookAndBookType);
 			}
@@ -198,7 +204,7 @@ public class BookAndBookTypeDao {
 
 			if (!newListIdTypes.contains(currentTypes.get(i))) {
 
-				int id = Integer.parseInt(currentTypes.get(i));
+				Long id = currentTypes.get(i);
 				BookAndBookType a = getBookAndBookTypeByBookIdAndTypeId(book.getBookId(), id);
 				deleteBookAndBookType(a.getBookAndBookTypeId());
 			}
@@ -209,8 +215,8 @@ public class BookAndBookTypeDao {
 
 		for (int i = 0; i < bookTypeIds.length; i++) {
 
-			int idType = Integer.parseInt(bookTypeIds[i].toString());
-			BookType bookType = _bookTypeDao.getOneBookType(idType);
+			Long idType = Long.parseLong(bookTypeIds[i].toString());
+			BookType bookType = _bookTypeDao.getBookType(idType);
 			saveBookAndBookType(new BookAndBookType(newBook, bookType));
 		}
 	}
@@ -232,6 +238,7 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
+			System.out.println("saveBookAndBookType() failed: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}

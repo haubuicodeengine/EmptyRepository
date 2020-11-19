@@ -1,4 +1,4 @@
-package com.codeenginestudio.bookManagement.util;
+package com.codeenginestudio.management.book.util;
 
 import java.util.Properties;
 
@@ -8,10 +8,10 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import com.codeenginestudio.bookManagement.model.Author;
-import com.codeenginestudio.bookManagement.model.Book;
-import com.codeenginestudio.bookManagement.model.BookAndBookType;
-import com.codeenginestudio.bookManagement.model.BookType;
+import com.codeenginestudio.management.book.model.Author;
+import com.codeenginestudio.management.book.model.Book;
+import com.codeenginestudio.management.book.model.BookAndBookType;
+import com.codeenginestudio.management.book.model.BookType;
 
 public class HibernateUtil {
 

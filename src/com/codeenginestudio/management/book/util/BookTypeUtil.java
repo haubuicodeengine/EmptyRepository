@@ -1,10 +1,10 @@
-package com.codeenginestudio.bookManagement.util;
+package com.codeenginestudio.management.book.util;
 
 import java.util.List;
 
 public class BookTypeUtil {
 
-	public static Boolean _checkDuplicateBooktype(List<String> currentTypes, String typeId) {
+	public static Boolean checkDuplicateBooktype(List<Long> currentTypes, Long typeId) {
 
 		if (currentTypes == null) {
 			return false;
