@@ -1,6 +1,7 @@
 package com.codeenginestudio.bookmanagement.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,29 +19,27 @@ import com.codeenginestudio.bookmanagement.service.AuthorService;
 import com.codeenginestudio.bookmanagement.service.BookAndBookTypeService;
 import com.codeenginestudio.bookmanagement.service.BookService;
 import com.codeenginestudio.bookmanagement.service.BookTypeService;
+import com.codeenginestudio.bookmanagement.validator.BookValidator;
 
 @Controller(value = "bookController")
 public class BookController {
 
 	@Autowired
 	private BookService bookService;
-	
+
 	@Autowired
 	private AuthorService authorService;
-	
+
 	@Autowired
 	private BookAndBookTypeService bookAndBookTypeService;
-	
+
 	@Autowired
 	private BookTypeService bookTypeService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView showListOfBooks(Model model) {
 
-		model.addAttribute("listBookAndtype", bookAndBookTypeService.getAllBookAndBookTypes());
-		model.addAttribute("listBooks", bookService.getAllBooks());
-		ModelAndView mav = new ModelAndView("list-books");
-		return mav;
+		return _returnListBook(model);
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -53,23 +52,34 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insertBook(Model model, BookDto bookDto, 
+	public ModelAndView insertBook(Model model, BookDto bookDto,
 			@RequestParam(required = false, name = "typeId") List<Long> typeIds) {
 
-		BookDto savedBookDto = bookService.insertBook(bookDto);
+		Map<String, String> Errors = BookValidator.validate(bookDto, typeIds);
 
-		for (Long type : typeIds) {
+		if (!Errors.isEmpty()) {
 
-			BookTypeDto typeOfBook = bookTypeService.getOneBookType(type);
-			BookAndBookTypeDto bookAndBookTypeDto = new BookAndBookTypeDto();
-			bookAndBookTypeDto.setBook(savedBookDto);
-			bookAndBookTypeDto.setBookType(typeOfBook);
-			BookDto a = new BookDto();
-			bookAndBookTypeService.insertBookAndBookType(bookAndBookTypeDto);
+			model.addAttribute("book", bookDto);
+			model.addAttribute("errors", Errors);
+			model.addAttribute("authors", authorService.getAllAuthors());
+			model.addAttribute("bookTypes", bookTypeService.getAllBookTypes());
+			ModelAndView mav = new ModelAndView("book-form");
+			return mav;
+		} else {
+
+			BookDto savedBookDto = bookService.insertBook(bookDto);
+
+			for (Long type : typeIds) {
+
+				BookTypeDto typeOfBook = bookTypeService.getOneBookType(type);
+				BookAndBookTypeDto bookAndBookTypeDto = new BookAndBookTypeDto();
+				bookAndBookTypeDto.setBook(savedBookDto);
+				bookAndBookTypeDto.setBookType(typeOfBook);
+				bookAndBookTypeService.insertBookAndBookType(bookAndBookTypeDto);
+			}
+
+			return _returnListBook(model);
 		}
-
-		model.addAttribute("listBooks", bookService.getAllBooks());
-		return "redirect:/list";
 	}
 
 	@RequestMapping(value = "/delete/{bookId}", method = RequestMethod.GET)
@@ -82,7 +92,6 @@ public class BookController {
 	@RequestMapping(value = "/edit/{bookId}", method = RequestMethod.GET)
 	public ModelAndView showEditForm(@PathVariable(name = "bookId") Long bookId, Model model) {
 
-		
 		model.addAttribute("url", "/update");
 		model.addAttribute("authors", authorService.getAllAuthors());
 		model.addAttribute("bookTypes", bookTypeService.getAllBookTypes());
@@ -93,46 +102,33 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateBook(BookDto bookDto, Model model, 
+	public ModelAndView updateBook(BookDto bookDto, Model model,
 			@RequestParam(required = false, name = "typeId") List<Long> typeIds) {
 
-		bookService.updateBook(bookDto);
-		List<BookAndBookTypeDto> listBookAndBookTypes = bookAndBookTypeService.getAllBookAndBookTypeByBookId(bookDto.getBookId());
+		Map<String, String> Errors = BookValidator.validate(bookDto, typeIds);
 
-		for(int i = 0; i < typeIds.size(); i++) {
+		if (!Errors.isEmpty()) {
 
-			if(!_checkDuplicateBooktype(bookDto.getBookId(), typeIds.get(i))) {
+			model.addAttribute("book", bookDto);
+			model.addAttribute("errors", Errors);
+			model.addAttribute("currentTypes", bookTypeService.getBookTypeIdByBookId(bookDto.getBookId()));
+			model.addAttribute("authors", authorService.getAllAuthors());
+			model.addAttribute("bookTypes", bookTypeService.getAllBookTypes());
+			ModelAndView mav = new ModelAndView("book-form");
+			return mav;
+		} else {
 
-				BookTypeDto newBookType = bookTypeService.getOneBookType(typeIds.get(i));
-				BookAndBookTypeDto newBookAndBookType = new BookAndBookTypeDto(bookDto, newBookType);
-				bookAndBookTypeService.insertBookAndBookType(newBookAndBookType);
-			}
+			bookService.updateBook(bookDto);
+			bookAndBookTypeService.updateBookAndBookType(typeIds, bookDto);
+			return _returnListBook(model);
 		}
-
-		for(int i = 0; i < listBookAndBookTypes.size(); i++) {
-
-			if(!typeIds.contains(listBookAndBookTypes.get(i).getBookType().getId())) {
-
-				bookAndBookTypeService.deleteBookAndBookType(listBookAndBookTypes.get(i).getBookAndBookTypeId());
-			}
-		}
-
-		model.addAttribute("listBooks", bookService.getAllBooks());
-		return "redirect:/list";
 	}
-	
-	private Boolean _checkDuplicateBooktype(Long bookId, Long bookTypeId) {
 
-		List<Long> bookTypes = bookTypeService.getBookTypeIdByBookId(bookId);
-		
-		if(bookTypes == null || bookTypes.size() == 0) {
-			return false;
-		}
-		
-		if (bookTypes.contains(bookTypeId)) {
-			return true;
-		}
+	public ModelAndView _returnListBook(Model model) {
 
-		return false;
+		model.addAttribute("listBookAndtype", bookAndBookTypeService.getAllBookAndBookTypes());
+		model.addAttribute("listBooks", bookService.getAllBooks());
+		ModelAndView mav = new ModelAndView("list-books");
+		return mav;
 	}
 }

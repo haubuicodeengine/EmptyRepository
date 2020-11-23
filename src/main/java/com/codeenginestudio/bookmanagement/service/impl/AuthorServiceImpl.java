@@ -13,11 +13,11 @@ import com.codeenginestudio.bookmanagement.repository.AuthorRepository;
 import com.codeenginestudio.bookmanagement.service.AuthorService;
 
 @Service
-public class AuthorServiceImpl implements AuthorService{
+public class AuthorServiceImpl implements AuthorService {
 
 	@Autowired
 	private AuthorRepository authorRepository;
-	
+
 	@Override
 	public List<AuthorDto> getAllAuthors() {
 
@@ -27,7 +27,7 @@ public class AuthorServiceImpl implements AuthorService{
 		for (AuthorEntity authorEntity : listAuthorEntities) {
 			listAuthorDtos.add(AuthorMapper._parseToAuthorDto(authorEntity));
 		}
-		
+
 		return listAuthorDtos;
 	}
 

@@ -13,7 +13,7 @@ public class AuthorMapper {
 
 		return authorDto;
 	}
-	
+
 	public static AuthorEntity _parseToAuthorEntity(AuthorDto authorDto) {
 
 		AuthorEntity authorEntity = new AuthorEntity();

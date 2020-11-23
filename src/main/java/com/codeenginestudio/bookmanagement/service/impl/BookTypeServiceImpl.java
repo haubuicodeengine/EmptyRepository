@@ -17,7 +17,7 @@ import com.codeenginestudio.bookmanagement.repository.BookTypeRepository;
 import com.codeenginestudio.bookmanagement.service.BookTypeService;
 
 @Service
-public class BookTypeServiceImpl implements BookTypeService{
+public class BookTypeServiceImpl implements BookTypeService {
 
 	@Autowired
 	private BookTypeRepository bookTypeRepository;
@@ -30,7 +30,7 @@ public class BookTypeServiceImpl implements BookTypeService{
 
 	@Override
 	public List<BookTypeDto> getAllBookTypes() {
-		
+
 		List<BookTypeDto> bookTypeDtos = new ArrayList<>();
 		List<BookTypeEntity> listBookTypeEntities = bookTypeRepository.findAll();
 
@@ -53,14 +53,30 @@ public class BookTypeServiceImpl implements BookTypeService{
 
 		BookEntity theBook = bookRepository.findOne(bookId);
 		List<Long> bookTypeIds = new ArrayList<>();
-		List<BookAndBookTypeEntity> bookAndBookTypeEntities =  bookAndbookTypeRepository.findByBook(theBook);
-		
+		List<BookAndBookTypeEntity> bookAndBookTypeEntities = bookAndbookTypeRepository.findByBook(theBook);
+
 		for (BookAndBookTypeEntity bookAndBookTypeEntity : bookAndBookTypeEntities) {
 
 			bookTypeIds.add(bookAndBookTypeEntity.getBookType().getId());
 		}
 
 		return bookTypeIds;
+	}
+
+	@Override
+	public boolean checkDuplicateBooktype(Long bookId, Long bookTypeId) {
+
+		List<Long> bookTypes = getBookTypeIdByBookId(bookId);
+
+		if (bookTypes == null || bookTypes.size() == 0) {
+			return false;
+		}
+
+		if (bookTypes.contains(bookTypeId)) {
+			return true;
+		}
+
+		return false;
 	}
 
 }

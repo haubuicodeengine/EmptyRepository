@@ -15,7 +15,7 @@ import com.codeenginestudio.bookmanagement.repository.BookRepository;
 import com.codeenginestudio.bookmanagement.service.BookService;
 
 @Service
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl implements BookService {
 
 	@Autowired
 	private BookRepository bookrepository;
@@ -28,7 +28,7 @@ public class BookServiceImpl implements BookService{
 
 		List<BookDto> bookDtos = new ArrayList<>();
 		List<BookEntity> bookEntities = bookrepository.findAll();
-		
+
 		for (BookEntity bookEntity : bookEntities) {
 			bookDtos.add(BookMapper._parseToBookDto(bookEntity));
 		}
@@ -46,13 +46,15 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	public void deleteBook(Long id) {
-		
+
 		BookEntity theBook = bookrepository.getOne(id);
 		List<BookAndBookTypeEntity> listBookAndTypes = bookAndBookTypeRepository.findByBook(theBook);
+
 		for (BookAndBookTypeEntity bookAndBookTypeEntity : listBookAndTypes) {
+
 			bookAndBookTypeRepository.delete(bookAndBookTypeEntity);
 		}
-		
+
 		bookrepository.delete(id);
 	}
 
@@ -65,10 +67,10 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	public BookDto insertBook(BookDto bookDto) {
-		
+
 		BookEntity bookEntity = BookMapper._parseToBookEntity(bookDto);
 		bookrepository.saveAndFlush(bookEntity);
-		
+
 		return BookMapper._parseToBookDto(bookEntity);
 	}
 }

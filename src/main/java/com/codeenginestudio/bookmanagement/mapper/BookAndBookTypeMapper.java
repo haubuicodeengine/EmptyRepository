@@ -9,7 +9,7 @@ import com.codeenginestudio.bookmanagement.entity.BookTypeEntity;
 
 public class BookAndBookTypeMapper {
 
-	public static BookAndBookTypeEntity _parseToBookAndBookTypeEntity (BookAndBookTypeDto bookAndBookTypeDto) {
+	public static BookAndBookTypeEntity _parseToBookAndBookTypeEntity(BookAndBookTypeDto bookAndBookTypeDto) {
 
 		BookAndBookTypeEntity bookAndBookTypeEntity = new BookAndBookTypeEntity();
 		bookAndBookTypeEntity.setBookAndBookTypeId(bookAndBookTypeDto.getBookAndBookTypeId());
@@ -21,7 +21,7 @@ public class BookAndBookTypeMapper {
 		return bookAndBookTypeEntity;
 	}
 
-	public static BookAndBookTypeDto _parseToBookAndBookTypeDto (BookAndBookTypeEntity bookAndBookTypeEntity) {
+	public static BookAndBookTypeDto _parseToBookAndBookTypeDto(BookAndBookTypeEntity bookAndBookTypeEntity) {
 
 		BookAndBookTypeDto bookAndBookTypeDto = new BookAndBookTypeDto();
 		bookAndBookTypeDto.setBookAndBookTypeId(bookAndBookTypeEntity.getBookAndBookTypeId());

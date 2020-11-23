@@ -3,7 +3,7 @@ package com.codeenginestudio.bookmanagement.dto;
 public class AuthorDto {
 
 	private Long id;
-	
+
 	private String name;
 
 	public Long getId() {

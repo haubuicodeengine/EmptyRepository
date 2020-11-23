@@ -10,14 +10,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "book_and_book_type")
 public class BookAndBookTypeEntity {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	protected Long bookAndBookTypeId;
 
 	@OneToOne(cascade = CascadeType.DETACH)

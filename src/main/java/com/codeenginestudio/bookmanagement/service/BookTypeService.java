@@ -9,6 +9,8 @@ public interface BookTypeService {
 	List<BookTypeDto> getAllBookTypes();
 
 	BookTypeDto getOneBookType(Long id);
-	
-	List<Long> getBookTypeIdByBookId (Long bookId);
+
+	List<Long> getBookTypeIdByBookId(Long bookId);
+
+	boolean checkDuplicateBooktype(Long bookId, Long bookTypeId);
 }

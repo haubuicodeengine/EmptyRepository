@@ -1,7 +1,5 @@
 package com.codeenginestudio.bookmanagement.dto;
 
-import com.codeenginestudio.bookmanagement.entity.AuthorEntity;
-
 public class BookDto {
 
 	private Long bookId;

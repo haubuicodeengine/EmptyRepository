@@ -13,7 +13,7 @@ public class BookTypeMapper {
 
 		return bookTypeDto;
 	}
-	
+
 	public static BookTypeEntity _parseToBookTypeEntity(BookTypeDto bookTypeDto) {
 
 		BookTypeEntity booktypeEntity = new BookTypeEntity();

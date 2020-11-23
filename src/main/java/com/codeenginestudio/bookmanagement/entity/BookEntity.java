@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +18,7 @@ public class BookEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "book_id")
 	private Long bookId;
-	
+
 	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "author_id", referencedColumnName = "author_id")
 	private AuthorEntity bookAuthor;

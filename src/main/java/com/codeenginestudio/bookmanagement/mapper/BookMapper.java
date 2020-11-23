@@ -8,7 +8,7 @@ import com.codeenginestudio.bookmanagement.entity.BookEntity;
 public class BookMapper {
 
 	public static BookDto _parseToBookDto(BookEntity bookEntity) {
-		
+
 		BookDto bookDto = new BookDto();
 		bookDto.setBookId(bookEntity.getBookId());
 		AuthorDto authorDto = AuthorMapper._parseToAuthorDto(bookEntity.getBookAuthor());
