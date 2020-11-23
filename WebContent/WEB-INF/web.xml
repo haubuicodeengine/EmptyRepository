@@ -10,38 +10,46 @@
 	</welcome-file-list>
 
 	<servlet>
-	    <servlet-name>BookServlet</servlet-name>
-	    <servlet-class>com.codeenginestudio.management.book.servlet.BookServlet</servlet-class>
+		<servlet-name>BookServlet</servlet-name>
+		<servlet-class>com.codeenginestudio.management.book.servlet.BookServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-	    <servlet-name>BookServlet</servlet-name>
-	    <url-pattern>/book/</url-pattern>
+		<servlet-name>BookServlet</servlet-name>
+		<url-pattern>/book/</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-	    <servlet-name>BookServlet</servlet-name>
-	    <url-pattern>/book/add</url-pattern>
+		<servlet-name>BookServlet</servlet-name>
+		<url-pattern>/book/add</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-	    <servlet-name>BookServlet</servlet-name>
-	    <url-pattern>/book/insert</url-pattern>
+		<servlet-name>BookServlet</servlet-name>
+		<url-pattern>/book/insert</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-	    <servlet-name>BookServlet</servlet-name>
-	    <url-pattern>/book/edit</url-pattern>
+		<servlet-name>BookServlet</servlet-name>
+		<url-pattern>/book/edit</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-	    <servlet-name>BookServlet</servlet-name>
-	    <url-pattern>/book/update</url-pattern>
+		<servlet-name>BookServlet</servlet-name>
+		<url-pattern>/book/update</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-	    <servlet-name>BookServlet</servlet-name>
-	    <url-pattern>/book/delete</url-pattern>
+		<servlet-name>BookServlet</servlet-name>
+		<url-pattern>/book/delete</url-pattern>
 	</servlet-mapping>
 
+	<context-param>
+		<param-name>log4j-config-location</param-name>
+		<param-value>WEB-INF/log4j.properties</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>com.codeenginestudio.management.book.servlet.ContextListener</listener-class>
+	</listener>
 </web-app>

@@ -3,6 +3,7 @@ package com.codeenginestudio.management.book.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -14,6 +15,8 @@ import com.codeenginestudio.management.book.util.BookTypeUtil;
 import com.codeenginestudio.management.book.util.HibernateUtil;
 
 public class BookAndBookTypeDao {
+
+	static Logger logger = Logger.getLogger(BookAndBookTypeDao.class);
 
 	public static BookTypeDao _bookTypeDao = new BookTypeDao();
 
@@ -41,8 +44,7 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
-			System.out.println("deleteBookAndBookType() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 	}
 
@@ -74,8 +76,7 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
-			System.out.println("getBookAndBookTypes() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 
 		return listOfBookAndBookType;
@@ -101,8 +102,7 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
-			System.out.println("getBookAndBookTypeByBookIdAndTypeId() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 
 		return bookAndBookType;
@@ -129,8 +129,7 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
-			System.out.println("getBookAndBookTypesByBookId() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 
 		return listOfBookAndBookType;
@@ -154,8 +153,7 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
-			System.out.println("getBookAndBookType() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 
 		return bookAndBookType;
@@ -181,8 +179,7 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
-			System.out.println("updateBookAndBookType() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 	}
 
@@ -211,11 +208,11 @@ public class BookAndBookTypeDao {
 		}
 	}
 
-	public void insertListOfBookAndBookType(String[] bookTypeIds, Book newBook) {
+	public void insertListOfBookAndBookType(List<Long> bookTypeIds, Book newBook) {
 
-		for (int i = 0; i < bookTypeIds.length; i++) {
+		for (int i = 0; i < bookTypeIds.size(); i++) {
 
-			Long idType = Long.parseLong(bookTypeIds[i].toString());
+			Long idType = bookTypeIds.get(i);
 			BookType bookType = _bookTypeDao.getBookType(idType);
 			saveBookAndBookType(new BookAndBookType(newBook, bookType));
 		}
@@ -238,8 +235,7 @@ public class BookAndBookTypeDao {
 				transaction.rollback();
 			}
 
-			System.out.println("saveBookAndBookType() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 	}
 

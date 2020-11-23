@@ -15,9 +15,7 @@
 
 		if (book != null) {
 
-			if(book.getBookId() != 0){
-				url = "/book/update";
-			}
+			url = "/book/update";
 		}
 	%>
 	<div class="container-fluid">

@@ -2,6 +2,7 @@ package com.codeenginestudio.management.book.dao;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -9,6 +10,8 @@ import com.codeenginestudio.management.book.model.Author;
 import com.codeenginestudio.management.book.util.HibernateUtil;
 
 public class AuthorDao {
+
+	static Logger logger = Logger.getLogger(AuthorDao.class);
 
 	@SuppressWarnings("unchecked")
 	public List<Author> getAuthors() {
@@ -29,8 +32,7 @@ public class AuthorDao {
 				transaction.rollback();
 			}
 
-			System.out.println("getAuthors() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 
 		return listOfAuthor;
@@ -54,8 +56,7 @@ public class AuthorDao {
 				transaction.rollback();
 			}
 
-			System.out.println("getAuthor() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 
 		return author;

@@ -26,10 +26,17 @@ public class GeneralUtil {
 
 		List<Long> newList = new ArrayList<>();
 
-		for (String string : strArray) {
-			newList.add(Long.parseLong(string));
-		}
+		if (strArray == null) {
 
-		return newList;
+			return newList;
+		} else {
+
+			for (String string : strArray) {
+
+				newList.add(Long.parseLong(string));
+			}
+
+			return newList;
+		}
 	}
 }

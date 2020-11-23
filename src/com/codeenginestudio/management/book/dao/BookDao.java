@@ -3,6 +3,7 @@ package com.codeenginestudio.management.book.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -10,6 +11,8 @@ import com.codeenginestudio.management.book.model.Book;
 import com.codeenginestudio.management.book.util.HibernateUtil;
 
 public class BookDao {
+
+	static Logger logger = Logger.getLogger(BookDao.class);
 
 	public void deleteBook(Long bookId) {
 
@@ -36,8 +39,7 @@ public class BookDao {
 				transaction.rollback();
 			}
 
-			System.out.println("deleteBook() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 	}
 
@@ -60,8 +62,7 @@ public class BookDao {
 				transaction.rollback();
 			}
 
-			System.out.println("getBooks() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 
 		return listOfBook;
@@ -85,8 +86,7 @@ public class BookDao {
 				transaction.rollback();
 			}
 
-			System.out.println("getBook() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 
 		if (book == null) {
@@ -114,8 +114,7 @@ public class BookDao {
 				transaction.rollback();
 			}
 
-			System.out.println("updateBook() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 	}
 
@@ -136,8 +135,7 @@ public class BookDao {
 				transaction.rollback();
 			}
 
-			System.out.println("saveBook() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 	}
 }

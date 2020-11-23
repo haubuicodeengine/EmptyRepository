@@ -3,6 +3,7 @@ package com.codeenginestudio.management.book.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -11,6 +12,8 @@ import com.codeenginestudio.management.book.model.BookType;
 import com.codeenginestudio.management.book.util.HibernateUtil;
 
 public class BookTypeDao {
+
+	static Logger logger = Logger.getLogger(BookTypeDao.class);
 
 	private BookAndBookTypeDao bookAndBookTypeDao = new BookAndBookTypeDao();
 
@@ -33,8 +36,7 @@ public class BookTypeDao {
 				transaction.rollback();
 			}
 
-			System.out.println("getBookTypes() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 
 		return listOfBookType;
@@ -58,8 +60,7 @@ public class BookTypeDao {
 				transaction.rollback();
 			}
 
-			System.out.println("getBookType() failed: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Some things went wrong", e);
 		}
 
 		return bookType;

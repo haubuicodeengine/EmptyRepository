@@ -16,17 +16,17 @@ public class BookValidator {
 			errors.put(_BOOK_NAME, "Book's name could not be empty!");
 		}
 
-		if(newTypes == null) {
+		if (newTypes == null) {
 
 			errors.put(_BOOK_TYPE, "Book's type could not be null!");
 		}
 
 		return errors;
 	}
-	
+
 	public static boolean checkEmptyValue(String inputValue) {
 
-		if (inputValue.equals(_SPACE)) {
+		if (inputValue == null || inputValue.trim().length() == 0) {
 
 			return true;
 		}
@@ -34,7 +34,6 @@ public class BookValidator {
 		return false;
 	}
 
-	private static final String _SPACE = "";
 	private static final String _BOOK_NAME = "bookName";
 	private static final String _BOOK_TYPE = "bookType";
 }

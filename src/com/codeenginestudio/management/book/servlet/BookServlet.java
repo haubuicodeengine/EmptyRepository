@@ -1,7 +1,6 @@
 package com.codeenginestudio.management.book.servlet;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
 
 import com.codeenginestudio.management.book.dao.AuthorDao;
 import com.codeenginestudio.management.book.dao.BookAndBookTypeDao;
@@ -29,6 +30,7 @@ public class BookServlet extends HttpServlet {
 	private BookAndBookTypeDao bookAndBookTypeDao;
 	private BookTypeDao bookTypeDao;
 	private AuthorDao authorDao;
+	static Logger logger = Logger.getLogger(BookServlet.class);
 
 	public void init() {
 
@@ -82,6 +84,7 @@ public class BookServlet extends HttpServlet {
 		Long authorId = Long.parseLong(request.getParameter("bookAuthorId"));
 		Author bookAuthor = authorDao.getAuthor(authorId);
 		Book theBook = new Book(bookName, bookAuthor);
+		List<Long> newListIdTypes = GeneralUtil.convertArrayStringToListLong(bookTypeIds);
 
 		Map<String, String> errors = BookValidator.validate(theBook, bookTypeIds);
 
@@ -91,12 +94,13 @@ public class BookServlet extends HttpServlet {
 			request.setAttribute("errors", errors);
 			request.setAttribute("bookTypes", bookTypeDao.getBookTypes());
 			request.setAttribute("authors", authorDao.getAuthors());
+			request.setAttribute("bookAndBookTypes", newListIdTypes);
 			GeneralUtil.displayView(request, response, "/view/book-form.jsp");
 
 		} else {
 
 			bookDao.saveBook(theBook);
-			bookAndBookTypeDao.insertListOfBookAndBookType(bookTypeIds, theBook);
+			bookAndBookTypeDao.insertListOfBookAndBookType(newListIdTypes, theBook);
 			response.sendRedirect(request.getContextPath() + "/book/");
 		}
 	}
@@ -154,9 +158,9 @@ public class BookServlet extends HttpServlet {
 		} catch (Exception e) {
 
 			request.setAttribute("errors", e.getMessage());
+			logger.error("Some things went wrong", e);
 			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/view/error.jsp");
 			dispatcher.include(request, response);
-			e.printStackTrace();
 		}
 	}
 
