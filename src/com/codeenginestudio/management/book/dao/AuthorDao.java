@@ -18,9 +18,11 @@ public class AuthorDao {
 
 		Transaction transaction = null;
 		List<Author> listOfAuthor = null;
+		Session session = null;
 
-		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
+		try {
 
+			session = HibernateUtil._getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			listOfAuthor = session.createQuery("from Author").getResultList();
 			transaction.commit();
@@ -33,6 +35,12 @@ public class AuthorDao {
 			}
 
 			logger.error("Some things went wrong", e);
+		} finally {
+
+			if (session != null) {
+
+				session.close();
+			}
 		}
 
 		return listOfAuthor;
@@ -42,9 +50,11 @@ public class AuthorDao {
 
 		Transaction transaction = null;
 		Author author = null;
+		Session session = null;
 
-		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
+		try {
 
+			session = HibernateUtil._getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			author = session.get(Author.class, authorId);
 			transaction.commit();
@@ -57,6 +67,12 @@ public class AuthorDao {
 			}
 
 			logger.error("Some things went wrong", e);
+		} finally {
+
+			if (session != null) {
+
+				session.close();
+			}
 		}
 
 		return author;

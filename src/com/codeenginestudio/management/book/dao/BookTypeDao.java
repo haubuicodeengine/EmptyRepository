@@ -22,9 +22,11 @@ public class BookTypeDao {
 
 		Transaction transaction = null;
 		List<BookType> listOfBookType = null;
+		Session session = null;
 
-		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
+		try {
 
+			session = HibernateUtil._getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			listOfBookType = session.createQuery("from BookType").getResultList();
 			transaction.commit();
@@ -37,6 +39,12 @@ public class BookTypeDao {
 			}
 
 			logger.error("Some things went wrong", e);
+		} finally {
+
+			if (session != null) {
+
+				session.close();
+			}
 		}
 
 		return listOfBookType;
@@ -46,9 +54,11 @@ public class BookTypeDao {
 
 		Transaction transaction = null;
 		BookType bookType = null;
+		Session session = null;
 
-		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
+		try {
 
+			session = HibernateUtil._getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			bookType = session.get(BookType.class, bookId);
 			transaction.commit();
@@ -61,6 +71,12 @@ public class BookTypeDao {
 			}
 
 			logger.error("Some things went wrong", e);
+		} finally {
+
+			if (session != null) {
+
+				session.close();
+			}
 		}
 
 		return bookType;

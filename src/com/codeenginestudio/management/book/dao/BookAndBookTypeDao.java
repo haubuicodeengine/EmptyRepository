@@ -23,9 +23,11 @@ public class BookAndBookTypeDao {
 	public void deleteBookAndBookType(Long bookAndBookTypeId) {
 
 		Transaction transaction = null;
+		Session session = null;
 
-		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
+		try {
 
+			session = HibernateUtil._getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			BookAndBookType bookAndBookType = session.get(BookAndBookType.class, bookAndBookTypeId);
 
@@ -45,6 +47,12 @@ public class BookAndBookTypeDao {
 			}
 
 			logger.error("Some things went wrong", e);
+		} finally {
+
+			if (session != null) {
+
+				session.close();
+			}
 		}
 	}
 
@@ -62,9 +70,11 @@ public class BookAndBookTypeDao {
 
 		Transaction transaction = null;
 		List<BookAndBookType> listOfBookAndBookType = new ArrayList<>();
+		Session session = null;
 
-		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
+		try {
 
+			session = HibernateUtil._getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			listOfBookAndBookType = session.createQuery("from BookAndBookType").getResultList();
 			transaction.commit();
@@ -77,6 +87,12 @@ public class BookAndBookTypeDao {
 			}
 
 			logger.error("Some things went wrong", e);
+		} finally {
+
+			if (session != null) {
+
+				session.close();
+			}
 		}
 
 		return listOfBookAndBookType;

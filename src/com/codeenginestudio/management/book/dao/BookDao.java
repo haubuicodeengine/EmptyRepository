@@ -17,9 +17,11 @@ public class BookDao {
 	public void deleteBook(Long bookId) {
 
 		Transaction transaction = null;
+		Session session = null;
 
-		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
+		try {
 
+			session = HibernateUtil._getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Book book = session.get(Book.class, bookId);
 
@@ -40,6 +42,12 @@ public class BookDao {
 			}
 
 			logger.error("Some things went wrong", e);
+		} finally {
+
+			if (session != null) {
+
+				session.close();
+			}
 		}
 	}
 
@@ -48,9 +56,11 @@ public class BookDao {
 
 		Transaction transaction = null;
 		List<Book> listOfBook = new ArrayList<>();
+		Session session = null;
 
-		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
+		try {
 
+			session = HibernateUtil._getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			listOfBook = session.createQuery("from Book").getResultList();
 			transaction.commit();
@@ -63,6 +73,12 @@ public class BookDao {
 			}
 
 			logger.error("Some things went wrong", e);
+		} finally {
+
+			if (session != null) {
+
+				session.close();
+			}
 		}
 
 		return listOfBook;
@@ -72,9 +88,11 @@ public class BookDao {
 
 		Transaction transaction = null;
 		Book book = new Book();
+		Session session = null;
 
-		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
+		try {
 
+			session = HibernateUtil._getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			book = session.get(Book.class, bookId);
 			transaction.commit();
@@ -87,6 +105,12 @@ public class BookDao {
 			}
 
 			logger.error("Some things went wrong", e);
+		} finally {
+
+			if (session != null) {
+
+				session.close();
+			}
 		}
 
 		if (book == null) {
@@ -100,9 +124,11 @@ public class BookDao {
 	public void updateBook(Book book) {
 
 		Transaction transaction = null;
+		Session session = null;
 
-		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
+		try {
 
+			session = HibernateUtil._getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			session.update(book);
 			transaction.commit();
@@ -115,15 +141,23 @@ public class BookDao {
 			}
 
 			logger.error("Some things went wrong", e);
+		} finally {
+
+			if (session != null) {
+
+				session.close();
+			}
 		}
 	}
 
 	public void saveBook(Book book) {
 
 		Transaction transaction = null;
+		Session session = null;
 
-		try (Session session = HibernateUtil._getSessionFactory().openSession()) {
+		try {
 
+			session = HibernateUtil._getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			session.save(book);
 			transaction.commit();
@@ -136,6 +170,12 @@ public class BookDao {
 			}
 
 			logger.error("Some things went wrong", e);
+		} finally {
+
+			if (session != null) {
+
+				session.close();
+			}
 		}
 	}
 }
