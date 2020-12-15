@@ -1,9 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ include file="/common/configLanguage.jsp"%>
 <%@ include file="/common/taglib.jsp"%>
-<%@ page import="com.codeenginestudio.bookmanagement.dto.BookDto"%>
-<%@ page import="java.util.List"%>
-<%@ page import="java.util.Map"%>
+<%@ include file="/common/import.jsp"%>
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +12,7 @@
 	href="<c:url value='/template/web/vendor/bootstrap/css/bootstrap.min.css'/>"
 	rel="stylesheet" type="text/css">
 
-<link href="<c:url value='/template/web/css/Style.css'/>"
+<link href="<c:url value='/template/web/css/style.css'/>"
 	rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -24,8 +21,11 @@
 
 	<dec:body />
 
+	<%@ include file="/common/confirm.jsp"%>
 	<script
 		src="<c:url value='/template/web/vendor/jquery/jquery.min.js'/>"></script>
+	<script
+		src="<c:url value='/template/web/js/book.js'/>"></script>
 	<script
 		src="<c:url value='/template/web/vendor/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
 </body>

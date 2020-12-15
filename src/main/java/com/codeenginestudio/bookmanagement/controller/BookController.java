@@ -92,12 +92,24 @@ public class BookController {
 	@RequestMapping(value = "/edit/{bookId}", method = RequestMethod.GET)
 	public ModelAndView showEditForm(@PathVariable(name = "bookId") Long bookId, Model model) {
 
-		model.addAttribute("url", "/update");
-		model.addAttribute("authors", authorService.getAllAuthors());
-		model.addAttribute("bookTypes", bookTypeService.getAllBookTypes());
-		model.addAttribute("currentTypes", bookTypeService.getBookTypeIdByBookId(bookId));
-		model.addAttribute("book", bookService.getOneBook(bookId));
-		ModelAndView mav = new ModelAndView("book-form");
+		ModelAndView mav = new ModelAndView();
+
+		try {
+
+			model.addAttribute("book", bookService.getOneBook(bookId));
+			model.addAttribute("url", "/update");
+			model.addAttribute("authors", authorService.getAllAuthors());
+			model.addAttribute("bookTypes", bookTypeService.getAllBookTypes());
+			model.addAttribute("currentTypes", bookTypeService.getBookTypeIdByBookId(bookId));
+			mav.setViewName("book-form");
+
+		} catch (Exception e) {
+
+			model.addAttribute("errors", e);
+			mav.setViewName("error");
+			e.printStackTrace();
+		}
+
 		return mav;
 	}
 

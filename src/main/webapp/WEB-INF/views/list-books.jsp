@@ -37,7 +37,7 @@
 										</td>
 										<td>
 											<a href="./edit/${book.getBookId()}"><button class="btn btn-success">Edit</button></a>
-											<a href="./delete/${book.getBookId()}"><button class="btn btn-danger">Delete</button></a>
+											<a onclick="confirmation('./delete/${book.getBookId()}', 'delete ')"><button class="btn btn-danger">Delete</button></a>
 										</td>
 									</tr>
 								</c:forEach>

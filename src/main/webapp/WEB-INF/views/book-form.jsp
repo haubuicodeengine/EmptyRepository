@@ -1,7 +1,6 @@
-<%@ page import="com.codeenginestudio.bookmanagement.dto.BookDto"%>
-<%@ page import="java.util.List"%>
-<%@ page import="java.util.Map"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/common/configLanguage.jsp"%>
+<%@ include file="/common/taglib.jsp"%>
+<%@ include file="/common/import.jsp"%>
 	<%
 		BookDto book = (BookDto) request.getAttribute("book");
 		String url = "/insert";
@@ -9,7 +8,10 @@
 
 		if (book != null) {
 
-			url = "/update";
+			if(book.getBookId() != null){
+
+				url = "/update";
+			}
 		}
 	%>
 	<div class="container-fluid">

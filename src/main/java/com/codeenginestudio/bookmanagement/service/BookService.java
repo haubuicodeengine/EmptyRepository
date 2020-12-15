@@ -8,7 +8,7 @@ public interface BookService {
 
 	List<BookDto> getAllBooks();
 
-	BookDto getOneBook(Long id);
+	BookDto getOneBook(Long id) throws Exception;
 
 	void deleteBook(Long id);
 

@@ -37,9 +37,13 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public BookDto getOneBook(Long id) {
+	public BookDto getOneBook(Long id) throws Exception {
 
 		BookEntity bookEntity = bookrepository.findOne(id);
+
+		if(bookEntity == null) {
+			throw new Exception("Book's not found with id = " + id);
+		}
 
 		return BookMapper._parseToBookDto(bookEntity);
 	}
