@@ -22,9 +22,12 @@ public class EditBookServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
+		Book theBook = new Book();
 
 		try {
-			request.setAttribute("book", BookRepository.getBook(bookId));
+
+			theBook = BookRepository.getBook(bookId);
+			request.setAttribute("book", theBook);
 			BookUtil.displayView(request, response, "/static/view/book/book-form.jsp");
 
 		} catch (Exception e) {
@@ -33,7 +36,6 @@ public class EditBookServlet extends HttpServlet {
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/static/view/book/error.jsp");
 			dispatcher.include(request, response);
 		}
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -59,8 +59,6 @@
 		</div>
 	</div>
 	
-	
-	
 	<div id="confirm" class="modal">
 	<form class="modal-content">
 		<div class="container-model">
@@ -69,7 +67,7 @@
 				<h1 id="title" class="action-confirm"></h1>
 			</div>
 
-			<div class="">
+			<div>
 				<p id="ask" class="ask"></p>
 				<div class="clearfix flex-around">
 					<div>

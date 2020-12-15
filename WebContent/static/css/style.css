@@ -31,6 +31,12 @@
 	color: red;
 }
 
+.error-container{
+	margin: auto;
+    text-align: center;
+    margin-top: 20%;
+}
+
 .form-title {
 	background-color: #bdeb99;
 	justify-content: center;
