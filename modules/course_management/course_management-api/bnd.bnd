@@ -1,0 +1,10 @@
+Bundle-Name: course_management-api
+Bundle-SymbolicName: com.liferay.practice.course.management.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.practice.course.management.exception,\
+	com.liferay.practice.course.management.model,\
+	com.liferay.practice.course.management.service,\
+	com.liferay.practice.course.management.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../course_management-service/service.xml
