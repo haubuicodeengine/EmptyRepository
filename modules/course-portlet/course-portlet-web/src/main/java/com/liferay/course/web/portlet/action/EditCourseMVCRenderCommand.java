@@ -32,9 +32,6 @@ public class EditCourseMVCRenderCommand implements MVCRenderCommand {
 
 		if (courseId > 0) {
 			try {
-
-				// Call the service to get the course for editing.
-
 				course = _courseService.getCourse(courseId);
 			} catch (NoSuchCourseException nsae) {
 				nsae.printStackTrace();
@@ -45,8 +42,6 @@ public class EditCourseMVCRenderCommand implements MVCRenderCommand {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay) renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
-		// Set back icon visible.
-
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		portletDisplay.setShowBackIcon(true);
@@ -54,8 +49,6 @@ public class EditCourseMVCRenderCommand implements MVCRenderCommand {
 		String redirect = renderRequest.getParameter("redirect");
 
 		portletDisplay.setURLBack(redirect);
-
-		// Set course to the request attributes.
 
 		renderRequest.setAttribute("course", course);
 		renderRequest.setAttribute("courseClass", Course.class);

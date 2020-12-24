@@ -23,25 +23,16 @@ public class DeleteCourseMVCActionCommand extends BaseMVCActionCommand {
 	@Override
 	protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception {
 
-		// Get course id from request.
-
 		long courseId = ParamUtil.getLong(actionRequest, "courseId");
 
 		try {
-
-			// Call service to delete the course.
-
 			_courseService.deleteCourse(courseId);
-
 			SessionMessages.add(actionRequest, "courseDeleted");
 
 		} catch (PortalException pe) {
 			pe.printStackTrace();
-
 			SessionErrors.add(actionRequest, "serviceErrorDetails", pe);
-
 		}
-
 	}
 
 	@Reference

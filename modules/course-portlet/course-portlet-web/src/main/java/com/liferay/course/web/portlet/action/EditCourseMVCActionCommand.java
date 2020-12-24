@@ -33,8 +33,6 @@ public class EditCourseMVCActionCommand extends BaseMVCActionCommand {
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(Course.class.getName(), actionRequest);
 
-		// Get parameters from the request.
-
 		long courseId = ParamUtil.getLong(actionRequest, "courseId");
 
 		Map<Locale, String> courseNameMap = LocalizationUtil.getLocalizationMap(actionRequest, "courseName");
@@ -42,14 +40,22 @@ public class EditCourseMVCActionCommand extends BaseMVCActionCommand {
 		Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(actionRequest, "description");
 
 		Map<Locale, String> lecturerMap = LocalizationUtil.getLocalizationMap(actionRequest, "lecturer");
-		
-		Map<Locale, String> durationMap = LocalizationUtil.getLocalizationMap(actionRequest, "duration");
+
+		long duration = Long.parseLong(actionRequest.getParameter("duration"));
+
+		String statusValue = actionRequest.getParameter("status");
+
+		boolean status = false;
+
+		if (Long.parseLong(statusValue) == 1) {
+			status = true;
+		} else {
+			status = false;
+		}
 
 		try {
-
-			// Call the service to update the Course
-
-			_courseService.updateCourse(courseId, courseNameMap, descriptionMap, lecturerMap, durationMap,serviceContext);
+			_courseService.updateCourse(courseId, courseNameMap, descriptionMap, lecturerMap, duration, status,
+					serviceContext);
 
 			SessionMessages.add(actionRequest, "courseUpdated");
 

@@ -18,10 +18,10 @@ import org.osgi.service.component.annotations.Component;
 public class CourseServiceImpl extends CourseServiceBaseImpl {
 
 	public Course addCourse(long groupId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Map<Locale, String> durationMap, ServiceContext serviceContext)
+			Map<Locale, String> lecturerMap, long duration, boolean status, ServiceContext serviceContext)
 			throws PortalException {
 
-		return courseLocalService.addCourse(groupId, courseNameMap, descriptionMap, lecturerMap, durationMap,
+		return courseLocalService.addCourse(groupId, courseNameMap, descriptionMap, lecturerMap, duration, status,
 				serviceContext);
 	}
 
@@ -56,10 +56,10 @@ public class CourseServiceImpl extends CourseServiceBaseImpl {
 	}
 
 	public Course updateCourse(long groupId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Map<Locale, String> durationMap, ServiceContext serviceContext)
+			Map<Locale, String> lecturerMap, long duration, boolean status, ServiceContext serviceContext)
 			throws PortalException {
 
-		return courseLocalService.updateCourse(groupId, courseNameMap, descriptionMap, lecturerMap, durationMap,
+		return courseLocalService.updateCourse(groupId, courseNameMap, descriptionMap, lecturerMap, duration, status,
 				serviceContext);
 	}
 }

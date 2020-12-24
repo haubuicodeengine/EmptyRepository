@@ -41,15 +41,25 @@ public class AddCourseMVCActionCommand extends BaseMVCActionCommand {
 		Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(actionRequest, "description");
 
 		Map<Locale, String> lecturerMap = LocalizationUtil.getLocalizationMap(actionRequest, "lecturer");
-		
-		Map<Locale, String> durationMap = LocalizationUtil.getLocalizationMap(actionRequest, "duration");
-		
+
+		long duration = Long.parseLong(actionRequest.getParameter("duration"));
+
+		String statusValue = actionRequest.getParameter("status");
+
+		boolean status = false;
+
+		if (Long.parseLong(statusValue) == 1) {
+			status = true;
+		} else {
+			status = false;
+		}
+
 		try {
 
 			// Call the service to add a a new course.
 
-			_courseService.addCourse(themeDisplay.getScopeGroupId(), courseNameMap, descriptionMap, lecturerMap,durationMap,
-					serviceContext);
+			_courseService.addCourse(themeDisplay.getScopeGroupId(), courseNameMap, descriptionMap, lecturerMap,
+					duration, status, serviceContext);
 
 			SessionMessages.add(actionRequest, "courseAdded");
 

@@ -26,9 +26,9 @@ import org.osgi.service.component.annotations.Reference;
 public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 
 	public Course addCourse(long groupId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Map<Locale, String> durationMap, ServiceContext serviceContext) throws PortalException {
+			Map<Locale, String> lecturerMap, long duration, boolean status, ServiceContext serviceContext) throws PortalException {
 
-		_courseValidator.validate(courseNameMap, descriptionMap, lecturerMap, durationMap);
+		_courseValidator.validate(courseNameMap, descriptionMap, lecturerMap, duration);
 
 		// Get group and user.
 
@@ -57,17 +57,17 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 		course.setLecturerMap(lecturerMap);
 		course.setUserId(userId);
 		course.setUserName(user.getScreenName());
-		course.setStatus(false);
-		course.setDurationMap(durationMap);
+		course.setStatus(status);
+		course.setDuration(duration);
 		// Persist Course to database.
 
 		return super.addCourse(course);
 	}
 
 	public Course updateCourse(long courseId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Map<Locale, String> durationMap, ServiceContext serviceContext) throws PortalException {
+			Map<Locale, String> lecturerMap, long duration, boolean status, ServiceContext serviceContext) throws PortalException {
 
-		_courseValidator.validate(courseNameMap, descriptionMap, lecturerMap, durationMap);
+		_courseValidator.validate(courseNameMap, descriptionMap, lecturerMap, duration);
 
 		// Get the Course by id.
 
@@ -79,8 +79,8 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 		course.setCourseNameMap(courseNameMap);
 		course.setDescriptionMap(descriptionMap);
 		course.setLecturerMap(lecturerMap);
-		course.setDurationMap(durationMap);
-		course.setStatus(true);
+		course.setDuration(duration);
+		course.setStatus(status);
 
 		course = super.updateCourse(course);
 

@@ -8,6 +8,6 @@ import java.util.Map;
 public interface CourseValidator {
 
 	public void validate(Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Map<Locale, String> durationMap) throws CourseValidationException;
+			Map<Locale, String> lecturerMap, long duration) throws CourseValidationException;
 
 }
