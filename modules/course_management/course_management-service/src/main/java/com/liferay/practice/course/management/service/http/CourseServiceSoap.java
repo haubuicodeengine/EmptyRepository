@@ -14,9 +14,18 @@
 
 package com.liferay.practice.course.management.service.http;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
+import com.liferay.practice.course.management.service.CourseServiceUtil;
+
+import java.rmi.RemoteException;
+
+import java.util.Locale;
+import java.util.Map;
+
 /**
- * Provides the SOAP utility for the
- * <code>com.liferay.practice.course.management.service.CourseServiceUtil</code> service
+ * Provides the SOAP utility for the <code>CourseServiceUtil</code> service
  * utility. The static methods of this class call the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -25,11 +34,12 @@ package com.liferay.practice.course.management.service.http;
  * ServiceBuilder follows certain rules in translating the methods. For example,
  * if the method in the service utility returns a <code>java.util.List</code>,
  * that is translated to an array of
- * <code>com.liferay.practice.course.management.model.CourseSoap</code>. If the method in the
- * service utility returns a
- * <code>com.liferay.practice.course.management.model.Course</code>, that is translated to a
- * <code>com.liferay.practice.course.management.model.CourseSoap</code>. Methods that SOAP
- * cannot safely wire are skipped.
+ * <code>com.liferay.practice.course.management.model.CourseSoap</code>. If the
+ * method in the service utility returns a
+ * <code>com.liferay.practice.course.management.model.Course</code>, that is
+ * translated to a
+ * <code>com.liferay.practice.course.management.model.CourseSoap</code>. Methods
+ * that SOAP cannot safely wire are skipped.
  * </p>
  *
  * <p>
@@ -54,4 +64,134 @@ package com.liferay.practice.course.management.service.http;
  * @generated
  */
 public class CourseServiceSoap {
+
+	public static com.liferay.practice.course.management.model.CourseSoap addCourse(long groupId,
+			String[] courseNameMapLanguageIds, String[] courseNameMapValues, String[] descriptionMapLanguageIds,
+			String[] descriptionMapValues, String[] lecturerMapLanguageIds, String[] lecturerMapValues,
+			String[] durationMapLanguageIds, String[] durationMapValues,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext) throws RemoteException {
+
+		try {
+			Map<Locale, String> courseNameMap = LocalizationUtil.getLocalizationMap(courseNameMapLanguageIds,
+					courseNameMapValues);
+			Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(descriptionMapLanguageIds,
+					descriptionMapValues);
+			Map<Locale, String> lecturerMap = LocalizationUtil.getLocalizationMap(lecturerMapLanguageIds,
+					lecturerMapValues);
+			Map<Locale, String> durationMap = LocalizationUtil.getLocalizationMap(durationMapLanguageIds,
+					durationMapValues);
+
+			com.liferay.practice.course.management.model.Course returnValue = CourseServiceUtil.addCourse(groupId,
+					courseNameMap, descriptionMap, lecturerMap, durationMap, serviceContext);
+
+			return com.liferay.practice.course.management.model.CourseSoap.toSoapModel(returnValue);
+		} catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.liferay.practice.course.management.model.CourseSoap deleteCourse(long courseId)
+			throws RemoteException {
+
+		try {
+			com.liferay.practice.course.management.model.Course returnValue = CourseServiceUtil.deleteCourse(courseId);
+
+			return com.liferay.practice.course.management.model.CourseSoap.toSoapModel(returnValue);
+		} catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.liferay.practice.course.management.model.CourseSoap getCourse(long courseId)
+			throws RemoteException {
+
+		try {
+			com.liferay.practice.course.management.model.Course returnValue = CourseServiceUtil.getCourse(courseId);
+
+			return com.liferay.practice.course.management.model.CourseSoap.toSoapModel(returnValue);
+		} catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.liferay.practice.course.management.model.CourseSoap[] getCoursesByGroupId(long groupId)
+			throws RemoteException {
+
+		try {
+			java.util.List<com.liferay.practice.course.management.model.Course> returnValue = CourseServiceUtil
+					.getCoursesByGroupId(groupId);
+
+			return com.liferay.practice.course.management.model.CourseSoap.toSoapModels(returnValue);
+		} catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.liferay.practice.course.management.model.CourseSoap[] getCoursesByKeywords(long groupId,
+			String keywords, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator<com.liferay.practice.course.management.model.Course> orderByComparator)
+			throws RemoteException {
+
+		try {
+			java.util.List<com.liferay.practice.course.management.model.Course> returnValue = CourseServiceUtil
+					.getCoursesByKeywords(groupId, keywords, start, end, orderByComparator);
+
+			return com.liferay.practice.course.management.model.CourseSoap.toSoapModels(returnValue);
+		} catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static long getCoursesCountByKeywords(long groupId, String keywords) throws RemoteException {
+
+		try {
+			long returnValue = CourseServiceUtil.getCoursesCountByKeywords(groupId, keywords);
+
+			return returnValue;
+		} catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.liferay.practice.course.management.model.CourseSoap updateCourse(long courseId,
+			String[] courseNameMapLanguageIds, String[] courseNameMapValues, String[] descriptionMapLanguageIds,
+			String[] descriptionMapValues, String[] lecturerMapLanguageIds, String[] lecturerMapValues,
+			String[] durationMapLanguageIds, String[] durationMapValues,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext) throws RemoteException {
+
+		try {
+			Map<Locale, String> courseNameMap = LocalizationUtil.getLocalizationMap(courseNameMapLanguageIds,
+					courseNameMapValues);
+			Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(descriptionMapLanguageIds,
+					descriptionMapValues);
+			Map<Locale, String> lecturerMap = LocalizationUtil.getLocalizationMap(lecturerMapLanguageIds,
+					lecturerMapValues);
+			Map<Locale, String> durationMap = LocalizationUtil.getLocalizationMap(durationMapLanguageIds,
+					durationMapValues);
+
+			com.liferay.practice.course.management.model.Course returnValue = CourseServiceUtil.updateCourse(courseId,
+					courseNameMap, descriptionMap, lecturerMap, durationMap, serviceContext);
+
+			return com.liferay.practice.course.management.model.CourseSoap.toSoapModel(returnValue);
+		} catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(CourseServiceSoap.class);
+
 }

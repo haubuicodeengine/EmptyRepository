@@ -44,7 +44,7 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 			return false;
 		}
 
-		CourseCacheModel courseCacheModel = (CourseCacheModel)obj;
+		CourseCacheModel courseCacheModel = (CourseCacheModel) obj;
 
 		if (courseId == courseCacheModel.courseId) {
 			return true;
@@ -100,50 +100,43 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 
 		if (userName == null) {
 			courseImpl.setUserName("");
-		}
-		else {
+		} else {
 			courseImpl.setUserName(userName);
 		}
 
 		if (createDate == Long.MIN_VALUE) {
 			courseImpl.setCreateDate(null);
-		}
-		else {
+		} else {
 			courseImpl.setCreateDate(new Date(createDate));
 		}
 
 		if (modifiedDate == Long.MIN_VALUE) {
 			courseImpl.setModifiedDate(null);
-		}
-		else {
+		} else {
 			courseImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
 		if (courseName == null) {
 			courseImpl.setCourseName("");
-		}
-		else {
+		} else {
 			courseImpl.setCourseName(courseName);
 		}
 
 		if (lecturer == null) {
 			courseImpl.setLecturer("");
-		}
-		else {
+		} else {
 			courseImpl.setLecturer(lecturer);
 		}
 
 		if (description == null) {
 			courseImpl.setDescription("");
-		}
-		else {
+		} else {
 			courseImpl.setDescription(description);
 		}
 
 		if (duration == null) {
 			courseImpl.setDuration("");
-		}
-		else {
+		} else {
 			courseImpl.setDuration(duration);
 		}
 
@@ -182,8 +175,7 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 
 		if (userName == null) {
 			objectOutput.writeUTF("");
-		}
-		else {
+		} else {
 			objectOutput.writeUTF(userName);
 		}
 
@@ -192,29 +184,25 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 
 		if (courseName == null) {
 			objectOutput.writeUTF("");
-		}
-		else {
+		} else {
 			objectOutput.writeUTF(courseName);
 		}
 
 		if (lecturer == null) {
 			objectOutput.writeUTF("");
-		}
-		else {
+		} else {
 			objectOutput.writeUTF(lecturer);
 		}
 
 		if (description == null) {
 			objectOutput.writeUTF("");
-		}
-		else {
+		} else {
 			objectOutput.writeUTF(description);
 		}
 
 		if (duration == null) {
 			objectOutput.writeUTF("");
-		}
-		else {
+		} else {
 			objectOutput.writeUTF(duration);
 		}
 	}

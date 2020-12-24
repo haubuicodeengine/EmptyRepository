@@ -30,8 +30,7 @@ import java.util.Map;
  * @see Course
  * @generated
  */
-public class CourseWrapper
-	extends BaseModelWrapper<Course> implements Course, ModelWrapper<Course> {
+public class CourseWrapper extends BaseModelWrapper<Course> implements Course, ModelWrapper<Course> {
 
 	public CourseWrapper(Course course) {
 		super(course);
@@ -58,67 +57,67 @@ public class CourseWrapper
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long courseId = (Long)attributes.get("courseId");
+		Long courseId = (Long) attributes.get("courseId");
 
 		if (courseId != null) {
 			setCourseId(courseId);
 		}
 
-		Long groupId = (Long)attributes.get("groupId");
+		Long groupId = (Long) attributes.get("groupId");
 
 		if (groupId != null) {
 			setGroupId(groupId);
 		}
 
-		Long companyId = (Long)attributes.get("companyId");
+		Long companyId = (Long) attributes.get("companyId");
 
 		if (companyId != null) {
 			setCompanyId(companyId);
 		}
 
-		Long userId = (Long)attributes.get("userId");
+		Long userId = (Long) attributes.get("userId");
 
 		if (userId != null) {
 			setUserId(userId);
 		}
 
-		String userName = (String)attributes.get("userName");
+		String userName = (String) attributes.get("userName");
 
 		if (userName != null) {
 			setUserName(userName);
 		}
 
-		Date createDate = (Date)attributes.get("createDate");
+		Date createDate = (Date) attributes.get("createDate");
 
 		if (createDate != null) {
 			setCreateDate(createDate);
 		}
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+		Date modifiedDate = (Date) attributes.get("modifiedDate");
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
 		}
 
-		String courseName = (String)attributes.get("courseName");
+		String courseName = (String) attributes.get("courseName");
 
 		if (courseName != null) {
 			setCourseName(courseName);
 		}
 
-		String lecturer = (String)attributes.get("lecturer");
+		String lecturer = (String) attributes.get("lecturer");
 
 		if (lecturer != null) {
 			setLecturer(lecturer);
 		}
 
-		String description = (String)attributes.get("description");
+		String description = (String) attributes.get("description");
 
 		if (description != null) {
 			setDescription(description);
 		}
 
-		String duration = (String)attributes.get("duration");
+		String duration = (String) attributes.get("duration");
 
 		if (duration != null) {
 			setDuration(duration);
@@ -161,7 +160,8 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized course name of this course in the language. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized course name of this course in the language. Uses the
+	 * default language if no localization exists for the requested language.
 	 *
 	 * @param locale the locale of the language
 	 * @return the localized course name of this course
@@ -172,11 +172,16 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized course name of this course in the language, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized course name of this course in the language, optionally
+	 * using the default language if no localization exists for the requested
+	 * language.
 	 *
-	 * @param locale the local of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
-	 * @return the localized course name of this course. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	 * @param locale     the local of the language
+	 * @param useDefault whether to use the default language if no localization
+	 *                   exists for the requested language
+	 * @return the localized course name of this course. If <code>useDefault</code>
+	 *         is <code>false</code> and no localization exists for the requested
+	 *         language, an empty string will be returned.
 	 */
 	@Override
 	public String getCourseName(java.util.Locale locale, boolean useDefault) {
@@ -184,7 +189,8 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized course name of this course in the language. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized course name of this course in the language. Uses the
+	 * default language if no localization exists for the requested language.
 	 *
 	 * @param languageId the ID of the language
 	 * @return the localized course name of this course
@@ -195,10 +201,13 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized course name of this course in the language, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized course name of this course in the language, optionally
+	 * using the default language if no localization exists for the requested
+	 * language.
 	 *
 	 * @param languageId the ID of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
+	 * @param useDefault whether to use the default language if no localization
+	 *                   exists for the requested language
 	 * @return the localized course name of this course
 	 */
 	@Override
@@ -252,7 +261,8 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized description of this course in the language. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized description of this course in the language. Uses the
+	 * default language if no localization exists for the requested language.
 	 *
 	 * @param locale the locale of the language
 	 * @return the localized description of this course
@@ -263,11 +273,16 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized description of this course in the language, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized description of this course in the language, optionally
+	 * using the default language if no localization exists for the requested
+	 * language.
 	 *
-	 * @param locale the local of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
-	 * @return the localized description of this course. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	 * @param locale     the local of the language
+	 * @param useDefault whether to use the default language if no localization
+	 *                   exists for the requested language
+	 * @return the localized description of this course. If <code>useDefault</code>
+	 *         is <code>false</code> and no localization exists for the requested
+	 *         language, an empty string will be returned.
 	 */
 	@Override
 	public String getDescription(java.util.Locale locale, boolean useDefault) {
@@ -275,7 +290,8 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized description of this course in the language. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized description of this course in the language. Uses the
+	 * default language if no localization exists for the requested language.
 	 *
 	 * @param languageId the ID of the language
 	 * @return the localized description of this course
@@ -286,10 +302,13 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized description of this course in the language, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized description of this course in the language, optionally
+	 * using the default language if no localization exists for the requested
+	 * language.
 	 *
 	 * @param languageId the ID of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
+	 * @param useDefault whether to use the default language if no localization
+	 *                   exists for the requested language
 	 * @return the localized description of this course
 	 */
 	@Override
@@ -328,7 +347,8 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized duration of this course in the language. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized duration of this course in the language. Uses the
+	 * default language if no localization exists for the requested language.
 	 *
 	 * @param locale the locale of the language
 	 * @return the localized duration of this course
@@ -339,11 +359,16 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized duration of this course in the language, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized duration of this course in the language, optionally
+	 * using the default language if no localization exists for the requested
+	 * language.
 	 *
-	 * @param locale the local of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
-	 * @return the localized duration of this course. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	 * @param locale     the local of the language
+	 * @param useDefault whether to use the default language if no localization
+	 *                   exists for the requested language
+	 * @return the localized duration of this course. If <code>useDefault</code> is
+	 *         <code>false</code> and no localization exists for the requested
+	 *         language, an empty string will be returned.
 	 */
 	@Override
 	public String getDuration(java.util.Locale locale, boolean useDefault) {
@@ -351,7 +376,8 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized duration of this course in the language. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized duration of this course in the language. Uses the
+	 * default language if no localization exists for the requested language.
 	 *
 	 * @param languageId the ID of the language
 	 * @return the localized duration of this course
@@ -362,10 +388,13 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized duration of this course in the language, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized duration of this course in the language, optionally
+	 * using the default language if no localization exists for the requested
+	 * language.
 	 *
 	 * @param languageId the ID of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
+	 * @param useDefault whether to use the default language if no localization
+	 *                   exists for the requested language
 	 * @return the localized duration of this course
 	 */
 	@Override
@@ -414,7 +443,8 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized lecturer of this course in the language. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized lecturer of this course in the language. Uses the
+	 * default language if no localization exists for the requested language.
 	 *
 	 * @param locale the locale of the language
 	 * @return the localized lecturer of this course
@@ -425,11 +455,16 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized lecturer of this course in the language, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized lecturer of this course in the language, optionally
+	 * using the default language if no localization exists for the requested
+	 * language.
 	 *
-	 * @param locale the local of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
-	 * @return the localized lecturer of this course. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	 * @param locale     the local of the language
+	 * @param useDefault whether to use the default language if no localization
+	 *                   exists for the requested language
+	 * @return the localized lecturer of this course. If <code>useDefault</code> is
+	 *         <code>false</code> and no localization exists for the requested
+	 *         language, an empty string will be returned.
 	 */
 	@Override
 	public String getLecturer(java.util.Locale locale, boolean useDefault) {
@@ -437,7 +472,8 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized lecturer of this course in the language. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized lecturer of this course in the language. Uses the
+	 * default language if no localization exists for the requested language.
 	 *
 	 * @param languageId the ID of the language
 	 * @return the localized lecturer of this course
@@ -448,10 +484,13 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Returns the localized lecturer of this course in the language, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized lecturer of this course in the language, optionally
+	 * using the default language if no localization exists for the requested
+	 * language.
 	 *
 	 * @param languageId the ID of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
+	 * @param useDefault whether to use the default language if no localization
+	 *                   exists for the requested language
 	 * @return the localized lecturer of this course
 	 */
 	@Override
@@ -535,16 +574,14 @@ public class CourseWrapper
 	}
 
 	@Override
-	public void prepareLocalizedFieldsForImport()
-		throws com.liferay.portal.kernel.exception.LocaleException {
+	public void prepareLocalizedFieldsForImport() throws com.liferay.portal.kernel.exception.LocaleException {
 
 		model.prepareLocalizedFieldsForImport();
 	}
 
 	@Override
-	public void prepareLocalizedFieldsForImport(
-			java.util.Locale defaultImportLocale)
-		throws com.liferay.portal.kernel.exception.LocaleException {
+	public void prepareLocalizedFieldsForImport(java.util.Locale defaultImportLocale)
+			throws com.liferay.portal.kernel.exception.LocaleException {
 
 		model.prepareLocalizedFieldsForImport(defaultImportLocale);
 	}
@@ -583,7 +620,7 @@ public class CourseWrapper
 	 * Sets the localized course name of this course in the language.
 	 *
 	 * @param courseName the localized course name of this course
-	 * @param locale the locale of the language
+	 * @param locale     the locale of the language
 	 */
 	@Override
 	public void setCourseName(String courseName, java.util.Locale locale) {
@@ -591,16 +628,15 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Sets the localized course name of this course in the language, and sets the default locale.
+	 * Sets the localized course name of this course in the language, and sets the
+	 * default locale.
 	 *
-	 * @param courseName the localized course name of this course
-	 * @param locale the locale of the language
+	 * @param courseName    the localized course name of this course
+	 * @param locale        the locale of the language
 	 * @param defaultLocale the default locale
 	 */
 	@Override
-	public void setCourseName(
-		String courseName, java.util.Locale locale,
-		java.util.Locale defaultLocale) {
+	public void setCourseName(String courseName, java.util.Locale locale, java.util.Locale defaultLocale) {
 
 		model.setCourseName(courseName, locale, defaultLocale);
 	}
@@ -611,7 +647,8 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Sets the localized course names of this course from the map of locales and localized course names.
+	 * Sets the localized course names of this course from the map of locales and
+	 * localized course names.
 	 *
 	 * @param courseNameMap the locales and localized course names of this course
 	 */
@@ -621,15 +658,14 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Sets the localized course names of this course from the map of locales and localized course names, and sets the default locale.
+	 * Sets the localized course names of this course from the map of locales and
+	 * localized course names, and sets the default locale.
 	 *
 	 * @param courseNameMap the locales and localized course names of this course
 	 * @param defaultLocale the default locale
 	 */
 	@Override
-	public void setCourseNameMap(
-		Map<java.util.Locale, String> courseNameMap,
-		java.util.Locale defaultLocale) {
+	public void setCourseNameMap(Map<java.util.Locale, String> courseNameMap, java.util.Locale defaultLocale) {
 
 		model.setCourseNameMap(courseNameMap, defaultLocale);
 	}
@@ -658,7 +694,7 @@ public class CourseWrapper
 	 * Sets the localized description of this course in the language.
 	 *
 	 * @param description the localized description of this course
-	 * @param locale the locale of the language
+	 * @param locale      the locale of the language
 	 */
 	@Override
 	public void setDescription(String description, java.util.Locale locale) {
@@ -666,16 +702,15 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Sets the localized description of this course in the language, and sets the default locale.
+	 * Sets the localized description of this course in the language, and sets the
+	 * default locale.
 	 *
-	 * @param description the localized description of this course
-	 * @param locale the locale of the language
+	 * @param description   the localized description of this course
+	 * @param locale        the locale of the language
 	 * @param defaultLocale the default locale
 	 */
 	@Override
-	public void setDescription(
-		String description, java.util.Locale locale,
-		java.util.Locale defaultLocale) {
+	public void setDescription(String description, java.util.Locale locale, java.util.Locale defaultLocale) {
 
 		model.setDescription(description, locale, defaultLocale);
 	}
@@ -686,27 +721,26 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Sets the localized descriptions of this course from the map of locales and localized descriptions.
+	 * Sets the localized descriptions of this course from the map of locales and
+	 * localized descriptions.
 	 *
 	 * @param descriptionMap the locales and localized descriptions of this course
 	 */
 	@Override
-	public void setDescriptionMap(
-		Map<java.util.Locale, String> descriptionMap) {
+	public void setDescriptionMap(Map<java.util.Locale, String> descriptionMap) {
 
 		model.setDescriptionMap(descriptionMap);
 	}
 
 	/**
-	 * Sets the localized descriptions of this course from the map of locales and localized descriptions, and sets the default locale.
+	 * Sets the localized descriptions of this course from the map of locales and
+	 * localized descriptions, and sets the default locale.
 	 *
 	 * @param descriptionMap the locales and localized descriptions of this course
-	 * @param defaultLocale the default locale
+	 * @param defaultLocale  the default locale
 	 */
 	@Override
-	public void setDescriptionMap(
-		Map<java.util.Locale, String> descriptionMap,
-		java.util.Locale defaultLocale) {
+	public void setDescriptionMap(Map<java.util.Locale, String> descriptionMap, java.util.Locale defaultLocale) {
 
 		model.setDescriptionMap(descriptionMap, defaultLocale);
 	}
@@ -725,7 +759,7 @@ public class CourseWrapper
 	 * Sets the localized duration of this course in the language.
 	 *
 	 * @param duration the localized duration of this course
-	 * @param locale the locale of the language
+	 * @param locale   the locale of the language
 	 */
 	@Override
 	public void setDuration(String duration, java.util.Locale locale) {
@@ -733,16 +767,15 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Sets the localized duration of this course in the language, and sets the default locale.
+	 * Sets the localized duration of this course in the language, and sets the
+	 * default locale.
 	 *
-	 * @param duration the localized duration of this course
-	 * @param locale the locale of the language
+	 * @param duration      the localized duration of this course
+	 * @param locale        the locale of the language
 	 * @param defaultLocale the default locale
 	 */
 	@Override
-	public void setDuration(
-		String duration, java.util.Locale locale,
-		java.util.Locale defaultLocale) {
+	public void setDuration(String duration, java.util.Locale locale, java.util.Locale defaultLocale) {
 
 		model.setDuration(duration, locale, defaultLocale);
 	}
@@ -753,7 +786,8 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Sets the localized durations of this course from the map of locales and localized durations.
+	 * Sets the localized durations of this course from the map of locales and
+	 * localized durations.
 	 *
 	 * @param durationMap the locales and localized durations of this course
 	 */
@@ -763,15 +797,14 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Sets the localized durations of this course from the map of locales and localized durations, and sets the default locale.
+	 * Sets the localized durations of this course from the map of locales and
+	 * localized durations, and sets the default locale.
 	 *
-	 * @param durationMap the locales and localized durations of this course
+	 * @param durationMap   the locales and localized durations of this course
 	 * @param defaultLocale the default locale
 	 */
 	@Override
-	public void setDurationMap(
-		Map<java.util.Locale, String> durationMap,
-		java.util.Locale defaultLocale) {
+	public void setDurationMap(Map<java.util.Locale, String> durationMap, java.util.Locale defaultLocale) {
 
 		model.setDurationMap(durationMap, defaultLocale);
 	}
@@ -800,7 +833,7 @@ public class CourseWrapper
 	 * Sets the localized lecturer of this course in the language.
 	 *
 	 * @param lecturer the localized lecturer of this course
-	 * @param locale the locale of the language
+	 * @param locale   the locale of the language
 	 */
 	@Override
 	public void setLecturer(String lecturer, java.util.Locale locale) {
@@ -808,16 +841,15 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Sets the localized lecturer of this course in the language, and sets the default locale.
+	 * Sets the localized lecturer of this course in the language, and sets the
+	 * default locale.
 	 *
-	 * @param lecturer the localized lecturer of this course
-	 * @param locale the locale of the language
+	 * @param lecturer      the localized lecturer of this course
+	 * @param locale        the locale of the language
 	 * @param defaultLocale the default locale
 	 */
 	@Override
-	public void setLecturer(
-		String lecturer, java.util.Locale locale,
-		java.util.Locale defaultLocale) {
+	public void setLecturer(String lecturer, java.util.Locale locale, java.util.Locale defaultLocale) {
 
 		model.setLecturer(lecturer, locale, defaultLocale);
 	}
@@ -828,7 +860,8 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Sets the localized lecturers of this course from the map of locales and localized lecturers.
+	 * Sets the localized lecturers of this course from the map of locales and
+	 * localized lecturers.
 	 *
 	 * @param lecturerMap the locales and localized lecturers of this course
 	 */
@@ -838,15 +871,14 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Sets the localized lecturers of this course from the map of locales and localized lecturers, and sets the default locale.
+	 * Sets the localized lecturers of this course from the map of locales and
+	 * localized lecturers, and sets the default locale.
 	 *
-	 * @param lecturerMap the locales and localized lecturers of this course
+	 * @param lecturerMap   the locales and localized lecturers of this course
 	 * @param defaultLocale the default locale
 	 */
 	@Override
-	public void setLecturerMap(
-		Map<java.util.Locale, String> lecturerMap,
-		java.util.Locale defaultLocale) {
+	public void setLecturerMap(Map<java.util.Locale, String> lecturerMap, java.util.Locale defaultLocale) {
 
 		model.setLecturerMap(lecturerMap, defaultLocale);
 	}
