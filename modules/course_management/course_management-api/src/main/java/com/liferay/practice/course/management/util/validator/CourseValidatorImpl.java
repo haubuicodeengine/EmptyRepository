@@ -17,54 +17,45 @@ import org.osgi.service.component.annotations.Component;
 public class CourseValidatorImpl implements CourseValidator {
 
 	public void validate(Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Map<Locale, String> durationMap) throws CourseValidationException {
+			Map<Locale, String> lecturerMap, Long duration) throws CourseValidationException {
 
 		List<String> errors = new ArrayList<>();
 
-		if (!isCourseValid(courseNameMap, descriptionMap, lecturerMap, durationMap, errors)) {
+		if (!isCourseValid(courseNameMap, descriptionMap, lecturerMap, duration, errors)) {
 
 			throw new CourseValidationException(errors);
 		}
 	}
 
 	private boolean isCourseValid(final Map<Locale, String> courseNameMap, final Map<Locale, String> descriptionMap,
-			final Map<Locale, String> lecturerMap, final Map<Locale, String> durationMap, final List<String> errors) {
+			final Map<Locale, String> lecturerMap, final Long duration, final List<String> errors) {
 
 		boolean result = true;
 
 		result &= isCourseNameValid(courseNameMap, errors);
 		result &= isDescriptionValid(descriptionMap, errors);
 		result &= isLecturerValid(lecturerMap, errors);
-		result &= isDurationValid(durationMap, errors);
+		result &= isDurationValid(duration, errors);
 
 		return result;
 	}
 
-	private boolean isDurationValid(final Map<Locale, String> durationMap, final List<String> errors) {
+	private boolean isDurationValid(final Long duration, final List<String> errors) {
 
 		boolean result = true;
 
-		if (MapUtil.isEmpty(durationMap)) {
+		if (duration == null) {
 			errors.add("courseDurationEmpty");
 			result = false;
 		} else {
 
-			Locale defaultLocale = LocaleUtil.getSiteDefault();
 
-			if ((Validator.isBlank(durationMap.get(defaultLocale)))) {
-				errors.add("courseDurationEmpty");
+			if (duration > 40) {
+				errors.add("courseDurationValueInvalid");
 				result = false;
-			} else {
-
-				Long durationValue = Long.parseLong(durationMap.get(defaultLocale));
-
-				if (durationValue > 40) {
-					errors.add("courseDurationValueInvalid");
-					result = false;
-				}
 			}
 		}
-
+		
 		return result;
 
 	}

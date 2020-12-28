@@ -58,10 +58,10 @@ import org.osgi.service.component.annotations.Reference;
 public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 
 	public Course addCourse(long groupId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Map<Locale, String> durationMap, ServiceContext serviceContext)
+			Map<Locale, String> lecturerMap, Long duration, boolean courseStatus, ServiceContext serviceContext)
 			throws PortalException {
 
-		_courseValidator.validate(courseNameMap, descriptionMap, lecturerMap, durationMap);
+		_courseValidator.validate(courseNameMap, descriptionMap, lecturerMap, duration);
 
 		Group group = groupLocalService.getGroup(groupId);
 
@@ -77,7 +77,8 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 		course.setCreateDate(serviceContext.getCreateDate(new Date()));
 		course.setLecturerMap(lecturerMap);
 		course.setDescriptionMap(descriptionMap);
-		course.setDurationMap(durationMap);
+		course.setDuration(duration);
+		course.setCourseStatus(courseStatus);
 		course.setGroupId(groupId);
 		course.setModifiedDate(serviceContext.getModifiedDate(new Date()));
 		course.setCourseNameMap(courseNameMap);
@@ -88,16 +89,17 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 	}
 
 	public Course updateCourse(long courseId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Map<Locale, String> durationMap, ServiceContext serviceContext)
+			Map<Locale, String> lecturerMap, Long duration, boolean courseStatus, ServiceContext serviceContext)
 			throws PortalException {
 
-		_courseValidator.validate(courseNameMap, descriptionMap, lecturerMap, durationMap);
+		_courseValidator.validate(courseNameMap, descriptionMap, lecturerMap, duration);
 
 		Course course = getCourse(courseId);
 		course.setModifiedDate(new Date());
 		course.setLecturerMap(lecturerMap);
 		course.setDescriptionMap(descriptionMap);
-		course.setDurationMap(durationMap);
+		course.setDuration(duration);
+		course.setCourseStatus(courseStatus);
 		course.setCourseNameMap(courseNameMap);
 
 		course = super.updateCourse(course);
@@ -159,4 +161,5 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 
 	@Reference
 	CourseValidator _courseValidator;
+
 }

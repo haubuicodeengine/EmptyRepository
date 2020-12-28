@@ -15,11 +15,17 @@
              <dt><liferay-ui:message key="created-by" /></dt>
              <dd>${course.userName}</dd>
 
-             <dt><liferay-ui:message key="course-duedate" /></dt>
-             <dd>${dueDate}</dd>
+             <dt><liferay-ui:message key="course-lecturer" /></dt>
+             <dd>${course.getLecturer(locale)}</dd>
+             
+             <dt><liferay-ui:message key="course-status" /></dt>
+             <dd>${course.getCourseStatus() == 'false' ? 'Unavailble' : 'Availble'}</dd>
 
              <dt><liferay-ui:message key="description" /></dt>
              <dd>${course.getDescription(locale)}</dd>
+             
+             <dt><liferay-ui:message key="duration" /></dt>
+             <dd>${course.getDuration()}</dd>
          </dl>
      </div>
  </div>

@@ -44,7 +44,7 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 			return false;
 		}
 
-		CourseCacheModel courseCacheModel = (CourseCacheModel) obj;
+		CourseCacheModel courseCacheModel = (CourseCacheModel)obj;
 
 		if (courseId == courseCacheModel.courseId) {
 			return true;
@@ -60,7 +60,7 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{courseId=");
 		sb.append(courseId);
@@ -84,6 +84,8 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 		sb.append(description);
 		sb.append(", duration=");
 		sb.append(duration);
+		sb.append(", courseStatus=");
+		sb.append(courseStatus);
 		sb.append("}");
 
 		return sb.toString();
@@ -100,45 +102,48 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 
 		if (userName == null) {
 			courseImpl.setUserName("");
-		} else {
+		}
+		else {
 			courseImpl.setUserName(userName);
 		}
 
 		if (createDate == Long.MIN_VALUE) {
 			courseImpl.setCreateDate(null);
-		} else {
+		}
+		else {
 			courseImpl.setCreateDate(new Date(createDate));
 		}
 
 		if (modifiedDate == Long.MIN_VALUE) {
 			courseImpl.setModifiedDate(null);
-		} else {
+		}
+		else {
 			courseImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
 		if (courseName == null) {
 			courseImpl.setCourseName("");
-		} else {
+		}
+		else {
 			courseImpl.setCourseName(courseName);
 		}
 
 		if (lecturer == null) {
 			courseImpl.setLecturer("");
-		} else {
+		}
+		else {
 			courseImpl.setLecturer(lecturer);
 		}
 
 		if (description == null) {
 			courseImpl.setDescription("");
-		} else {
+		}
+		else {
 			courseImpl.setDescription(description);
 		}
 
-		if (duration == null) {
-			courseImpl.setDuration("");
-		} else {
-			courseImpl.setDuration(duration);
-		}
+		courseImpl.setDuration(duration);
+		courseImpl.setCourseStatus(courseStatus);
 
 		courseImpl.resetOriginalValues();
 
@@ -160,7 +165,10 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 		courseName = objectInput.readUTF();
 		lecturer = objectInput.readUTF();
 		description = objectInput.readUTF();
-		duration = objectInput.readUTF();
+
+		duration = objectInput.readLong();
+
+		courseStatus = objectInput.readBoolean();
 	}
 
 	@Override
@@ -175,7 +183,8 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 
 		if (userName == null) {
 			objectOutput.writeUTF("");
-		} else {
+		}
+		else {
 			objectOutput.writeUTF(userName);
 		}
 
@@ -184,27 +193,28 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 
 		if (courseName == null) {
 			objectOutput.writeUTF("");
-		} else {
+		}
+		else {
 			objectOutput.writeUTF(courseName);
 		}
 
 		if (lecturer == null) {
 			objectOutput.writeUTF("");
-		} else {
+		}
+		else {
 			objectOutput.writeUTF(lecturer);
 		}
 
 		if (description == null) {
 			objectOutput.writeUTF("");
-		} else {
+		}
+		else {
 			objectOutput.writeUTF(description);
 		}
 
-		if (duration == null) {
-			objectOutput.writeUTF("");
-		} else {
-			objectOutput.writeUTF(duration);
-		}
+		objectOutput.writeLong(duration);
+
+		objectOutput.writeBoolean(courseStatus);
 	}
 
 	public long courseId;
@@ -217,6 +227,7 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 	public String courseName;
 	public String lecturer;
 	public String description;
-	public String duration;
+	public long duration;
+	public boolean courseStatus;
 
 }

@@ -23,76 +23,78 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see CourseLocalService
  * @generated
  */
-public class CourseLocalServiceWrapper implements CourseLocalService, ServiceWrapper<CourseLocalService> {
+public class CourseLocalServiceWrapper
+	implements CourseLocalService, ServiceWrapper<CourseLocalService> {
 
 	public CourseLocalServiceWrapper(CourseLocalService courseLocalService) {
 		_courseLocalService = courseLocalService;
 	}
 
 	/**
-	 * Adds the course to the database. Also notifies the appropriate model
-	 * listeners.
+	 * Adds the course to the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param course the course
 	 * @return the course that was added
 	 */
 	@Override
 	public com.liferay.practice.course.management.model.Course addCourse(
-			com.liferay.practice.course.management.model.Course course) {
+		com.liferay.practice.course.management.model.Course course) {
 
 		return _courseLocalService.addCourse(course);
 	}
 
 	@Override
-	public com.liferay.practice.course.management.model.Course addCourse(long groupId,
-			java.util.Map<java.util.Locale, String> courseNameMap,
-			java.util.Map<java.util.Locale, String> descriptionMap, java.util.Map<java.util.Locale, String> lecturerMap,
-			java.util.Map<java.util.Locale, String> durationMap,
+	public com.liferay.practice.course.management.model.Course addCourse(
+			long groupId, java.util.Map<java.util.Locale, String> courseNameMap,
+			java.util.Map<java.util.Locale, String> descriptionMap,
+			java.util.Map<java.util.Locale, String> lecturerMap,
+			Long duration,
+			boolean courseStatus,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
-			throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _courseLocalService.addCourse(groupId, courseNameMap, descriptionMap, lecturerMap, durationMap,
-				serviceContext);
+		return _courseLocalService.addCourse(
+			groupId, courseNameMap, descriptionMap, lecturerMap, duration,
+			courseStatus, serviceContext);
 	}
 
 	/**
-	 * Creates a new course with the primary key. Does not add the course to the
-	 * database.
+	 * Creates a new course with the primary key. Does not add the course to the database.
 	 *
 	 * @param courseId the primary key for the new course
 	 * @return the new course
 	 */
 	@Override
-	public com.liferay.practice.course.management.model.Course createCourse(long courseId) {
+	public com.liferay.practice.course.management.model.Course createCourse(
+		long courseId) {
 
 		return _courseLocalService.createCourse(courseId);
 	}
 
 	/**
-	 * Deletes the course from the database. Also notifies the appropriate model
-	 * listeners.
+	 * Deletes the course from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param course the course
 	 * @return the course that was removed
 	 */
 	@Override
 	public com.liferay.practice.course.management.model.Course deleteCourse(
-			com.liferay.practice.course.management.model.Course course) {
+		com.liferay.practice.course.management.model.Course course) {
 
 		return _courseLocalService.deleteCourse(course);
 	}
 
 	/**
-	 * Deletes the course with the primary key from the database. Also notifies the
-	 * appropriate model listeners.
+	 * Deletes the course with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param courseId the primary key of the course
 	 * @return the course that was removed
 	 * @throws PortalException if a course with the primary key could not be found
 	 */
 	@Override
-	public com.liferay.practice.course.management.model.Course deleteCourse(long courseId)
-			throws com.liferay.portal.kernel.exception.PortalException {
+	public com.liferay.practice.course.management.model.Course deleteCourse(
+			long courseId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _courseLocalService.deleteCourse(courseId);
 	}
@@ -103,7 +105,7 @@ public class CourseLocalServiceWrapper implements CourseLocalService, ServiceWra
 	@Override
 	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
 			com.liferay.portal.kernel.model.PersistedModel persistedModel)
-			throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _courseLocalService.deletePersistedModel(persistedModel);
 	}
@@ -120,71 +122,53 @@ public class CourseLocalServiceWrapper implements CourseLocalService, ServiceWra
 	 * @return the matching rows
 	 */
 	@Override
-	public <T> java.util.List<T> dynamicQuery(com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
+	public <T> java.util.List<T> dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 
 		return _courseLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	/**
-	 * Performs a dynamic query on the database and returns a range of the matching
-	 * rows.
+	 * Performs a dynamic query on the database and returns a range of the matching rows.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
-	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
-	 * are indexes in the result set. Thus, <code>0</code> refers to the first
-	 * result in the set. Setting both <code>start</code> and <code>end</code> to
-	 * <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return
-	 * the full result set. If <code>orderByComparator</code> is specified, then the
-	 * query will include the given ORDER BY logic. If
-	 * <code>orderByComparator</code> is absent, then the query will include the
-	 * default ORDER BY logic from
-	 * <code>com.liferay.practice.course.management.model.impl.CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.practice.course.management.model.impl.CourseModelImpl</code>.
 	 * </p>
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @param start        the lower bound of the range of model instances
-	 * @param end          the upper bound of the range of model instances (not
-	 *                     inclusive)
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> java.util.List<T> dynamicQuery(com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-			int end) {
+	public <T> java.util.List<T> dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) {
 
 		return _courseLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	/**
-	 * Performs a dynamic query on the database and returns an ordered range of the
-	 * matching rows.
+	 * Performs a dynamic query on the database and returns an ordered range of the matching rows.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
-	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
-	 * are indexes in the result set. Thus, <code>0</code> refers to the first
-	 * result in the set. Setting both <code>start</code> and <code>end</code> to
-	 * <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return
-	 * the full result set. If <code>orderByComparator</code> is specified, then the
-	 * query will include the given ORDER BY logic. If
-	 * <code>orderByComparator</code> is absent, then the query will include the
-	 * default ORDER BY logic from
-	 * <code>com.liferay.practice.course.management.model.impl.CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.practice.course.management.model.impl.CourseModelImpl</code>.
 	 * </p>
 	 *
-	 * @param dynamicQuery      the dynamic query
-	 * @param start             the lower bound of the range of model instances
-	 * @param end               the upper bound of the range of model instances (not
-	 *                          inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally
-	 *                          <code>null</code>)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> java.util.List<T> dynamicQuery(com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-			int end, com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
+	public <T> java.util.List<T> dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 
-		return _courseLocalService.dynamicQuery(dynamicQuery, start, end, orderByComparator);
+		return _courseLocalService.dynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -194,7 +178,8 @@ public class CourseLocalServiceWrapper implements CourseLocalService, ServiceWra
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
+	public long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 
 		return _courseLocalService.dynamicQueryCount(dynamicQuery);
 	}
@@ -203,24 +188,27 @@ public class CourseLocalServiceWrapper implements CourseLocalService, ServiceWra
 	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @param projection   the projection to apply to the query
+	 * @param projection the projection to apply to the query
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-			com.liferay.portal.kernel.dao.orm.Projection projection) {
+	public long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 
 		return _courseLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	@Override
-	public com.liferay.practice.course.management.model.Course fetchCourse(long courseId) {
+	public com.liferay.practice.course.management.model.Course fetchCourse(
+		long courseId) {
 
 		return _courseLocalService.fetchCourse(courseId);
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
+		getActionableDynamicQuery() {
 
 		return _courseLocalService.getActionableDynamicQuery();
 	}
@@ -233,8 +221,9 @@ public class CourseLocalServiceWrapper implements CourseLocalService, ServiceWra
 	 * @throws PortalException if a course with the primary key could not be found
 	 */
 	@Override
-	public com.liferay.practice.course.management.model.Course getCourse(long courseId)
-			throws com.liferay.portal.kernel.exception.PortalException {
+	public com.liferay.practice.course.management.model.Course getCourse(
+			long courseId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _courseLocalService.getCourse(courseId);
 	}
@@ -243,55 +232,56 @@ public class CourseLocalServiceWrapper implements CourseLocalService, ServiceWra
 	 * Returns a range of all the courses.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
-	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
-	 * are indexes in the result set. Thus, <code>0</code> refers to the first
-	 * result in the set. Setting both <code>start</code> and <code>end</code> to
-	 * <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return
-	 * the full result set. If <code>orderByComparator</code> is specified, then the
-	 * query will include the given ORDER BY logic. If
-	 * <code>orderByComparator</code> is absent, then the query will include the
-	 * default ORDER BY logic from
-	 * <code>com.liferay.practice.course.management.model.impl.CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.practice.course.management.model.impl.CourseModelImpl</code>.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of courses
-	 * @param end   the upper bound of the range of courses (not inclusive)
+	 * @param end the upper bound of the range of courses (not inclusive)
 	 * @return the range of courses
 	 */
 	@Override
-	public java.util.List<com.liferay.practice.course.management.model.Course> getCourses(int start, int end) {
+	public java.util.List<com.liferay.practice.course.management.model.Course>
+		getCourses(int start, int end) {
 
 		return _courseLocalService.getCourses(start, end);
 	}
 
 	@Override
-	public java.util.List<com.liferay.practice.course.management.model.Course> getCoursesByGroupId(long groupId) {
+	public java.util.List<com.liferay.practice.course.management.model.Course>
+		getCoursesByGroupId(long groupId) {
 
 		return _courseLocalService.getCoursesByGroupId(groupId);
 	}
 
 	@Override
-	public java.util.List<com.liferay.practice.course.management.model.Course> getCoursesByGroupId(long groupId,
-			int start, int end) {
+	public java.util.List<com.liferay.practice.course.management.model.Course>
+		getCoursesByGroupId(long groupId, int start, int end) {
 
 		return _courseLocalService.getCoursesByGroupId(groupId, start, end);
 	}
 
 	@Override
-	public java.util.List<com.liferay.practice.course.management.model.Course> getCoursesByGroupId(long groupId,
-			int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<com.liferay.practice.course.management.model.Course> orderByComparator) {
+	public java.util.List<com.liferay.practice.course.management.model.Course>
+		getCoursesByGroupId(
+			long groupId, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.practice.course.management.model.Course>
+					orderByComparator) {
 
-		return _courseLocalService.getCoursesByGroupId(groupId, start, end, orderByComparator);
+		return _courseLocalService.getCoursesByGroupId(
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override
-	public java.util.List<com.liferay.practice.course.management.model.Course> getCoursesByKeywords(long groupId,
-			String keywords, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<com.liferay.practice.course.management.model.Course> orderByComparator) {
+	public java.util.List<com.liferay.practice.course.management.model.Course>
+		getCoursesByKeywords(
+			long groupId, String keywords, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.practice.course.management.model.Course>
+					orderByComparator) {
 
-		return _courseLocalService.getCoursesByKeywords(groupId, keywords, start, end, orderByComparator);
+		return _courseLocalService.getCoursesByKeywords(
+			groupId, keywords, start, end, orderByComparator);
 	}
 
 	/**
@@ -310,7 +300,8 @@ public class CourseLocalServiceWrapper implements CourseLocalService, ServiceWra
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
 		return _courseLocalService.getIndexableActionableDynamicQuery();
 	}
@@ -329,36 +320,40 @@ public class CourseLocalServiceWrapper implements CourseLocalService, ServiceWra
 	 * @throws PortalException
 	 */
 	@Override
-	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(java.io.Serializable primaryKeyObj)
-			throws com.liferay.portal.kernel.exception.PortalException {
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+			java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _courseLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
-	 * Updates the course in the database or adds it if it does not yet exist. Also
-	 * notifies the appropriate model listeners.
+	 * Updates the course in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
 	 * @param course the course
 	 * @return the course that was updated
 	 */
 	@Override
 	public com.liferay.practice.course.management.model.Course updateCourse(
-			com.liferay.practice.course.management.model.Course course) {
+		com.liferay.practice.course.management.model.Course course) {
 
 		return _courseLocalService.updateCourse(course);
 	}
 
 	@Override
-	public com.liferay.practice.course.management.model.Course updateCourse(long courseId,
+	public com.liferay.practice.course.management.model.Course updateCourse(
+			long courseId,
 			java.util.Map<java.util.Locale, String> courseNameMap,
-			java.util.Map<java.util.Locale, String> descriptionMap, java.util.Map<java.util.Locale, String> lecturerMap,
-			java.util.Map<java.util.Locale, String> durationMap,
+			java.util.Map<java.util.Locale, String> descriptionMap,
+			java.util.Map<java.util.Locale, String> lecturerMap,
+			Long duration,
+			boolean courseStatus,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
-			throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _courseLocalService.updateCourse(courseId, courseNameMap, descriptionMap, lecturerMap, durationMap,
-				serviceContext);
+		return _courseLocalService.updateCourse(
+			courseId, courseNameMap, descriptionMap, lecturerMap, duration,
+			courseStatus, serviceContext);
 	}
 
 	@Override

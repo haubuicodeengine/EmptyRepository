@@ -10,11 +10,14 @@ import org.osgi.service.component.annotations.Component;
 
 @Component(immediate = true, property = { 
 		"com.liferay.portlet.display-category=category.sample",
-		"com.liferay.portlet.header-portlet-css=/css/main.css", "com.liferay.portlet.instanceable=true",
-		"javax.portlet.display-name=CourseManagementMVC", "javax.portlet.init-param.template-path=/",
+		"com.liferay.portlet.header-portlet-css=/css/main.css",
+		"com.liferay.portlet.instanceable=true",
+		"javax.portlet.display-name=CourseManagementMVC",
+		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/view.jsp",
 		"javax.portlet.name=" + CourseManagementMVCPortletKeys.COURSEMANAGEMENTMVC,
-		"javax.portlet.resource-bundle=content.Language", "javax.portlet.security-role-ref=power-user,user",
+		"javax.portlet.resource-bundle=content.Language",
+		"javax.portlet.security-role-ref=power-user,user",
 		"com.liferay.portlet.display-category=category.practice",
 		"com.liferay.portlet.instanceable=false",
 		"javax.portlet.init-param.add-process-action-success-action=false"

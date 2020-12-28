@@ -12,6 +12,7 @@
 		<field localized="true" name="courseName" type="String" />
 		<field localized="true" name="lecturer" type="String" />
 		<field localized="true" name="description" type="String" />
-		<field localized="true" name="duration" type="String" />
+		<field name="duration" type="Long" />
+		<field name="courseStatus" type="boolean" />
 	</model>
 </model-hints>

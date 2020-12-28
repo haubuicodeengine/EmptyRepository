@@ -9,6 +9,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocalizationUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.practice.course.management.exception.CourseValidationException;
 import com.liferay.practice.course.management.model.Course;
@@ -42,12 +43,28 @@ public class AddCourseMVCActionCommand extends BaseMVCActionCommand {
 
 		Map<Locale, String> lecturerMap = LocalizationUtil.getLocalizationMap(actionRequest, "lecturer");
 
-		Map<Locale, String> durationMap = LocalizationUtil.getLocalizationMap(actionRequest, "duration");
+		String durationStr = ParamUtil.getString(actionRequest, "duration");
+		
+		Long duration = Long.parseLong(durationStr);
+		
+		String courseStatusStr = ParamUtil.getString(actionRequest, "courseStatus");
+		
+		boolean courseStatus = true;
+		
+		switch (courseStatusStr) {
+		case "0":
+			courseStatus = false;
+			break;
+
+		default:
+			courseStatus = true;
+			break;
+		}
 
 		try {
 
 			_courseService.addCourse(themeDisplay.getScopeGroupId(), courseNameMap, descriptionMap, lecturerMap,
-					durationMap, serviceContext);
+					duration, courseStatus, serviceContext);
 
 			SessionMessages.add(actionRequest, "courseAdded");
 			

@@ -23,50 +23,61 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see CourseService
  * @generated
  */
-public class CourseServiceWrapper implements CourseService, ServiceWrapper<CourseService> {
+public class CourseServiceWrapper
+	implements CourseService, ServiceWrapper<CourseService> {
 
 	public CourseServiceWrapper(CourseService courseService) {
 		_courseService = courseService;
 	}
 
 	@Override
-	public com.liferay.practice.course.management.model.Course addCourse(long groupId,
-			java.util.Map<java.util.Locale, String> courseNameMap,
-			java.util.Map<java.util.Locale, String> descriptionMap, java.util.Map<java.util.Locale, String> lecturerMap,
-			java.util.Map<java.util.Locale, String> durationMap,
+	public com.liferay.practice.course.management.model.Course addCourse(
+			long groupId, java.util.Map<java.util.Locale, String> courseNameMap,
+			java.util.Map<java.util.Locale, String> descriptionMap,
+			java.util.Map<java.util.Locale, String> lecturerMap,
+			Long duration,
+			boolean courseStatus,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
-			throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _courseService.addCourse(groupId, courseNameMap, descriptionMap, lecturerMap, durationMap,
-				serviceContext);
+		return _courseService.addCourse(
+			groupId, courseNameMap, descriptionMap, lecturerMap, duration,
+			courseStatus, serviceContext);
 	}
 
 	@Override
-	public com.liferay.practice.course.management.model.Course deleteCourse(long courseId)
-			throws com.liferay.portal.kernel.exception.PortalException {
+	public com.liferay.practice.course.management.model.Course deleteCourse(
+			long courseId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _courseService.deleteCourse(courseId);
 	}
 
 	@Override
-	public com.liferay.practice.course.management.model.Course getCourse(long courseId)
-			throws com.liferay.portal.kernel.exception.PortalException {
+	public com.liferay.practice.course.management.model.Course getCourse(
+			long courseId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _courseService.getCourse(courseId);
 	}
 
 	@Override
-	public java.util.List<com.liferay.practice.course.management.model.Course> getCoursesByGroupId(long groupId) {
+	public java.util.List<com.liferay.practice.course.management.model.Course>
+		getCoursesByGroupId(long groupId) {
 
 		return _courseService.getCoursesByGroupId(groupId);
 	}
 
 	@Override
-	public java.util.List<com.liferay.practice.course.management.model.Course> getCoursesByKeywords(long groupId,
-			String keywords, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<com.liferay.practice.course.management.model.Course> orderByComparator) {
+	public java.util.List<com.liferay.practice.course.management.model.Course>
+		getCoursesByKeywords(
+			long groupId, String keywords, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.practice.course.management.model.Course>
+					orderByComparator) {
 
-		return _courseService.getCoursesByKeywords(groupId, keywords, start, end, orderByComparator);
+		return _courseService.getCoursesByKeywords(
+			groupId, keywords, start, end, orderByComparator);
 	}
 
 	@Override
@@ -85,15 +96,19 @@ public class CourseServiceWrapper implements CourseService, ServiceWrapper<Cours
 	}
 
 	@Override
-	public com.liferay.practice.course.management.model.Course updateCourse(long courseId,
+	public com.liferay.practice.course.management.model.Course updateCourse(
+			long courseId,
 			java.util.Map<java.util.Locale, String> courseNameMap,
-			java.util.Map<java.util.Locale, String> descriptionMap, java.util.Map<java.util.Locale, String> lecturerMap,
-			java.util.Map<java.util.Locale, String> durationMap,
+			java.util.Map<java.util.Locale, String> descriptionMap,
+			java.util.Map<java.util.Locale, String> lecturerMap,
+			Long duration,
+			boolean courseStatus,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
-			throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _courseService.updateCourse(courseId, courseNameMap, descriptionMap, lecturerMap, durationMap,
-				serviceContext);
+		return _courseService.updateCourse(
+			courseId, courseNameMap, descriptionMap, lecturerMap, duration,
+			courseStatus, serviceContext);
 	}
 
 	@Override

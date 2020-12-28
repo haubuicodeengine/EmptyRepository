@@ -6,19 +6,19 @@
 </liferay-ui:error>
 <liferay-ui:error key="courseNameEmpty"
 	message="error.course-name-empty" />
-	
+
 <liferay-ui:error key="courseLecturerLengthInvalid"
 	message="error.course-lecturer-length-invalid" />
-	
+
 <liferay-ui:error key="courseNameLengthInvalid"
 	message="error.course-name-length-invalid" />
-	
+
 <liferay-ui:error key="courseDescriptionLengthInvalid"
 	message="error.course-description-length-invalid" />
 
 <liferay-ui:error key="courseDurationValueInvalid"
 	message="error.course-duration-length-invalid" />
-	
+
 <liferay-ui:error key="courseDescriptionEmpty"
 	message="error.course-description-empty" />
 <liferay-ui:error key="courseLecturerEmpty"
@@ -75,14 +75,21 @@
 					<aui:validator name="required" />
 				</aui:input>
 
-				<aui:input name="duration">
+				<aui:input label="duration" name="duration" type="text"> 
 					<aui:validator name="required" />
 					<aui:validator name="range">[1,40]</aui:validator>
 				</aui:input>
+
+				<aui:input label="Course Status" name="name"/>
+
+				<aui:input checked="<%=true%>" inlineField="true" label="Available"
+					value="1" type="radio" name="courseStatus"></aui:input>
+
+				<aui:input inlineField="true" label="Unavailable" value="0"
+					type="radio" name="courseStatus"></aui:input>
+
 			</aui:fieldset>
 		</aui:fieldset-group>
-
-
 
 		<aui:button-row>
 			<aui:button cssClass="btn btn-primary" type="submit" />

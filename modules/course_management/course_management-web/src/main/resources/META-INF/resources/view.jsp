@@ -1,6 +1,6 @@
 <%@ include file="./init.jsp" %>
 <liferay-ui:error key="serviceErrorDetails">
-     <liferay-ui:message arguments='<%= SessionErrors.get(liferayPortletRequest, "serviceErrorDetails") %>' key="error.assignment-service-error" />
+     <liferay-ui:message arguments='<%= SessionErrors.get(liferayPortletRequest, "serviceErrorDetails") %>' key="error.course-service-error" />
  </liferay-ui:error>
  <liferay-ui:success key="courseAdded" message="course-added-successfully" />
  <liferay-ui:success key="courseUpdated" message="course-updated-successfully" />

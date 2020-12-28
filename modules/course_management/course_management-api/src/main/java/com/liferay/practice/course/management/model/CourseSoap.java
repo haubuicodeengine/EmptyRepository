@@ -21,8 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services, specifically
- * {@link com.liferay.practice.course.management.service.http.CourseServiceSoap}.
+ * This class is used by SOAP remote services, specifically {@link com.liferay.practice.course.management.service.http.CourseServiceSoap}.
  *
  * @author Brian Wing Shun Chan
  * @generated
@@ -43,6 +42,7 @@ public class CourseSoap implements Serializable {
 		soapModel.setLecturer(model.getLecturer());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setDuration(model.getDuration());
+		soapModel.setCourseStatus(model.isCourseStatus());
 
 		return soapModel;
 	}
@@ -62,7 +62,8 @@ public class CourseSoap implements Serializable {
 
 		if (models.length > 0) {
 			soapModels = new CourseSoap[models.length][models[0].length];
-		} else {
+		}
+		else {
 			soapModels = new CourseSoap[0][0];
 		}
 
@@ -174,12 +175,24 @@ public class CourseSoap implements Serializable {
 		_description = description;
 	}
 
-	public String getDuration() {
+	public Long getDuration() {
 		return _duration;
 	}
 
-	public void setDuration(String duration) {
+	public void setDuration(Long duration) {
 		_duration = duration;
+	}
+
+	public boolean getCourseStatus() {
+		return _courseStatus;
+	}
+
+	public boolean isCourseStatus() {
+		return _courseStatus;
+	}
+
+	public void setCourseStatus(boolean courseStatus) {
+		_courseStatus = courseStatus;
 	}
 
 	private long _courseId;
@@ -192,6 +205,7 @@ public class CourseSoap implements Serializable {
 	private String _courseName;
 	private String _lecturer;
 	private String _description;
-	private String _duration;
+	private Long _duration;
+	private boolean _courseStatus;
 
 }

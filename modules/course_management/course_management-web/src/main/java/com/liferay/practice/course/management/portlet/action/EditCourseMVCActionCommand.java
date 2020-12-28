@@ -40,13 +40,15 @@ public class EditCourseMVCActionCommand extends BaseMVCActionCommand {
 
 		Map<Locale, String> lecturerMap = LocalizationUtil.getLocalizationMap(actionRequest, "lecturer");
 
-		Map<Locale, String> durationMap = LocalizationUtil.getLocalizationMap(actionRequest, "duration");
+		Long duration = (Long) actionRequest.getAttribute("duration");
 
 		Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(actionRequest, "description");
+		
+		boolean courseStatus = (boolean) actionRequest.getAttribute("courseStatus");
 
 		try {
 
-			_courseService.updateCourse(courseId, courseNameMap, descriptionMap, lecturerMap, durationMap,
+			_courseService.updateCourse(courseId, courseNameMap, descriptionMap, lecturerMap, duration, courseStatus,
 					serviceContext);
 
 			 SessionMessages.add(actionRequest, "courseUpdated");
