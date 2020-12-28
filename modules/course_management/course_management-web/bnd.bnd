@@ -1,0 +1,4 @@
+Bundle-Name: course_management-web
+Bundle-SymbolicName: com.liferay.practice.course.management.portlet
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.practice.course.management.portlet.constants
