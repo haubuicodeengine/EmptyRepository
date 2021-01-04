@@ -168,7 +168,7 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 
 		duration = objectInput.readLong();
 
-		courseStatus = objectInput.readBoolean();
+		courseStatus = objectInput.readInt();
 	}
 
 	@Override
@@ -214,7 +214,7 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 
 		objectOutput.writeLong(duration);
 
-		objectOutput.writeBoolean(courseStatus);
+		objectOutput.writeInt(courseStatus);
 	}
 
 	public long courseId;
@@ -228,6 +228,6 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 	public String lecturer;
 	public String description;
 	public long duration;
-	public boolean courseStatus;
+	public int courseStatus;
 
 }

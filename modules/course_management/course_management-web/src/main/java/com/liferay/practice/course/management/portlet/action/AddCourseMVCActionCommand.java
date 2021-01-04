@@ -26,40 +26,24 @@ import javax.portlet.ActionResponse;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(immediate = true, property = { "javax.portlet.name=" + CourseManagementMVCPortletKeys.COURSEMANAGEMENTMVC,
-		"mvc.command.name=" + MVCCommandNames.ADD_COURSE }, service = MVCActionCommand.class)
+@Component(immediate = true, property = { 
+		"javax.portlet.name=" + CourseManagementMVCPortletKeys.COURSEMANAGEMENTMVC,
+		"mvc.command.name=" + MVCCommandNames.ADD_COURSE }, 
+service = MVCActionCommand.class)
 public class AddCourseMVCActionCommand extends BaseMVCActionCommand {
 
 	@Override
 	protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(Course.class.getName(), actionRequest);
-
 		Map<Locale, String> courseNameMap = LocalizationUtil.getLocalizationMap(actionRequest, "courseName");
-
 		Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(actionRequest, "description");
-
 		Map<Locale, String> lecturerMap = LocalizationUtil.getLocalizationMap(actionRequest, "lecturer");
-
 		String durationStr = ParamUtil.getString(actionRequest, "duration");
-		
 		Long duration = Long.parseLong(durationStr);
-		
 		String courseStatusStr = ParamUtil.getString(actionRequest, "courseStatus");
-		
-		boolean courseStatus = true;
-		
-		switch (courseStatusStr) {
-		case "0":
-			courseStatus = false;
-			break;
-
-		default:
-			courseStatus = true;
-			break;
-		}
+		int courseStatus = Integer.parseInt(courseStatusStr);
 
 		try {
 
@@ -67,7 +51,7 @@ public class AddCourseMVCActionCommand extends BaseMVCActionCommand {
 					duration, courseStatus, serviceContext);
 
 			SessionMessages.add(actionRequest, "courseAdded");
-			
+
 			sendRedirect(actionRequest, actionResponse);
 		} catch (CourseValidationException ave) {
 

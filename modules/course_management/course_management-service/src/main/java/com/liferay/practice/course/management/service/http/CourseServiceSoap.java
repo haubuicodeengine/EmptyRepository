@@ -71,7 +71,7 @@ public class CourseServiceSoap {
 				String[] courseNameMapValues,
 				String[] descriptionMapLanguageIds,
 				String[] descriptionMapValues, String[] lecturerMapLanguageIds,
-				String[] lecturerMapValues, Long duration, boolean courseStatus,
+				String[] lecturerMapValues, Long duration, int courseStatus,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 
@@ -200,7 +200,7 @@ public class CourseServiceSoap {
 				String[] courseNameMapValues,
 				String[] descriptionMapLanguageIds,
 				String[] descriptionMapValues, String[] lecturerMapLanguageIds,
-				String[] lecturerMapValues, Long duration, boolean courseStatus,
+				String[] lecturerMapValues, Long duration, int courseStatus,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 
@@ -222,6 +222,22 @@ public class CourseServiceSoap {
 
 			return com.liferay.practice.course.management.model.CourseSoap.
 				toSoapModel(returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static Long[] getListCourseByUserId(long userId)
+		throws RemoteException {
+
+		try {
+			java.util.List<Long> returnValue =
+				CourseServiceUtil.getListCourseByUserId(userId);
+
+			return returnValue.toArray(new Long[returnValue.size()]);
 		}
 		catch (Exception exception) {
 			_log.error(exception, exception);

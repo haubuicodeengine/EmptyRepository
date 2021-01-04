@@ -55,8 +55,7 @@ public class CourseServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId,
 			java.util.Map<java.util.Locale, String> courseNameMap,
 			java.util.Map<java.util.Locale, String> descriptionMap,
-			java.util.Map<java.util.Locale, String> lecturerMap,
-			java.util.Map<java.util.Locale, String> durationMap,
+			java.util.Map<java.util.Locale, String> lecturerMap, Long duration,
 			boolean courseStatus,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -68,7 +67,7 @@ public class CourseServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, courseNameMap, descriptionMap, lecturerMap,
-				durationMap, courseStatus, serviceContext);
+				duration, courseStatus, serviceContext);
 
 			Object returnObj = null;
 
@@ -291,8 +290,7 @@ public class CourseServiceHttp {
 				java.util.Map<java.util.Locale, String> courseNameMap,
 				java.util.Map<java.util.Locale, String> descriptionMap,
 				java.util.Map<java.util.Locale, String> lecturerMap,
-				java.util.Map<java.util.Locale, String> durationMap,
-				boolean courseStatus,
+				Long duration, boolean courseStatus,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -303,7 +301,7 @@ public class CourseServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, courseId, courseNameMap, descriptionMap, lecturerMap,
-				durationMap, courseStatus, serviceContext);
+				duration, courseStatus, serviceContext);
 
 			Object returnObj = null;
 
@@ -334,11 +332,83 @@ public class CourseServiceHttp {
 		}
 	}
 
+	public static com.liferay.practice.course.management.model.Course
+			updateCourseStatus(HttpPrincipal httpPrincipal, long courseId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				CourseServiceUtil.class, "updateCourseStatus",
+				_updateCourseStatusParameterTypes7);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, courseId);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						exception;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (com.liferay.practice.course.management.model.Course)
+				returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static java.util.List<Long> getListCourseByUserId(
+		HttpPrincipal httpPrincipal, long userId) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				CourseServiceUtil.class, "getListCourseByUserId",
+				_getListCourseByUserIdParameterTypes8);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, userId);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (java.util.List<Long>)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(CourseServiceHttp.class);
 
 	private static final Class<?>[] _addCourseParameterTypes0 = new Class[] {
 		long.class, java.util.Map.class, java.util.Map.class,
-		java.util.Map.class, java.util.Map.class, boolean.class,
+		java.util.Map.class, Long.class, boolean.class,
 		com.liferay.portal.kernel.service.ServiceContext.class
 	};
 	private static final Class<?>[] _deleteCourseParameterTypes1 = new Class[] {
@@ -358,8 +428,12 @@ public class CourseServiceHttp {
 		new Class[] {long.class, String.class};
 	private static final Class<?>[] _updateCourseParameterTypes6 = new Class[] {
 		long.class, java.util.Map.class, java.util.Map.class,
-		java.util.Map.class, java.util.Map.class, boolean.class,
+		java.util.Map.class, Long.class, boolean.class,
 		com.liferay.portal.kernel.service.ServiceContext.class
 	};
+	private static final Class<?>[] _updateCourseStatusParameterTypes7 =
+		new Class[] {long.class};
+	private static final Class<?>[] _getListCourseByUserIdParameterTypes8 =
+		new Class[] {long.class};
 
 }

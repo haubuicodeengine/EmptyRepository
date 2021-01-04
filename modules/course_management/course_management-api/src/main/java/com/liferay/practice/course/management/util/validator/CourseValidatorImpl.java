@@ -57,7 +57,6 @@ public class CourseValidatorImpl implements CourseValidator {
 		}
 		
 		return result;
-
 	}
 
 	private boolean isLecturerValid(final Map<Locale, String> lecturerMap, final List<String> errors) {

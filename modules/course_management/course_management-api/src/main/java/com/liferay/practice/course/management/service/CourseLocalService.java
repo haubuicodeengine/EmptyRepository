@@ -76,8 +76,7 @@ public interface CourseLocalService
 	public Course addCourse(
 			long groupId, Map<Locale, String> courseNameMap,
 			Map<Locale, String> descriptionMap, Map<Locale, String> lecturerMap,
-			Long duration, boolean courseStatus,
-			ServiceContext serviceContext)
+			Long duration, int courseStatus, ServiceContext serviceContext)
 		throws PortalException;
 
 	/**
@@ -241,6 +240,9 @@ public interface CourseLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Long> getListCourseByUserId(long userId);
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
@@ -268,8 +270,7 @@ public interface CourseLocalService
 	public Course updateCourse(
 			long courseId, Map<Locale, String> courseNameMap,
 			Map<Locale, String> descriptionMap, Map<Locale, String> lecturerMap,
-			Long duration, boolean courseStatus,
-			ServiceContext serviceContext)
+			Long duration, int courseStatus, ServiceContext serviceContext)
 		throws PortalException;
 
 }

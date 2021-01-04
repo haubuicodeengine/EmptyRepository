@@ -25,9 +25,9 @@
     <liferay-ui:search-container 
         emptyResultsMessage="no-courses"
         id="courseEntries"
-        iteratorURL="${portletURL}" 
+        iteratorURL="${portletURL}"
         total="${courseCount}">
-
+	
         <liferay-ui:search-container-results results="${courses}" />
 
         <liferay-ui:search-container-row

@@ -59,7 +59,7 @@ public class CourseServiceImpl extends CourseServiceBaseImpl {
 	 */
 
 	public Course addCourse(long groupId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Long duration, boolean courseStatus,
+			Map<Locale, String> lecturerMap, Long duration, int courseStatus,
 			ServiceContext serviceContext) throws PortalException {
 
 		return courseLocalService.addCourse(groupId, courseNameMap, descriptionMap, lecturerMap, duration,
@@ -97,10 +97,16 @@ public class CourseServiceImpl extends CourseServiceBaseImpl {
 	}
 
 	public Course updateCourse(long courseId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Long duration, boolean courseStatus,
+			Map<Locale, String> lecturerMap, Long duration, int courseStatus,
 			ServiceContext serviceContext) throws PortalException {
 
 		return courseLocalService.updateCourse(courseId, courseNameMap, descriptionMap, lecturerMap, duration,
 				courseStatus, serviceContext);
+	}
+
+	@Override
+	public List<Long> getListCourseByUserId(long userId) {
+
+		return courseLocalService.getListCourseByUserId(userId);
 	}
 }

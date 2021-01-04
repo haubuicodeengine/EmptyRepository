@@ -83,7 +83,7 @@ public class CourseModelImpl
 		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
 		{"modifiedDate", Types.TIMESTAMP}, {"courseName", Types.VARCHAR},
 		{"lecturer", Types.VARCHAR}, {"description", Types.VARCHAR},
-		{"duration", Types.BIGINT}, {"courseStatus", Types.BOOLEAN}
+		{"duration", Types.BIGINT}, {"courseStatus", Types.INTEGER}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -101,11 +101,11 @@ public class CourseModelImpl
 		TABLE_COLUMNS_MAP.put("lecturer", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("duration", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("courseStatus", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("courseStatus", Types.INTEGER);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table CourseManagement_Course (courseId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,courseName STRING null,lecturer STRING null,description STRING null,duration LONG,courseStatus BOOLEAN)";
+		"create table CourseManagement_Course (courseId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,courseName STRING null,lecturer STRING null,description STRING null,duration LONG,courseStatus INTEGER)";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table CourseManagement_Course";
@@ -158,7 +158,7 @@ public class CourseModelImpl
 		model.setLecturer(soapModel.getLecturer());
 		model.setDescription(soapModel.getDescription());
 		model.setDuration(soapModel.getDuration());
-		model.setCourseStatus(soapModel.isCourseStatus());
+		model.setCourseStatus(soapModel.getCourseStatus());
 
 		return model;
 	}
@@ -341,7 +341,7 @@ public class CourseModelImpl
 		attributeGetterFunctions.put("courseStatus", Course::getCourseStatus);
 		attributeSetterBiConsumers.put(
 			"courseStatus",
-			(BiConsumer<Course, Boolean>)Course::setCourseStatus);
+			(BiConsumer<Course, Integer>)Course::setCourseStatus);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -804,18 +804,12 @@ public class CourseModelImpl
 
 	@JSON
 	@Override
-	public boolean getCourseStatus() {
-		return _courseStatus;
-	}
-
-	@JSON
-	@Override
-	public boolean isCourseStatus() {
+	public int getCourseStatus() {
 		return _courseStatus;
 	}
 
 	@Override
-	public void setCourseStatus(boolean courseStatus) {
+	public void setCourseStatus(int courseStatus) {
 		_courseStatus = courseStatus;
 	}
 
@@ -976,7 +970,7 @@ public class CourseModelImpl
 		courseImpl.setLecturer(getLecturer());
 		courseImpl.setDescription(getDescription());
 		courseImpl.setDuration(getDuration());
-		courseImpl.setCourseStatus(isCourseStatus());
+		courseImpl.setCourseStatus(getCourseStatus());
 
 		courseImpl.resetOriginalValues();
 
@@ -1110,7 +1104,7 @@ public class CourseModelImpl
 
 		courseCacheModel.duration = getDuration();
 
-		courseCacheModel.courseStatus = isCourseStatus();
+		courseCacheModel.courseStatus = getCourseStatus();
 
 		return courseCacheModel;
 	}
@@ -1203,7 +1197,7 @@ public class CourseModelImpl
 	private String _description;
 	private String _descriptionCurrentLanguageId;
 	private Long _duration;
-	private boolean _courseStatus;
+	private int _courseStatus;
 	private long _columnBitmask;
 	private Course _escapedModel;
 

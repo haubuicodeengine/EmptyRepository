@@ -58,8 +58,7 @@ public interface CourseService extends BaseService {
 	public Course addCourse(
 			long groupId, Map<Locale, String> courseNameMap,
 			Map<Locale, String> descriptionMap, Map<Locale, String> lecturerMap,
-			Long duration, boolean courseStatus,
-			ServiceContext serviceContext)
+			Long duration, int courseStatus, ServiceContext serviceContext)
 		throws PortalException;
 
 	public Course deleteCourse(long courseId) throws PortalException;
@@ -78,6 +77,9 @@ public interface CourseService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getCoursesCountByKeywords(long groupId, String keywords);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Long> getListCourseByUserId(long userId);
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
@@ -88,8 +90,7 @@ public interface CourseService extends BaseService {
 	public Course updateCourse(
 			long courseId, Map<Locale, String> courseNameMap,
 			Map<Locale, String> descriptionMap, Map<Locale, String> lecturerMap,
-			Long duration, boolean courseStatus,
-			ServiceContext serviceContext)
+			Long duration, int courseStatus, ServiceContext serviceContext)
 		throws PortalException;
 
 }

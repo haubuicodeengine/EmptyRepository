@@ -19,7 +19,7 @@
              <dd>${course.getLecturer(locale)}</dd>
              
              <dt><liferay-ui:message key="course-status" /></dt>
-             <dd>${course.getCourseStatus() == 'false' ? 'Unavailble' : 'Availble'}</dd>
+             <dd>${course.getCourseStatus() == 0 ? 'Unavailble' : 'Availble'}</dd>
 
              <dt><liferay-ui:message key="description" /></dt>
              <dd>${course.getDescription(locale)}</dd>

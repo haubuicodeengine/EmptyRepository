@@ -98,7 +98,6 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 				liferayPortletRequest, liferayPortletResponse, _portal.getHttpServletRequest(renderRequest));
 
 		renderRequest.setAttribute("coursesManagementToolbarDisplayContext", coursesManagementToolbarDisplayContext);
-
 	}
 
 	@Reference

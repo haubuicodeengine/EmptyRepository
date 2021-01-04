@@ -47,9 +47,8 @@ public class CourseLocalServiceWrapper
 	public com.liferay.practice.course.management.model.Course addCourse(
 			long groupId, java.util.Map<java.util.Locale, String> courseNameMap,
 			java.util.Map<java.util.Locale, String> descriptionMap,
-			java.util.Map<java.util.Locale, String> lecturerMap,
-			Long duration,
-			boolean courseStatus,
+			java.util.Map<java.util.Locale, String> lecturerMap, Long duration,
+			int courseStatus,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -306,6 +305,11 @@ public class CourseLocalServiceWrapper
 		return _courseLocalService.getIndexableActionableDynamicQuery();
 	}
 
+	@Override
+	public java.util.List<Long> getListCourseByUserId(long userId) {
+		return _courseLocalService.getListCourseByUserId(userId);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
@@ -345,9 +349,8 @@ public class CourseLocalServiceWrapper
 			long courseId,
 			java.util.Map<java.util.Locale, String> courseNameMap,
 			java.util.Map<java.util.Locale, String> descriptionMap,
-			java.util.Map<java.util.Locale, String> lecturerMap,
-			Long duration,
-			boolean courseStatus,
+			java.util.Map<java.util.Locale, String> lecturerMap, Long duration,
+			int courseStatus,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 

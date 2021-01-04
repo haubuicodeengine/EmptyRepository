@@ -43,8 +43,8 @@ public class EditCourseMVCActionCommand extends BaseMVCActionCommand {
 		Long duration = (Long) actionRequest.getAttribute("duration");
 
 		Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(actionRequest, "description");
-		
-		boolean courseStatus = (boolean) actionRequest.getAttribute("courseStatus");
+
+		int courseStatus = (int) actionRequest.getAttribute("courseStatus");
 
 		try {
 

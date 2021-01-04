@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.practice.course.management.model.Course;
 import com.liferay.practice.course.management.service.CourseService;
 import com.liferay.practice.course.management.service.persistence.CoursePersistence;
+import com.liferay.practice.course.management.service.persistence.RegistrationPersistence;
 
 import javax.sql.DataSource;
 
@@ -113,6 +114,9 @@ public abstract class CourseServiceBaseImpl
 
 	@Reference
 	protected CoursePersistence coursePersistence;
+
+	@Reference
+	protected RegistrationPersistence registrationPersistence;
 
 	@Reference
 	protected com.liferay.counter.kernel.service.CounterLocalService

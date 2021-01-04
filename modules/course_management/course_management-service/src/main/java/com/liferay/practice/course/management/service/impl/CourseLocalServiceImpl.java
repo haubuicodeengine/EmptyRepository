@@ -28,8 +28,9 @@ import com.liferay.practice.course.management.model.Course;
 import com.liferay.practice.course.management.service.base.CourseLocalServiceBaseImpl;
 import com.liferay.practice.course.management.validator.CourseValidator;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.List;	
 import java.util.Locale;
 import java.util.Map;
 
@@ -58,7 +59,7 @@ import org.osgi.service.component.annotations.Reference;
 public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 
 	public Course addCourse(long groupId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Long duration, boolean courseStatus, ServiceContext serviceContext)
+			Map<Locale, String> lecturerMap, Long duration, int courseStatus, ServiceContext serviceContext)
 			throws PortalException {
 
 		_courseValidator.validate(courseNameMap, descriptionMap, lecturerMap, duration);
@@ -87,9 +88,10 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 
 		return super.addCourse(course);
 	}
+	
 
 	public Course updateCourse(long courseId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Long duration, boolean courseStatus, ServiceContext serviceContext)
+			Map<Locale, String> lecturerMap, Long duration, int courseStatus, ServiceContext serviceContext)
 			throws PortalException {
 
 		_courseValidator.validate(courseNameMap, descriptionMap, lecturerMap, duration);
@@ -134,6 +136,23 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 		return courseLocalService.dynamicQueryCount(getKeywordSearchDynamicQuery(groupId, keywords));
 	}
 
+
+	@Override
+	public List<Long> getListCourseByUserId(long userId) {
+		
+		List<Long> courses = new ArrayList<>();
+		List<Course> allCourse = coursePersistence.findAll();
+		
+		for (Course course : allCourse) {
+			
+			if(course.getUserId() == userId) {
+				courses.add(course.getCourseId());
+			}
+		}
+		
+		return courses;
+	}
+
 	private DynamicQuery getKeywordSearchDynamicQuery(long groupId, String keywords) {
 
 		DynamicQuery dynamicQuery = dynamicQuery().add(RestrictionsFactoryUtil.eq("groupId", groupId));
@@ -161,5 +180,4 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 
 	@Reference
 	CourseValidator _courseValidator;
-
 }

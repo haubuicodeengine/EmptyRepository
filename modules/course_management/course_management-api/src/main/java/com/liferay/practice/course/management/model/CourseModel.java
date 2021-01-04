@@ -511,21 +511,14 @@ public interface CourseModel
 	 *
 	 * @return the course status of this course
 	 */
-	public boolean getCourseStatus();
+	public int getCourseStatus();
 
 	/**
-	 * Returns <code>true</code> if this course is course status.
-	 *
-	 * @return <code>true</code> if this course is course status; <code>false</code> otherwise
-	 */
-	public boolean isCourseStatus();
-
-	/**
-	 * Sets whether this course is course status.
+	 * Sets the course status of this course.
 	 *
 	 * @param courseStatus the course status of this course
 	 */
-	public void setCourseStatus(boolean courseStatus);
+	public void setCourseStatus(int courseStatus);
 
 	@Override
 	public String[] getAvailableLanguageIds();

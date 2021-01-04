@@ -13,6 +13,17 @@
 		<field localized="true" name="lecturer" type="String" />
 		<field localized="true" name="description" type="String" />
 		<field name="duration" type="Long" />
-		<field name="courseStatus" type="boolean" />
+		<field name="courseStatus" type="int" />
+	</model>
+	<model name="com.liferay.practice.course.management.model.Registration">
+		<field name="registrationId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="courseId" type="long" />
+		<field name="registrationStatus" type="int" />
 	</model>
 </model-hints>

@@ -42,7 +42,7 @@ public class CourseSoap implements Serializable {
 		soapModel.setLecturer(model.getLecturer());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setDuration(model.getDuration());
-		soapModel.setCourseStatus(model.isCourseStatus());
+		soapModel.setCourseStatus(model.getCourseStatus());
 
 		return soapModel;
 	}
@@ -183,15 +183,11 @@ public class CourseSoap implements Serializable {
 		_duration = duration;
 	}
 
-	public boolean getCourseStatus() {
+	public int getCourseStatus() {
 		return _courseStatus;
 	}
 
-	public boolean isCourseStatus() {
-		return _courseStatus;
-	}
-
-	public void setCourseStatus(boolean courseStatus) {
+	public void setCourseStatus(int courseStatus) {
 		_courseStatus = courseStatus;
 	}
 
@@ -206,6 +202,6 @@ public class CourseSoap implements Serializable {
 	private String _lecturer;
 	private String _description;
 	private Long _duration;
-	private boolean _courseStatus;
+	private int _courseStatus;
 
 }

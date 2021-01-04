@@ -35,21 +35,15 @@ public class ViewSingleMVCRenderCommand implements MVCRenderCommand {
 
 		try {
 
-			// Call the service to get the course.
-
 			Course course = _courseService.getCourse(courseId);
 
 			DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat("EEEEE, MMMMM dd, yyyy",
 					renderRequest.getLocale());
 
-			// Set attributes to the request.
 
 			renderRequest.setAttribute("course", course);
-//	             renderRequest.setAttribute(
-//	                 "dueDate", dateFormat.format(course.getDueDate()));
-			renderRequest.setAttribute("createDate", dateFormat.format(course.getCreateDate()));
 
-			// Set back icon visible.
+			renderRequest.setAttribute("createDate", dateFormat.format(course.getCreateDate()));
 
 			PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 

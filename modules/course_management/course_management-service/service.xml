@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_2_0.dtd">
 
-<service-builder dependency-injector="ds" package-path="com.liferay.practice.course.management">
+<service-builder dependency-injector="ds"
+	package-path="com.liferay.practice.course.management">
 	<namespace>CourseManagement</namespace>
-	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" 
+		remote-service="false" session-factory="sampleSessionFactory" table="foo" 
+		tx-manager="sampleTransactionManager uuid="true""> -->
 	<entity name="Course" local-service="true">
 
 		<!-- PK fields -->
@@ -25,30 +28,70 @@
 		<column name="lecturer" type="String" localized="true"></column>
 		<column name="description" type="String" localized="true"></column>
 		<column name="duration" type="Long"></column>
- 		<column name="courseStatus" type="boolean"></column>
-		<!--  Order  -->
-       
+		<column name="courseStatus" type="int"></column>
+		<!-- Order -->
+
 		<order by="asc">
 			<order-column name="courseName" />
 		</order>
-		<!--  Finders  -->
-		<!--  Find by groupId  -->
+		<!-- Finders -->
+		<!-- Find by groupId -->
 		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId" />
 		</finder>
-		<!--  Reference to Group entity service  -->
+		<!-- Reference to Group entity service -->
 		<reference entity="Group" package-path="com.liferay.portal" />
-		<!--  Entity services needed for the integration to Asset framework  -->
+		<!-- Entity services needed for the integration to Asset framework -->
 		<reference entity="AssetEntry"
 			package-path="com.liferay.portlet.asset" />
 		<reference entity="AssetLink"
 			package-path="com.liferay.portlet.asset" />
 		<reference entity="AssetTag"
 			package-path="com.liferay.portlet.asset" />
+	</entity>
+	<entity name="Registration" local-service="true">
+
+		<!-- PK fields -->
+
+		<column name="registrationId" primary="true" type="long"></column>
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+        <column name="courseId" type="long"></column>
+        <column name="registrationStatus" type="int"></column>
+        
+        <order by="asc">
+			<order-column name="createDate" />
+		</order>
+		
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+		
+		<reference entity="Group" package-path="com.liferay.portal" />
+		
+		<reference entity="AssetEntry"
+			package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetLink"
+			package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag"
+			package-path="com.liferay.portlet.asset" />
+		
+	</entity>
 
 
-</entity>
 	<exceptions>
-	<exception>CourseValidation</exception>
+		<exception>CourseValidation</exception>
 	</exceptions>
+
+
 </service-builder>

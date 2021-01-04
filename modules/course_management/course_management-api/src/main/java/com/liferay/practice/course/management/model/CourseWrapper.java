@@ -52,7 +52,7 @@ public class CourseWrapper
 		attributes.put("lecturer", getLecturer());
 		attributes.put("description", getDescription());
 		attributes.put("duration", getDuration());
-		attributes.put("courseStatus", isCourseStatus());
+		attributes.put("courseStatus", getCourseStatus());
 
 		return attributes;
 	}
@@ -125,7 +125,7 @@ public class CourseWrapper
 			setDuration(duration);
 		}
 
-		Boolean courseStatus = (Boolean)attributes.get("courseStatus");
+		Integer courseStatus = (Integer)attributes.get("courseStatus");
 
 		if (courseStatus != null) {
 			setCourseStatus(courseStatus);
@@ -239,7 +239,7 @@ public class CourseWrapper
 	 * @return the course status of this course
 	 */
 	@Override
-	public boolean getCourseStatus() {
+	public int getCourseStatus() {
 		return model.getCourseStatus();
 	}
 
@@ -480,16 +480,6 @@ public class CourseWrapper
 		return model.getUserUuid();
 	}
 
-	/**
-	 * Returns <code>true</code> if this course is course status.
-	 *
-	 * @return <code>true</code> if this course is course status; <code>false</code> otherwise
-	 */
-	@Override
-	public boolean isCourseStatus() {
-		return model.isCourseStatus();
-	}
-
 	@Override
 	public void persist() {
 		model.persist();
@@ -596,12 +586,12 @@ public class CourseWrapper
 	}
 
 	/**
-	 * Sets whether this course is course status.
+	 * Sets the course status of this course.
 	 *
 	 * @param courseStatus the course status of this course
 	 */
 	@Override
-	public void setCourseStatus(boolean courseStatus) {
+	public void setCourseStatus(int courseStatus) {
 		model.setCourseStatus(courseStatus);
 	}
 
