@@ -1,0 +1,4 @@
+Bundle-Name: course-portlet-web
+Bundle-SymbolicName: com.liferay.course.web
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.course.web.constants
