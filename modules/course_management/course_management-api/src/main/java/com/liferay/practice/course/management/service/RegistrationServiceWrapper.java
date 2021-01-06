@@ -23,17 +23,15 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see RegistrationService
  * @generated
  */
-public class RegistrationServiceWrapper
-	implements RegistrationService, ServiceWrapper<RegistrationService> {
+public class RegistrationServiceWrapper implements RegistrationService, ServiceWrapper<RegistrationService> {
 
 	public RegistrationServiceWrapper(RegistrationService registrationService) {
 		_registrationService = registrationService;
 	}
 
 	@Override
-	public com.liferay.practice.course.management.model.Registration
-			deleteRegistration(long registrationId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public com.liferay.practice.course.management.model.Registration deleteRegistration(long registrationId)
+			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _registrationService.deleteRegistration(registrationId);
 	}
@@ -44,9 +42,7 @@ public class RegistrationServiceWrapper
 	}
 
 	@Override
-	public java.util.List
-		<com.liferay.practice.course.management.model.Registration>
-			getListRegistration() {
+	public java.util.List<com.liferay.practice.course.management.model.Registration> getListRegistration() {
 
 		return _registrationService.getListRegistration();
 	}
@@ -62,23 +58,18 @@ public class RegistrationServiceWrapper
 	}
 
 	@Override
-	public com.liferay.practice.course.management.model.Registration
-			registerCourse(
-				long groupId, long courseId, int registerStatus,
-				com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public com.liferay.practice.course.management.model.Registration registerCourse(long groupId, long courseId,
+			int registerStatus, com.liferay.portal.kernel.service.ServiceContext serviceContext)
+			throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _registrationService.registerCourse(
-			groupId, courseId, registerStatus, serviceContext);
+		return _registrationService.registerCourse(groupId, courseId, registerStatus, serviceContext);
 	}
 
 	@Override
-	public com.liferay.practice.course.management.model.Registration
-			updateRegistrationStatus(long registrationId, int status)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public com.liferay.practice.course.management.model.Registration updateRegistrationStatus(long registrationId,
+			int status) throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _registrationService.updateRegistrationStatus(
-			registrationId, status);
+		return _registrationService.updateRegistrationStatus(registrationId, status);
 	}
 
 	@Override

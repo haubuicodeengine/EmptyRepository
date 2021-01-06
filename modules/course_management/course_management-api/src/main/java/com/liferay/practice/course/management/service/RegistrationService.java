@@ -41,14 +41,10 @@ import org.osgi.annotation.versioning.ProviderType;
 @AccessControlled
 @JSONWebService
 @ProviderType
-@Transactional(
-	isolation = Isolation.PORTAL,
-	rollbackFor = {PortalException.class, SystemException.class}
-)
+@Transactional(isolation = Isolation.PORTAL, rollbackFor = { PortalException.class, SystemException.class })
 public interface RegistrationService extends BaseService {
 
-	public Registration deleteRegistration(long registrationId)
-		throws PortalException;
+	public Registration deleteRegistration(long registrationId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Long> getListRegisteredCourseByUserId(long userId);
@@ -63,13 +59,9 @@ public interface RegistrationService extends BaseService {
 	 */
 	public String getOSGiServiceIdentifier();
 
-	public Registration registerCourse(
-			long groupId, long courseId, int registerStatus,
-			ServiceContext serviceContext)
-		throws PortalException;
+	public Registration registerCourse(long groupId, long courseId, int registerStatus, ServiceContext serviceContext)
+			throws PortalException;
 
-	public Registration updateRegistrationStatus(
-			long registrationId, int status)
-		throws PortalException;
+	public Registration updateRegistrationStatus(long registrationId, int status) throws PortalException;
 
 }

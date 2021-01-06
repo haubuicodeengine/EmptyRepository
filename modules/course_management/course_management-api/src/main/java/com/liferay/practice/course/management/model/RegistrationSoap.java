@@ -21,7 +21,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services, specifically {@link com.liferay.practice.course.management.service.http.RegistrationServiceSoap}.
+ * This class is used by SOAP remote services, specifically
+ * {@link com.liferay.practice.course.management.service.http.RegistrationServiceSoap}.
  *
  * @author Brian Wing Shun Chan
  * @generated
@@ -59,8 +60,7 @@ public class RegistrationSoap implements Serializable {
 
 		if (models.length > 0) {
 			soapModels = new RegistrationSoap[models.length][models[0].length];
-		}
-		else {
+		} else {
 			soapModels = new RegistrationSoap[0][0];
 		}
 
@@ -72,8 +72,7 @@ public class RegistrationSoap implements Serializable {
 	}
 
 	public static RegistrationSoap[] toSoapModels(List<Registration> models) {
-		List<RegistrationSoap> soapModels = new ArrayList<RegistrationSoap>(
-			models.size());
+		List<RegistrationSoap> soapModels = new ArrayList<RegistrationSoap>(models.size());
 
 		for (Registration model : models) {
 			soapModels.add(toSoapModel(model));

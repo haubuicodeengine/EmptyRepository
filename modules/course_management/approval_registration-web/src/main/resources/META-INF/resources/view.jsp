@@ -29,7 +29,7 @@
 			 </liferay-ui:search-container-column-text>
             <%-- name="courseName" value="${courses.get(0).getCourseId()} --%>
             <liferay-ui:search-container-column-text property="userName" />
-			
+
             <%@ include file="/approval/entry_search_columns.jspf" %>
 
         </liferay-ui:search-container-row>

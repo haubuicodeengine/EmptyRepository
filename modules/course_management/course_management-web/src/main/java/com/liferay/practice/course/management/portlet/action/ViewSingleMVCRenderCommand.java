@@ -40,7 +40,6 @@ public class ViewSingleMVCRenderCommand implements MVCRenderCommand {
 			DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat("EEEEE, MMMMM dd, yyyy",
 					renderRequest.getLocale());
 
-
 			renderRequest.setAttribute("course", course);
 
 			renderRequest.setAttribute("createDate", dateFormat.format(course.getCreateDate()));

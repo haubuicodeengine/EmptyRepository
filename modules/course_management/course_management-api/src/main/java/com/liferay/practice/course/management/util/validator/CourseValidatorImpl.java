@@ -49,13 +49,12 @@ public class CourseValidatorImpl implements CourseValidator {
 			result = false;
 		} else {
 
-
 			if (duration > 40) {
 				errors.add("courseDurationValueInvalid");
 				result = false;
 			}
 		}
-		
+
 		return result;
 	}
 

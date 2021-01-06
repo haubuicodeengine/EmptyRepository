@@ -34,23 +34,25 @@ import org.osgi.service.component.annotations.Reference;
  * The implementation of the registration local service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>com.liferay.practice.course.management.service.RegistrationLocalService</code> interface.
+ * All custom service methods should be put in this class. Whenever methods are
+ * added, rerun ServiceBuilder to copy their definitions into the
+ * <code>com.liferay.practice.course.management.service.RegistrationLocalService</code>
+ * interface.
  *
  * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
+ * This is a local service. Methods of this service will not have security
+ * checks based on the propagated JAAS credentials because this service can only
+ * be accessed from within the same VM.
  * </p>
  *
  * @author Brian Wing Shun Chan
  * @see RegistrationLocalServiceBaseImpl
  */
-@Component(
-	property = "model.class.name=com.liferay.practice.course.management.model.Registration",
-	service = AopService.class
-)
-public class RegistrationLocalServiceImpl
-	extends RegistrationLocalServiceBaseImpl {
+@Component(property = "model.class.name=com.liferay.practice.course.management.model.Registration", service = AopService.class)
+public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseImpl {
 
-	public Registration registerCourse (long groupId, long courseId, int registrationStatus, ServiceContext serviceContext) throws PortalException{
+	public Registration registerCourse(long groupId, long courseId, int registrationStatus,
+			ServiceContext serviceContext) throws PortalException {
 
 		long userId = serviceContext.getUserId();
 
@@ -72,18 +74,18 @@ public class RegistrationLocalServiceImpl
 		registration.setUserId(userId);
 		registration.setUserName(user.getScreenName());
 
-		return  super.addRegistration(registration);
+		return super.addRegistration(registration);
 	}
 
 	@Override
 	public List<Long> getListRegisteredCourseByUserId(long userId) {
-		
+
 		List<Long> registrations = new ArrayList<>();
 		List<Registration> allRegistration = registrationPersistence.findAll();
-		
+
 		for (Registration registration : allRegistration) {
 
-			if(registration.getUserId() == userId) {
+			if (registration.getUserId() == userId) {
 
 				registrations.add(registration.getCourseId());
 			}
@@ -95,17 +97,17 @@ public class RegistrationLocalServiceImpl
 	@Override
 	public List<Registration> getListRegistration() {
 
-    		return registrationPersistence.findAll();
+		return registrationPersistence.findAll();
 	}
 
 	@Override
 	public Registration updateRegistrationStatus(long registrationId, int status) throws PortalException {
-		
+
 		Registration registration = getRegistration(registrationId);
 		registration.setRegistrationStatus(status);
-		
+
 		registration = super.updateRegistration(registration);
-		
+
 		return registration;
 	}
 

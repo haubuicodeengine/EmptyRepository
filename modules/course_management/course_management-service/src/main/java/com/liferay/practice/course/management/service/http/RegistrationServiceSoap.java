@@ -21,21 +21,21 @@ import com.liferay.practice.course.management.service.RegistrationServiceUtil;
 import java.rmi.RemoteException;
 
 /**
- * Provides the SOAP utility for the
- * <code>RegistrationServiceUtil</code> service
- * utility. The static methods of this class call the same methods of the
- * service utility. However, the signatures are different because it is
+ * Provides the SOAP utility for the <code>RegistrationServiceUtil</code>
+ * service utility. The static methods of this class call the same methods of
+ * the service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
  *
  * <p>
  * ServiceBuilder follows certain rules in translating the methods. For example,
  * if the method in the service utility returns a <code>java.util.List</code>,
  * that is translated to an array of
- * <code>com.liferay.practice.course.management.model.RegistrationSoap</code>. If the method in the
- * service utility returns a
- * <code>com.liferay.practice.course.management.model.Registration</code>, that is translated to a
- * <code>com.liferay.practice.course.management.model.RegistrationSoap</code>. Methods that SOAP
- * cannot safely wire are skipped.
+ * <code>com.liferay.practice.course.management.model.RegistrationSoap</code>.
+ * If the method in the service utility returns a
+ * <code>com.liferay.practice.course.management.model.Registration</code>, that
+ * is translated to a
+ * <code>com.liferay.practice.course.management.model.RegistrationSoap</code>.
+ * Methods that SOAP cannot safely wire are skipped.
  * </p>
  *
  * <p>
@@ -61,102 +61,80 @@ import java.rmi.RemoteException;
  */
 public class RegistrationServiceSoap {
 
-	public static com.liferay.practice.course.management.model.RegistrationSoap
-			registerCourse(
-				long groupId, long courseId, int registerStatus,
-				com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws RemoteException {
-
-		try {
-			com.liferay.practice.course.management.model.Registration
-				returnValue = RegistrationServiceUtil.registerCourse(
-					groupId, courseId, registerStatus, serviceContext);
-
-			return com.liferay.practice.course.management.model.
-				RegistrationSoap.toSoapModel(returnValue);
-		}
-		catch (Exception exception) {
-			_log.error(exception, exception);
-
-			throw new RemoteException(exception.getMessage());
-		}
-	}
-
-	public static Long[] getListRegisteredCourseByUserId(long userId)
-		throws RemoteException {
-
-		try {
-			java.util.List<Long> returnValue =
-				RegistrationServiceUtil.getListRegisteredCourseByUserId(userId);
-
-			return returnValue.toArray(new Long[returnValue.size()]);
-		}
-		catch (Exception exception) {
-			_log.error(exception, exception);
-
-			throw new RemoteException(exception.getMessage());
-		}
-	}
-
-	public static
-		com.liferay.practice.course.management.model.RegistrationSoap[]
-				getListRegistration()
+	public static com.liferay.practice.course.management.model.RegistrationSoap registerCourse(long groupId,
+			long courseId, int registerStatus, com.liferay.portal.kernel.service.ServiceContext serviceContext)
 			throws RemoteException {
 
 		try {
-			java.util.List
-				<com.liferay.practice.course.management.model.Registration>
-					returnValue = RegistrationServiceUtil.getListRegistration();
+			com.liferay.practice.course.management.model.Registration returnValue = RegistrationServiceUtil
+					.registerCourse(groupId, courseId, registerStatus, serviceContext);
 
-			return com.liferay.practice.course.management.model.
-				RegistrationSoap.toSoapModels(returnValue);
-		}
-		catch (Exception exception) {
+			return com.liferay.practice.course.management.model.RegistrationSoap.toSoapModel(returnValue);
+		} catch (Exception exception) {
 			_log.error(exception, exception);
 
 			throw new RemoteException(exception.getMessage());
 		}
 	}
 
-	public static com.liferay.practice.course.management.model.RegistrationSoap
-			updateRegistrationStatus(long registrationId, int status)
-		throws RemoteException {
+	public static Long[] getListRegisteredCourseByUserId(long userId) throws RemoteException {
 
 		try {
-			com.liferay.practice.course.management.model.Registration
-				returnValue = RegistrationServiceUtil.updateRegistrationStatus(
-					registrationId, status);
+			java.util.List<Long> returnValue = RegistrationServiceUtil.getListRegisteredCourseByUserId(userId);
 
-			return com.liferay.practice.course.management.model.
-				RegistrationSoap.toSoapModel(returnValue);
-		}
-		catch (Exception exception) {
+			return returnValue.toArray(new Long[returnValue.size()]);
+		} catch (Exception exception) {
 			_log.error(exception, exception);
 
 			throw new RemoteException(exception.getMessage());
 		}
 	}
 
-	public static com.liferay.practice.course.management.model.RegistrationSoap
-			deleteRegistration(long registrationId)
-		throws RemoteException {
+	public static com.liferay.practice.course.management.model.RegistrationSoap[] getListRegistration()
+			throws RemoteException {
 
 		try {
-			com.liferay.practice.course.management.model.Registration
-				returnValue = RegistrationServiceUtil.deleteRegistration(
-					registrationId);
+			java.util.List<com.liferay.practice.course.management.model.Registration> returnValue = RegistrationServiceUtil
+					.getListRegistration();
 
-			return com.liferay.practice.course.management.model.
-				RegistrationSoap.toSoapModel(returnValue);
-		}
-		catch (Exception exception) {
+			return com.liferay.practice.course.management.model.RegistrationSoap.toSoapModels(returnValue);
+		} catch (Exception exception) {
 			_log.error(exception, exception);
 
 			throw new RemoteException(exception.getMessage());
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		RegistrationServiceSoap.class);
+	public static com.liferay.practice.course.management.model.RegistrationSoap updateRegistrationStatus(
+			long registrationId, int status) throws RemoteException {
+
+		try {
+			com.liferay.practice.course.management.model.Registration returnValue = RegistrationServiceUtil
+					.updateRegistrationStatus(registrationId, status);
+
+			return com.liferay.practice.course.management.model.RegistrationSoap.toSoapModel(returnValue);
+		} catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.liferay.practice.course.management.model.RegistrationSoap deleteRegistration(long registrationId)
+			throws RemoteException {
+
+		try {
+			com.liferay.practice.course.management.model.Registration returnValue = RegistrationServiceUtil
+					.deleteRegistration(registrationId);
+
+			return com.liferay.practice.course.management.model.RegistrationSoap.toSoapModel(returnValue);
+		} catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(RegistrationServiceSoap.class);
 
 }

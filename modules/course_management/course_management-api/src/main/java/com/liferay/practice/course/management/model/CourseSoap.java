@@ -21,7 +21,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services, specifically {@link com.liferay.practice.course.management.service.http.CourseServiceSoap}.
+ * This class is used by SOAP remote services, specifically
+ * {@link com.liferay.practice.course.management.service.http.CourseServiceSoap}.
  *
  * @author Brian Wing Shun Chan
  * @generated
@@ -62,8 +63,7 @@ public class CourseSoap implements Serializable {
 
 		if (models.length > 0) {
 			soapModels = new CourseSoap[models.length][models[0].length];
-		}
-		else {
+		} else {
 			soapModels = new CourseSoap[0][0];
 		}
 

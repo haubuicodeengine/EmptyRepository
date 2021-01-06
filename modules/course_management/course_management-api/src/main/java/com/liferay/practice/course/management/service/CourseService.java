@@ -33,9 +33,9 @@ import java.util.Map;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * Provides the remote service interface for Course. Methods of this
- * service are expected to have security checks based on the propagated JAAS
- * credentials because this service can be accessed remotely.
+ * Provides the remote service interface for Course. Methods of this service are
+ * expected to have security checks based on the propagated JAAS credentials
+ * because this service can be accessed remotely.
  *
  * @author Brian Wing Shun Chan
  * @see CourseServiceUtil
@@ -44,22 +44,22 @@ import org.osgi.annotation.versioning.ProviderType;
 @AccessControlled
 @JSONWebService
 @ProviderType
-@Transactional(
-	isolation = Isolation.PORTAL,
-	rollbackFor = {PortalException.class, SystemException.class}
-)
+@Transactional(isolation = Isolation.PORTAL, rollbackFor = { PortalException.class, SystemException.class })
 public interface CourseService extends BaseService {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link CourseServiceUtil} to access the course remote service. Add custom service methods to <code>com.liferay.practice.course.management.service.impl.CourseServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link
+	 * CourseServiceUtil} to access the course remote service. Add custom service
+	 * methods to
+	 * <code>com.liferay.practice.course.management.service.impl.CourseServiceImpl</
+	 * code> and rerun ServiceBuilder to automatically copy the method declarations
+	 * to this interface.
 	 */
-	public Course addCourse(
-			long groupId, Map<Locale, String> courseNameMap,
-			Map<Locale, String> descriptionMap, Map<Locale, String> lecturerMap,
-			Long duration, int courseStatus, ServiceContext serviceContext)
-		throws PortalException;
+	public Course addCourse(long groupId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
+			Map<Locale, String> lecturerMap, Long duration, int courseStatus, ServiceContext serviceContext)
+			throws PortalException;
 
 	public Course deleteCourse(long courseId) throws PortalException;
 
@@ -70,9 +70,8 @@ public interface CourseService extends BaseService {
 	public List<Course> getCoursesByGroupId(long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Course> getCoursesByKeywords(
-		long groupId, String keywords, int start, int end,
-		OrderByComparator<Course> orderByComparator);
+	public List<Course> getCoursesByKeywords(long groupId, String keywords, int start, int end,
+			OrderByComparator<Course> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getCoursesCountByKeywords(long groupId, String keywords);
@@ -87,10 +86,9 @@ public interface CourseService extends BaseService {
 	 */
 	public String getOSGiServiceIdentifier();
 
-	public Course updateCourse(
-			long courseId, Map<Locale, String> courseNameMap,
-			Map<Locale, String> descriptionMap, Map<Locale, String> lecturerMap,
-			Long duration, int courseStatus, ServiceContext serviceContext)
-		throws PortalException;
+	public Course updateCourse(long courseId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
+			Map<Locale, String> lecturerMap, Long duration, int courseStatus, ServiceContext serviceContext)
+			throws PortalException;
 
+	public Course updateCourseStatus(long courseId, int status) throws PortalException;
 }

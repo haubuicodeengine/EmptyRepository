@@ -28,13 +28,9 @@ import javax.portlet.RenderResponse;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(immediate = true, property = { 
-		"javax.portlet.name=" + ApprovalRegistrationPortletKeys.APPROVALREGISTRATION,
-		"mvc.command.name=/", 
-		"mvc.command.name=" + MVCCommandNames.VIEW_COURSES 
-		}, 
-service = MVCRenderCommand.class)
-public class ViewCoursesMVCRenderCommand implements MVCRenderCommand{
+@Component(immediate = true, property = { "javax.portlet.name=" + ApprovalRegistrationPortletKeys.APPROVALREGISTRATION,
+		"mvc.command.name=/", "mvc.command.name=" + MVCCommandNames.VIEW_COURSES }, service = MVCRenderCommand.class)
+public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
@@ -83,29 +79,30 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand{
 
 		List<Course> visibleCourses = new ArrayList<>();
 		List<Registration> visibleRegistration = new ArrayList<>();
-		
+
 		for (Registration registration : registrations) {
-			
+
 			long courseId = registration.getCourseId();
 
-			if(yourCourses.contains(courseId) && registration.getRegistrationStatus() == 0) {
+			if (yourCourses.contains(courseId) && registration.getRegistrationStatus() == 0) {
 
 				Course course = null;
 
 				try {
 					course = _courseService.getCourse(courseId);
 				} catch (Exception e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				if(course == null) {
+				if (course == null) {
 					System.out.println("null object course");
-				}else {
+				} else {
 					visibleCourses.add(course);
 					visibleRegistration.add(registration);
 				}
 			}
 		}
-		
+
 		renderRequest.setAttribute("registrations", visibleRegistration);
 		renderRequest.setAttribute("courses", visibleCourses);
 		renderRequest.setAttribute("courseCount",
@@ -117,7 +114,7 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand{
 
 	@Reference
 	protected RegistrationService _registrationService;
-	
+
 	@Reference
 	private Portal _portal;
 }

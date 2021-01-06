@@ -21,36 +21,35 @@ import com.liferay.portal.kernel.util.Accessor;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * The extended model interface for the Registration service. Represents a row in the &quot;CourseManagement_Registration&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Registration service. Represents a row
+ * in the &quot;CourseManagement_Registration&quot; database table, with each
+ * column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see RegistrationModel
  * @generated
  */
-@ImplementationClassName(
-	"com.liferay.practice.course.management.model.impl.RegistrationImpl"
-)
+@ImplementationClassName("com.liferay.practice.course.management.model.impl.RegistrationImpl")
 @ProviderType
 public interface Registration extends PersistedModel, RegistrationModel {
 
-	public static final Accessor<Registration, Long> REGISTRATION_ID_ACCESSOR =
-		new Accessor<Registration, Long>() {
+	public static final Accessor<Registration, Long> REGISTRATION_ID_ACCESSOR = new Accessor<Registration, Long>() {
 
-			@Override
-			public Long get(Registration registration) {
-				return registration.getRegistrationId();
-			}
+		@Override
+		public Long get(Registration registration) {
+			return registration.getRegistrationId();
+		}
 
-			@Override
-			public Class<Long> getAttributeClass() {
-				return Long.class;
-			}
+		@Override
+		public Class<Long> getAttributeClass() {
+			return Long.class;
+		}
 
-			@Override
-			public Class<Registration> getTypeClass() {
-				return Registration.class;
-			}
+		@Override
+		public Class<Registration> getTypeClass() {
+			return Registration.class;
+		}
 
-		};
+	};
 
 }

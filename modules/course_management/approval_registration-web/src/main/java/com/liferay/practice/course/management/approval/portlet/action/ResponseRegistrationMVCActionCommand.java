@@ -13,26 +13,23 @@ import javax.portlet.ActionResponse;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(immediate = true, property = { 
-		"javax.portlet.name=" + ApprovalRegistrationPortletKeys.APPROVALREGISTRATION,
-		"mvc.command.name=" + MVCCommandNames.RESPONSE_COURSE_REGISTRATION 
-		}, 
-service = MVCActionCommand.class)
-public class ResponseRegistrationMVCActionCommand extends BaseMVCActionCommand{
+@Component(immediate = true, property = { "javax.portlet.name=" + ApprovalRegistrationPortletKeys.APPROVALREGISTRATION,
+		"mvc.command.name=" + MVCCommandNames.RESPONSE_COURSE_REGISTRATION }, service = MVCActionCommand.class)
+public class ResponseRegistrationMVCActionCommand extends BaseMVCActionCommand {
 
 	@Override
 	protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception {
-		
+
 		long registrationId = ParamUtil.getLong(actionRequest, "registrationId");
 
 		String responseType = ParamUtil.getString(actionRequest, "responseType");
 
 		int status = 0;
 
-		if(responseType.contentEquals("reject")) {
+		if (responseType.contentEquals("reject")) {
 
 			status = 2;
-		}else {
+		} else {
 
 			status = 1;
 		}
@@ -42,4 +39,3 @@ public class ResponseRegistrationMVCActionCommand extends BaseMVCActionCommand{
 	@Reference
 	protected RegistrationService _registrationService;
 }
-	

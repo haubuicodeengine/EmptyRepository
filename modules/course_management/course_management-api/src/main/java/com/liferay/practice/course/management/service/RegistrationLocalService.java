@@ -49,21 +49,23 @@ import org.osgi.annotation.versioning.ProviderType;
  * @generated
  */
 @ProviderType
-@Transactional(
-	isolation = Isolation.PORTAL,
-	rollbackFor = {PortalException.class, SystemException.class}
-)
-public interface RegistrationLocalService
-	extends BaseLocalService, PersistedModelLocalService {
+@Transactional(isolation = Isolation.PORTAL, rollbackFor = { PortalException.class, SystemException.class })
+public interface RegistrationLocalService extends BaseLocalService, PersistedModelLocalService {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link RegistrationLocalServiceUtil} to access the registration local service. Add custom service methods to <code>com.liferay.practice.course.management.service.impl.RegistrationLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link
+	 * RegistrationLocalServiceUtil} to access the registration local service. Add
+	 * custom service methods to
+	 * <code>com.liferay.practice.course.management.service.impl.
+	 * RegistrationLocalServiceImpl</code> and rerun ServiceBuilder to automatically
+	 * copy the method declarations to this interface.
 	 */
 
 	/**
-	 * Adds the registration to the database. Also notifies the appropriate model listeners.
+	 * Adds the registration to the database. Also notifies the appropriate model
+	 * listeners.
 	 *
 	 * @param registration the registration
 	 * @return the registration that was added
@@ -72,7 +74,8 @@ public interface RegistrationLocalService
 	public Registration addRegistration(Registration registration);
 
 	/**
-	 * Creates a new registration with the primary key. Does not add the registration to the database.
+	 * Creates a new registration with the primary key. Does not add the
+	 * registration to the database.
 	 *
 	 * @param registrationId the primary key for the new registration
 	 * @return the new registration
@@ -84,22 +87,23 @@ public interface RegistrationLocalService
 	 * @throws PortalException
 	 */
 	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
-		throws PortalException;
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel) throws PortalException;
 
 	/**
-	 * Deletes the registration with the primary key from the database. Also notifies the appropriate model listeners.
+	 * Deletes the registration with the primary key from the database. Also
+	 * notifies the appropriate model listeners.
 	 *
 	 * @param registrationId the primary key of the registration
 	 * @return the registration that was removed
-	 * @throws PortalException if a registration with the primary key could not be found
+	 * @throws PortalException if a registration with the primary key could not be
+	 *                         found
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public Registration deleteRegistration(long registrationId)
-		throws PortalException;
+	public Registration deleteRegistration(long registrationId) throws PortalException;
 
 	/**
-	 * Deletes the registration from the database. Also notifies the appropriate model listeners.
+	 * Deletes the registration from the database. Also notifies the appropriate
+	 * model listeners.
 	 *
 	 * @param registration the registration
 	 * @return the registration that was removed
@@ -120,38 +124,59 @@ public interface RegistrationLocalService
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
-	 * Performs a dynamic query on the database and returns a range of the matching rows.
+	 * Performs a dynamic query on the database and returns a range of the matching
+	 * rows.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.practice.course.management.model.impl.RegistrationModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return
+	 * the full result set. If <code>orderByComparator</code> is specified, then the
+	 * query will include the given ORDER BY logic. If
+	 * <code>orderByComparator</code> is absent, then the query will include the
+	 * default ORDER BY logic from
+	 * <code>com.liferay.practice.course.management.model.impl.RegistrationModelImpl</code>.
 	 * </p>
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @param start the lower bound of the range of model instances
-	 * @param end the upper bound of the range of model instances (not inclusive)
+	 * @param start        the lower bound of the range of model instances
+	 * @param end          the upper bound of the range of model instances (not
+	 *                     inclusive)
 	 * @return the range of matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start, int end);
 
 	/**
-	 * Performs a dynamic query on the database and returns an ordered range of the matching rows.
+	 * Performs a dynamic query on the database and returns an ordered range of the
+	 * matching rows.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.practice.course.management.model.impl.RegistrationModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return
+	 * the full result set. If <code>orderByComparator</code> is specified, then the
+	 * query will include the given ORDER BY logic. If
+	 * <code>orderByComparator</code> is absent, then the query will include the
+	 * default ORDER BY logic from
+	 * <code>com.liferay.practice.course.management.model.impl.RegistrationModelImpl</code>.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query
-	 * @param start the lower bound of the range of model instances
-	 * @param end the upper bound of the range of model instances (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param dynamicQuery      the dynamic query
+	 * @param start             the lower bound of the range of model instances
+	 * @param end               the upper bound of the range of model instances (not
+	 *                          inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally
+	 *                          <code>null</code>)
 	 * @return the ordered range of matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
+			OrderByComparator<T> orderByComparator);
 
 	/**
 	 * Returns the number of rows matching the dynamic query.
@@ -166,12 +191,11 @@ public interface RegistrationLocalService
 	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @param projection the projection to apply to the query
+	 * @param projection   the projection to apply to the query
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long dynamicQueryCount(
-		DynamicQuery dynamicQuery, Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery, Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Registration fetchRegistration(long registrationId);
@@ -200,29 +224,37 @@ public interface RegistrationLocalService
 	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj) throws PortalException;
 
 	/**
 	 * Returns the registration with the primary key.
 	 *
 	 * @param registrationId the primary key of the registration
 	 * @return the registration
-	 * @throws PortalException if a registration with the primary key could not be found
+	 * @throws PortalException if a registration with the primary key could not be
+	 *                         found
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Registration getRegistration(long registrationId)
-		throws PortalException;
+	public Registration getRegistration(long registrationId) throws PortalException;
 
 	/**
 	 * Returns a range of all the registrations.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.practice.course.management.model.impl.RegistrationModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return
+	 * the full result set. If <code>orderByComparator</code> is specified, then the
+	 * query will include the given ORDER BY logic. If
+	 * <code>orderByComparator</code> is absent, then the query will include the
+	 * default ORDER BY logic from
+	 * <code>com.liferay.practice.course.management.model.impl.RegistrationModelImpl</code>.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of registrations
-	 * @param end the upper bound of the range of registrations (not inclusive)
+	 * @param end   the upper bound of the range of registrations (not inclusive)
 	 * @return the range of registrations
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -236,13 +268,12 @@ public interface RegistrationLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getRegistrationsCount();
 
-	public Registration registerCourse(
-			long groupId, long courseId, int registrationStatus,
-			ServiceContext serviceContext)
-		throws PortalException;
+	public Registration registerCourse(long groupId, long courseId, int registrationStatus,
+			ServiceContext serviceContext) throws PortalException;
 
 	/**
-	 * Updates the registration in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 * Updates the registration in the database or adds it if it does not yet exist.
+	 * Also notifies the appropriate model listeners.
 	 *
 	 * @param registration the registration
 	 * @return the registration that was updated
@@ -250,8 +281,6 @@ public interface RegistrationLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public Registration updateRegistration(Registration registration);
 
-	public Registration updateRegistrationStatus(
-			long registrationId, int status)
-		throws PortalException;
+	public Registration updateRegistrationStatus(long registrationId, int status) throws PortalException;
 
 }

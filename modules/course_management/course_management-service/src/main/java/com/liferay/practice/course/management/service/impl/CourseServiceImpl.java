@@ -59,11 +59,11 @@ public class CourseServiceImpl extends CourseServiceBaseImpl {
 	 */
 
 	public Course addCourse(long groupId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Long duration, int courseStatus,
-			ServiceContext serviceContext) throws PortalException {
+			Map<Locale, String> lecturerMap, Long duration, int courseStatus, ServiceContext serviceContext)
+			throws PortalException {
 
-		return courseLocalService.addCourse(groupId, courseNameMap, descriptionMap, lecturerMap, duration,
-				courseStatus, serviceContext);
+		return courseLocalService.addCourse(groupId, courseNameMap, descriptionMap, lecturerMap, duration, courseStatus,
+				serviceContext);
 	}
 
 	public Course deleteCourse(long courseId) throws PortalException {
@@ -97,8 +97,8 @@ public class CourseServiceImpl extends CourseServiceBaseImpl {
 	}
 
 	public Course updateCourse(long courseId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Long duration, int courseStatus,
-			ServiceContext serviceContext) throws PortalException {
+			Map<Locale, String> lecturerMap, Long duration, int courseStatus, ServiceContext serviceContext)
+			throws PortalException {
 
 		return courseLocalService.updateCourse(courseId, courseNameMap, descriptionMap, lecturerMap, duration,
 				courseStatus, serviceContext);
@@ -108,5 +108,11 @@ public class CourseServiceImpl extends CourseServiceBaseImpl {
 	public List<Long> getListCourseByUserId(long userId) {
 
 		return courseLocalService.getListCourseByUserId(userId);
+	}
+
+	@Override
+	public Course updateCourseStatus(long courseId, int status) throws PortalException {
+
+		return courseLocalService.updateCourseStatus(courseId, status);
 	}
 }

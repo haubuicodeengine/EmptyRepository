@@ -28,13 +28,14 @@ import javax.portlet.RenderResponse;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(immediate = true, property = { "javax.portlet.name=" + CourseRegistrationMVCPortletKeys.COURSEREGISTRATIONMVC,
-		"mvc.command.name=/", "mvc.command.name=" + MVCCommandNames.VIEW_REGISTERED_COURSE }, service = MVCRenderCommand.class)
+@Component(immediate = true, property = {
+		"javax.portlet.name=" + CourseRegistrationMVCPortletKeys.COURSEREGISTRATIONMVC, "mvc.command.name=/",
+		"mvc.command.name=" + MVCCommandNames.VIEW_REGISTERED_COURSE }, service = MVCRenderCommand.class)
 public class ViewRegisteredCourseMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
-				
+
 		ServiceContext serviceContext = null;
 
 		try {
@@ -80,7 +81,7 @@ public class ViewRegisteredCourseMVCRenderCommand implements MVCRenderCommand {
 
 		for (Course course : courses) {
 
-			if(registrations.contains(course.getCourseId())) {
+			if (registrations.contains(course.getCourseId())) {
 
 				visibleCourse.add(course);
 			}
@@ -95,11 +96,11 @@ public class ViewRegisteredCourseMVCRenderCommand implements MVCRenderCommand {
 
 	@Reference
 	protected CourseService _courseService;
-	
+
 	@Reference
 	protected RegistrationService _registrationService;
 
 	@Reference
 	private Portal _portal;
-	
+
 }

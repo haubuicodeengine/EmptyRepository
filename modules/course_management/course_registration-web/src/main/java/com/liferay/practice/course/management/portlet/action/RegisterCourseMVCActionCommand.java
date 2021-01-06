@@ -23,10 +23,9 @@ import javax.portlet.ActionResponse;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(immediate = true, property = { 
+@Component(immediate = true, property = {
 		"javax.portlet.name=" + CourseRegistrationMVCPortletKeys.COURSEREGISTRATIONMVC,
-		"mvc.command.name=" + MVCCommandNames.REGISTER_COURSE }, 
-service = MVCActionCommand.class)
+		"mvc.command.name=" + MVCCommandNames.REGISTER_COURSE }, service = MVCActionCommand.class)
 public class RegisterCourseMVCActionCommand extends BaseMVCActionCommand {
 
 	@Override
@@ -53,12 +52,12 @@ public class RegisterCourseMVCActionCommand extends BaseMVCActionCommand {
 			pe.printStackTrace();
 
 			actionResponse.setRenderParameter("mvcRenderCommandName", MVCCommandNames.VIEW_COURSES);
-		}	
+		}
 	}
 
 	@Reference
 	protected RegistrationService _registrationService;
-	
+
 	@Reference
 	protected CourseService _courseService;
 }

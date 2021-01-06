@@ -5,8 +5,8 @@ import com.liferay.practice.course.management.model.Registration;
 
 import java.util.List;
 
+public interface RegistrationValidator {
 
-public interface RegistrationValidator{
-
-	public void validate(long courseId, long userId, List<Registration> registrations) throws RegistrationValidatorException;
+	public void validate(long courseId, long userId, List<Registration> registrations)
+			throws RegistrationValidatorException;
 }

@@ -51,19 +51,19 @@ public class EditCourseMVCActionCommand extends BaseMVCActionCommand {
 			_courseService.updateCourse(courseId, courseNameMap, descriptionMap, lecturerMap, duration, courseStatus,
 					serviceContext);
 
-			 SessionMessages.add(actionRequest, "courseUpdated");
+			SessionMessages.add(actionRequest, "courseUpdated");
 
 			sendRedirect(actionRequest, actionResponse);
 		} catch (CourseValidationException ave) {
 
 			ave.printStackTrace();
-			 ave.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
+			ave.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
 			actionResponse.setRenderParameter("mvcRenderCommandName", MVCCommandNames.EDIT_COURSE);
 
 		} catch (PortalException pe) {
 
 			SessionErrors.add(actionRequest, "serviceErrorDetails", pe);
-			
+
 			pe.printStackTrace();
 
 			actionResponse.setRenderParameter("mvcRenderCommandName", MVCCommandNames.EDIT_COURSE);

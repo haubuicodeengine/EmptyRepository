@@ -60,29 +60,28 @@ import org.osgi.service.component.annotations.Reference;
  * The persistence implementation for the course service.
  *
  * <p>
- * Caching information and settings can be found in <code>portal.properties</code>
+ * Caching information and settings can be found in
+ * <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
  * @generated
  */
 @Component(service = CoursePersistence.class)
-public class CoursePersistenceImpl
-	extends BasePersistenceImpl<Course> implements CoursePersistence {
+public class CoursePersistenceImpl extends BasePersistenceImpl<Course> implements CoursePersistence {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Always use <code>CourseUtil</code> to access the course persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
+	 * Never modify or reference this class directly. Always use
+	 * <code>CourseUtil</code> to access the course persistence. Modify
+	 * <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY =
-		CourseImpl.class.getName();
+	public static final String FINDER_CLASS_NAME_ENTITY = CourseImpl.class.getName();
 
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
-		FINDER_CLASS_NAME_ENTITY + ".List1";
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY + ".List1";
 
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
-		FINDER_CLASS_NAME_ENTITY + ".List2";
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY + ".List2";
 
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
@@ -99,20 +98,27 @@ public class CoursePersistenceImpl
 	 */
 	@Override
 	public List<Course> findByGroupId(long groupId) {
-		return findByGroupId(
-			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
 	 * Returns a range of all the courses where groupId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>QueryUtil#ALL_POS</code> will return the full result set. If
+	 * <code>orderByComparator</code> is specified, then the query will include the
+	 * given ORDER BY logic. If <code>orderByComparator</code> is absent, then the
+	 * query will include the default ORDER BY logic from
+	 * <code>CourseModelImpl</code>.
 	 * </p>
 	 *
 	 * @param groupId the group ID
-	 * @param start the lower bound of the range of courses
-	 * @param end the upper bound of the range of courses (not inclusive)
+	 * @param start   the lower bound of the range of courses
+	 * @param end     the upper bound of the range of courses (not inclusive)
 	 * @return the range of matching courses
 	 */
 	@Override
@@ -124,19 +130,27 @@ public class CoursePersistenceImpl
 	 * Returns an ordered range of all the courses where groupId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>QueryUtil#ALL_POS</code> will return the full result set. If
+	 * <code>orderByComparator</code> is specified, then the query will include the
+	 * given ORDER BY logic. If <code>orderByComparator</code> is absent, then the
+	 * query will include the default ORDER BY logic from
+	 * <code>CourseModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
-	 * @param start the lower bound of the range of courses
-	 * @param end the upper bound of the range of courses (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param groupId           the group ID
+	 * @param start             the lower bound of the range of courses
+	 * @param end               the upper bound of the range of courses (not
+	 *                          inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally
+	 *                          <code>null</code>)
 	 * @return the ordered range of matching courses
 	 */
 	@Override
-	public List<Course> findByGroupId(
-		long groupId, int start, int end,
-		OrderByComparator<Course> orderByComparator) {
+	public List<Course> findByGroupId(long groupId, int start, int end, OrderByComparator<Course> orderByComparator) {
 
 		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
@@ -145,42 +159,48 @@ public class CoursePersistenceImpl
 	 * Returns an ordered range of all the courses where groupId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>QueryUtil#ALL_POS</code> will return the full result set. If
+	 * <code>orderByComparator</code> is specified, then the query will include the
+	 * given ORDER BY logic. If <code>orderByComparator</code> is absent, then the
+	 * query will include the default ORDER BY logic from
+	 * <code>CourseModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
-	 * @param start the lower bound of the range of courses
-	 * @param end the upper bound of the range of courses (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param groupId           the group ID
+	 * @param start             the lower bound of the range of courses
+	 * @param end               the upper bound of the range of courses (not
+	 *                          inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally
+	 *                          <code>null</code>)
+	 * @param useFinderCache    whether to use the finder cache
 	 * @return the ordered range of matching courses
 	 */
 	@Override
-	public List<Course> findByGroupId(
-		long groupId, int start, int end,
-		OrderByComparator<Course> orderByComparator, boolean useFinderCache) {
+	public List<Course> findByGroupId(long groupId, int start, int end, OrderByComparator<Course> orderByComparator,
+			boolean useFinderCache) {
 
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-			(orderByComparator == null)) {
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) && (orderByComparator == null)) {
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByGroupId;
-				finderArgs = new Object[] {groupId};
+				finderArgs = new Object[] { groupId };
 			}
-		}
-		else if (useFinderCache) {
+		} else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByGroupId;
-			finderArgs = new Object[] {groupId, start, end, orderByComparator};
+			finderArgs = new Object[] { groupId, start, end, orderByComparator };
 		}
 
 		List<Course> list = null;
 
 		if (useFinderCache) {
-			list = (List<Course>)finderCache.getResult(
-				finderPath, finderArgs, this);
+			list = (List<Course>) finderCache.getResult(finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Course course : list) {
@@ -197,10 +217,8 @@ public class CoursePersistenceImpl
 			StringBundler sb = null;
 
 			if (orderByComparator != null) {
-				sb = new StringBundler(
-					3 + (orderByComparator.getOrderByFields().length * 2));
-			}
-			else {
+				sb = new StringBundler(3 + (orderByComparator.getOrderByFields().length * 2));
+			} else {
 				sb = new StringBundler(3);
 			}
 
@@ -209,10 +227,8 @@ public class CoursePersistenceImpl
 			sb.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(
-					sb, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
-			}
-			else {
+				appendOrderByComparator(sb, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
+			} else {
 				sb.append(CourseModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -229,23 +245,20 @@ public class CoursePersistenceImpl
 
 				queryPos.add(groupId);
 
-				list = (List<Course>)QueryUtil.list(
-					query, getDialect(), start, end);
+				list = (List<Course>) QueryUtil.list(query, getDialect(), start, end);
 
 				cacheResult(list);
 
 				if (useFinderCache) {
 					finderCache.putResult(finderPath, finderArgs, list);
 				}
-			}
-			catch (Exception exception) {
+			} catch (Exception exception) {
 				if (useFinderCache) {
 					finderCache.removeResult(finderPath, finderArgs);
 				}
 
 				throw processException(exception);
-			}
-			finally {
+			} finally {
 				closeSession(session);
 			}
 		}
@@ -256,15 +269,15 @@ public class CoursePersistenceImpl
 	/**
 	 * Returns the first course in the ordered set where groupId = &#63;.
 	 *
-	 * @param groupId the group ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @param groupId           the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally
+	 *                          <code>null</code>)
 	 * @return the first matching course
 	 * @throws NoSuchCourseException if a matching course could not be found
 	 */
 	@Override
-	public Course findByGroupId_First(
-			long groupId, OrderByComparator<Course> orderByComparator)
-		throws NoSuchCourseException {
+	public Course findByGroupId_First(long groupId, OrderByComparator<Course> orderByComparator)
+			throws NoSuchCourseException {
 
 		Course course = fetchByGroupId_First(groupId, orderByComparator);
 
@@ -287,13 +300,14 @@ public class CoursePersistenceImpl
 	/**
 	 * Returns the first course in the ordered set where groupId = &#63;.
 	 *
-	 * @param groupId the group ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching course, or <code>null</code> if a matching course could not be found
+	 * @param groupId           the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally
+	 *                          <code>null</code>)
+	 * @return the first matching course, or <code>null</code> if a matching course
+	 *         could not be found
 	 */
 	@Override
-	public Course fetchByGroupId_First(
-		long groupId, OrderByComparator<Course> orderByComparator) {
+	public Course fetchByGroupId_First(long groupId, OrderByComparator<Course> orderByComparator) {
 
 		List<Course> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
@@ -307,15 +321,15 @@ public class CoursePersistenceImpl
 	/**
 	 * Returns the last course in the ordered set where groupId = &#63;.
 	 *
-	 * @param groupId the group ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @param groupId           the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally
+	 *                          <code>null</code>)
 	 * @return the last matching course
 	 * @throws NoSuchCourseException if a matching course could not be found
 	 */
 	@Override
-	public Course findByGroupId_Last(
-			long groupId, OrderByComparator<Course> orderByComparator)
-		throws NoSuchCourseException {
+	public Course findByGroupId_Last(long groupId, OrderByComparator<Course> orderByComparator)
+			throws NoSuchCourseException {
 
 		Course course = fetchByGroupId_Last(groupId, orderByComparator);
 
@@ -338,13 +352,14 @@ public class CoursePersistenceImpl
 	/**
 	 * Returns the last course in the ordered set where groupId = &#63;.
 	 *
-	 * @param groupId the group ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching course, or <code>null</code> if a matching course could not be found
+	 * @param groupId           the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally
+	 *                          <code>null</code>)
+	 * @return the last matching course, or <code>null</code> if a matching course
+	 *         could not be found
 	 */
 	@Override
-	public Course fetchByGroupId_Last(
-		long groupId, OrderByComparator<Course> orderByComparator) {
+	public Course fetchByGroupId_Last(long groupId, OrderByComparator<Course> orderByComparator) {
 
 		int count = countByGroupId(groupId);
 
@@ -352,8 +367,7 @@ public class CoursePersistenceImpl
 			return null;
 		}
 
-		List<Course> list = findByGroupId(
-			groupId, count - 1, count, orderByComparator);
+		List<Course> list = findByGroupId(groupId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -363,19 +377,20 @@ public class CoursePersistenceImpl
 	}
 
 	/**
-	 * Returns the courses before and after the current course in the ordered set where groupId = &#63;.
+	 * Returns the courses before and after the current course in the ordered set
+	 * where groupId = &#63;.
 	 *
-	 * @param courseId the primary key of the current course
-	 * @param groupId the group ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @param courseId          the primary key of the current course
+	 * @param groupId           the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally
+	 *                          <code>null</code>)
 	 * @return the previous, current, and next course
-	 * @throws NoSuchCourseException if a course with the primary key could not be found
+	 * @throws NoSuchCourseException if a course with the primary key could not be
+	 *                               found
 	 */
 	@Override
-	public Course[] findByGroupId_PrevAndNext(
-			long courseId, long groupId,
-			OrderByComparator<Course> orderByComparator)
-		throws NoSuchCourseException {
+	public Course[] findByGroupId_PrevAndNext(long courseId, long groupId, OrderByComparator<Course> orderByComparator)
+			throws NoSuchCourseException {
 
 		Course course = findByPrimaryKey(courseId);
 
@@ -386,36 +401,29 @@ public class CoursePersistenceImpl
 
 			Course[] array = new CourseImpl[3];
 
-			array[0] = getByGroupId_PrevAndNext(
-				session, course, groupId, orderByComparator, true);
+			array[0] = getByGroupId_PrevAndNext(session, course, groupId, orderByComparator, true);
 
 			array[1] = course;
 
-			array[2] = getByGroupId_PrevAndNext(
-				session, course, groupId, orderByComparator, false);
+			array[2] = getByGroupId_PrevAndNext(session, course, groupId, orderByComparator, false);
 
 			return array;
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			throw processException(exception);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
-	protected Course getByGroupId_PrevAndNext(
-		Session session, Course course, long groupId,
-		OrderByComparator<Course> orderByComparator, boolean previous) {
+	protected Course getByGroupId_PrevAndNext(Session session, Course course, long groupId,
+			OrderByComparator<Course> orderByComparator, boolean previous) {
 
 		StringBundler sb = null;
 
 		if (orderByComparator != null) {
-			sb = new StringBundler(
-				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
-					(orderByComparator.getOrderByFields().length * 3));
-		}
-		else {
+			sb = new StringBundler(4 + (orderByComparator.getOrderByConditionFields().length * 3)
+					+ (orderByComparator.getOrderByFields().length * 3));
+		} else {
 			sb = new StringBundler(3);
 		}
 
@@ -424,8 +432,7 @@ public class CoursePersistenceImpl
 		sb.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields =
-				orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				sb.append(WHERE_AND);
@@ -438,16 +445,13 @@ public class CoursePersistenceImpl
 				if ((i + 1) < orderByConditionFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						sb.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
+					} else {
 						sb.append(WHERE_LESSER_THAN_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						sb.append(WHERE_GREATER_THAN);
-					}
-					else {
+					} else {
 						sb.append(WHERE_LESSER_THAN);
 					}
 				}
@@ -464,22 +468,18 @@ public class CoursePersistenceImpl
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						sb.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
+					} else {
 						sb.append(ORDER_BY_DESC_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						sb.append(ORDER_BY_ASC);
-					}
-					else {
+					} else {
 						sb.append(ORDER_BY_DESC);
 					}
 				}
 			}
-		}
-		else {
+		} else {
 			sb.append(CourseModelImpl.ORDER_BY_JPQL);
 		}
 
@@ -495,8 +495,7 @@ public class CoursePersistenceImpl
 		queryPos.add(groupId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue :
-					orderByComparator.getOrderByConditionValues(course)) {
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(course)) {
 
 				queryPos.add(orderByConditionValue);
 			}
@@ -506,8 +505,7 @@ public class CoursePersistenceImpl
 
 		if (list.size() == 2) {
 			return list.get(1);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -519,9 +517,7 @@ public class CoursePersistenceImpl
 	 */
 	@Override
 	public void removeByGroupId(long groupId) {
-		for (Course course :
-				findByGroupId(
-					groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (Course course : findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 
 			remove(course);
 		}
@@ -537,9 +533,9 @@ public class CoursePersistenceImpl
 	public int countByGroupId(long groupId) {
 		FinderPath finderPath = _finderPathCountByGroupId;
 
-		Object[] finderArgs = new Object[] {groupId};
+		Object[] finderArgs = new Object[] { groupId };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long) finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler sb = new StringBundler(2);
@@ -561,16 +557,14 @@ public class CoursePersistenceImpl
 
 				queryPos.add(groupId);
 
-				count = (Long)query.uniqueResult();
+				count = (Long) query.uniqueResult();
 
 				finderCache.putResult(finderPath, finderArgs, count);
-			}
-			catch (Exception exception) {
+			} catch (Exception exception) {
 				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(exception);
-			}
-			finally {
+			} finally {
 				closeSession(session);
 			}
 		}
@@ -578,8 +572,7 @@ public class CoursePersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 =
-		"course.groupId = ?";
+	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "course.groupId = ?";
 
 	public CoursePersistenceImpl() {
 		setModelClass(Course.class);
@@ -595,9 +588,7 @@ public class CoursePersistenceImpl
 	 */
 	@Override
 	public void cacheResult(Course course) {
-		entityCache.putResult(
-			entityCacheEnabled, CourseImpl.class, course.getPrimaryKey(),
-			course);
+		entityCache.putResult(entityCacheEnabled, CourseImpl.class, course.getPrimaryKey(), course);
 
 		course.resetOriginalValues();
 	}
@@ -610,13 +601,10 @@ public class CoursePersistenceImpl
 	@Override
 	public void cacheResult(List<Course> courses) {
 		for (Course course : courses) {
-			if (entityCache.getResult(
-					entityCacheEnabled, CourseImpl.class,
-					course.getPrimaryKey()) == null) {
+			if (entityCache.getResult(entityCacheEnabled, CourseImpl.class, course.getPrimaryKey()) == null) {
 
 				cacheResult(course);
-			}
-			else {
+			} else {
 				course.resetOriginalValues();
 			}
 		}
@@ -626,7 +614,8 @@ public class CoursePersistenceImpl
 	 * Clears the cache for all courses.
 	 *
 	 * <p>
-	 * The <code>EntityCache</code> and <code>FinderCache</code> are both cleared by this method.
+	 * The <code>EntityCache</code> and <code>FinderCache</code> are both cleared by
+	 * this method.
 	 * </p>
 	 */
 	@Override
@@ -642,13 +631,13 @@ public class CoursePersistenceImpl
 	 * Clears the cache for the course.
 	 *
 	 * <p>
-	 * The <code>EntityCache</code> and <code>FinderCache</code> are both cleared by this method.
+	 * The <code>EntityCache</code> and <code>FinderCache</code> are both cleared by
+	 * this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(Course course) {
-		entityCache.removeResult(
-			entityCacheEnabled, CourseImpl.class, course.getPrimaryKey());
+		entityCache.removeResult(entityCacheEnabled, CourseImpl.class, course.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
@@ -660,8 +649,7 @@ public class CoursePersistenceImpl
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (Course course : courses) {
-			entityCache.removeResult(
-				entityCacheEnabled, CourseImpl.class, course.getPrimaryKey());
+			entityCache.removeResult(entityCacheEnabled, CourseImpl.class, course.getPrimaryKey());
 		}
 	}
 
@@ -671,13 +659,13 @@ public class CoursePersistenceImpl
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (Serializable primaryKey : primaryKeys) {
-			entityCache.removeResult(
-				entityCacheEnabled, CourseImpl.class, primaryKey);
+			entityCache.removeResult(entityCacheEnabled, CourseImpl.class, primaryKey);
 		}
 	}
 
 	/**
-	 * Creates a new course with the primary key. Does not add the course to the database.
+	 * Creates a new course with the primary key. Does not add the course to the
+	 * database.
 	 *
 	 * @param courseId the primary key for the new course
 	 * @return the new course
@@ -695,23 +683,27 @@ public class CoursePersistenceImpl
 	}
 
 	/**
-	 * Removes the course with the primary key from the database. Also notifies the appropriate model listeners.
+	 * Removes the course with the primary key from the database. Also notifies the
+	 * appropriate model listeners.
 	 *
 	 * @param courseId the primary key of the course
 	 * @return the course that was removed
-	 * @throws NoSuchCourseException if a course with the primary key could not be found
+	 * @throws NoSuchCourseException if a course with the primary key could not be
+	 *                               found
 	 */
 	@Override
 	public Course remove(long courseId) throws NoSuchCourseException {
-		return remove((Serializable)courseId);
+		return remove((Serializable) courseId);
 	}
 
 	/**
-	 * Removes the course with the primary key from the database. Also notifies the appropriate model listeners.
+	 * Removes the course with the primary key from the database. Also notifies the
+	 * appropriate model listeners.
 	 *
 	 * @param primaryKey the primary key of the course
 	 * @return the course that was removed
-	 * @throws NoSuchCourseException if a course with the primary key could not be found
+	 * @throws NoSuchCourseException if a course with the primary key could not be
+	 *                               found
 	 */
 	@Override
 	public Course remove(Serializable primaryKey) throws NoSuchCourseException {
@@ -720,26 +712,22 @@ public class CoursePersistenceImpl
 		try {
 			session = openSession();
 
-			Course course = (Course)session.get(CourseImpl.class, primaryKey);
+			Course course = (Course) session.get(CourseImpl.class, primaryKey);
 
 			if (course == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchCourseException(
-					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				throw new NoSuchCourseException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(course);
-		}
-		catch (NoSuchCourseException noSuchEntityException) {
+		} catch (NoSuchCourseException noSuchEntityException) {
 			throw noSuchEntityException;
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			throw processException(exception);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
@@ -752,18 +740,15 @@ public class CoursePersistenceImpl
 			session = openSession();
 
 			if (!session.contains(course)) {
-				course = (Course)session.get(
-					CourseImpl.class, course.getPrimaryKeyObj());
+				course = (Course) session.get(CourseImpl.class, course.getPrimaryKeyObj());
 			}
 
 			if (course != null) {
 				session.delete(course);
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			throw processException(exception);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 
@@ -785,27 +770,23 @@ public class CoursePersistenceImpl
 				invocationHandler = ProxyUtil.getInvocationHandler(course);
 
 				throw new IllegalArgumentException(
-					"Implement ModelWrapper in course proxy " +
-						invocationHandler.getClass());
+						"Implement ModelWrapper in course proxy " + invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
-				"Implement ModelWrapper in custom Course implementation " +
-					course.getClass());
+					"Implement ModelWrapper in custom Course implementation " + course.getClass());
 		}
 
-		CourseModelImpl courseModelImpl = (CourseModelImpl)course;
+		CourseModelImpl courseModelImpl = (CourseModelImpl) course;
 
-		ServiceContext serviceContext =
-			ServiceContextThreadLocal.getServiceContext();
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
 
 		Date now = new Date();
 
 		if (isNew && (course.getCreateDate() == null)) {
 			if (serviceContext == null) {
 				course.setCreateDate(now);
-			}
-			else {
+			} else {
 				course.setCreateDate(serviceContext.getCreateDate(now));
 			}
 		}
@@ -813,8 +794,7 @@ public class CoursePersistenceImpl
 		if (!courseModelImpl.hasSetModifiedDate()) {
 			if (serviceContext == null) {
 				course.setModifiedDate(now);
-			}
-			else {
+			} else {
 				course.setModifiedDate(serviceContext.getModifiedDate(now));
 			}
 		}
@@ -828,15 +808,12 @@ public class CoursePersistenceImpl
 				session.save(course);
 
 				course.setNew(false);
+			} else {
+				course = (Course) session.merge(course);
 			}
-			else {
-				course = (Course)session.merge(course);
-			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			throw processException(exception);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 
@@ -844,42 +821,31 @@ public class CoursePersistenceImpl
 
 		if (!_columnBitmaskEnabled) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-		}
-		else if (isNew) {
-			Object[] args = new Object[] {courseModelImpl.getGroupId()};
+		} else if (isNew) {
+			Object[] args = new Object[] { courseModelImpl.getGroupId() };
 
 			finderCache.removeResult(_finderPathCountByGroupId, args);
-			finderCache.removeResult(
-				_finderPathWithoutPaginationFindByGroupId, args);
+			finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId, args);
 
 			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(
-				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
-		}
-		else {
-			if ((courseModelImpl.getColumnBitmask() &
-				 _finderPathWithoutPaginationFindByGroupId.
-					 getColumnBitmask()) != 0) {
+			finderCache.removeResult(_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		} else {
+			if ((courseModelImpl.getColumnBitmask()
+					& _finderPathWithoutPaginationFindByGroupId.getColumnBitmask()) != 0) {
 
-				Object[] args = new Object[] {
-					courseModelImpl.getOriginalGroupId()
-				};
+				Object[] args = new Object[] { courseModelImpl.getOriginalGroupId() };
 
 				finderCache.removeResult(_finderPathCountByGroupId, args);
-				finderCache.removeResult(
-					_finderPathWithoutPaginationFindByGroupId, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId, args);
 
-				args = new Object[] {courseModelImpl.getGroupId()};
+				args = new Object[] { courseModelImpl.getGroupId() };
 
 				finderCache.removeResult(_finderPathCountByGroupId, args);
-				finderCache.removeResult(
-					_finderPathWithoutPaginationFindByGroupId, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId, args);
 			}
 		}
 
-		entityCache.putResult(
-			entityCacheEnabled, CourseImpl.class, course.getPrimaryKey(),
-			course, false);
+		entityCache.putResult(entityCacheEnabled, CourseImpl.class, course.getPrimaryKey(), course, false);
 
 		course.resetOriginalValues();
 
@@ -887,15 +853,17 @@ public class CoursePersistenceImpl
 	}
 
 	/**
-	 * Returns the course with the primary key or throws a <code>com.liferay.portal.kernel.exception.NoSuchModelException</code> if it could not be found.
+	 * Returns the course with the primary key or throws a
+	 * <code>com.liferay.portal.kernel.exception.NoSuchModelException</code> if it
+	 * could not be found.
 	 *
 	 * @param primaryKey the primary key of the course
 	 * @return the course
-	 * @throws NoSuchCourseException if a course with the primary key could not be found
+	 * @throws NoSuchCourseException if a course with the primary key could not be
+	 *                               found
 	 */
 	@Override
-	public Course findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchCourseException {
+	public Course findByPrimaryKey(Serializable primaryKey) throws NoSuchCourseException {
 
 		Course course = fetchByPrimaryKey(primaryKey);
 
@@ -904,34 +872,37 @@ public class CoursePersistenceImpl
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchCourseException(
-				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			throw new NoSuchCourseException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return course;
 	}
 
 	/**
-	 * Returns the course with the primary key or throws a <code>NoSuchCourseException</code> if it could not be found.
+	 * Returns the course with the primary key or throws a
+	 * <code>NoSuchCourseException</code> if it could not be found.
 	 *
 	 * @param courseId the primary key of the course
 	 * @return the course
-	 * @throws NoSuchCourseException if a course with the primary key could not be found
+	 * @throws NoSuchCourseException if a course with the primary key could not be
+	 *                               found
 	 */
 	@Override
 	public Course findByPrimaryKey(long courseId) throws NoSuchCourseException {
-		return findByPrimaryKey((Serializable)courseId);
+		return findByPrimaryKey((Serializable) courseId);
 	}
 
 	/**
-	 * Returns the course with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the course with the primary key or returns <code>null</code> if it
+	 * could not be found.
 	 *
 	 * @param courseId the primary key of the course
-	 * @return the course, or <code>null</code> if a course with the primary key could not be found
+	 * @return the course, or <code>null</code> if a course with the primary key
+	 *         could not be found
 	 */
 	@Override
 	public Course fetchByPrimaryKey(long courseId) {
-		return fetchByPrimaryKey((Serializable)courseId);
+		return fetchByPrimaryKey((Serializable) courseId);
 	}
 
 	/**
@@ -948,11 +919,19 @@ public class CoursePersistenceImpl
 	 * Returns a range of all the courses.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>QueryUtil#ALL_POS</code> will return the full result set. If
+	 * <code>orderByComparator</code> is specified, then the query will include the
+	 * given ORDER BY logic. If <code>orderByComparator</code> is absent, then the
+	 * query will include the default ORDER BY logic from
+	 * <code>CourseModelImpl</code>.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of courses
-	 * @param end the upper bound of the range of courses (not inclusive)
+	 * @param end   the upper bound of the range of courses (not inclusive)
 	 * @return the range of courses
 	 */
 	@Override
@@ -964,17 +943,26 @@ public class CoursePersistenceImpl
 	 * Returns an ordered range of all the courses.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>QueryUtil#ALL_POS</code> will return the full result set. If
+	 * <code>orderByComparator</code> is specified, then the query will include the
+	 * given ORDER BY logic. If <code>orderByComparator</code> is absent, then the
+	 * query will include the default ORDER BY logic from
+	 * <code>CourseModelImpl</code>.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of courses
-	 * @param end the upper bound of the range of courses (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param start             the lower bound of the range of courses
+	 * @param end               the upper bound of the range of courses (not
+	 *                          inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally
+	 *                          <code>null</code>)
 	 * @return the ordered range of courses
 	 */
 	@Override
-	public List<Course> findAll(
-		int start, int end, OrderByComparator<Course> orderByComparator) {
+	public List<Course> findAll(int start, int end, OrderByComparator<Course> orderByComparator) {
 
 		return findAll(start, end, orderByComparator, true);
 	}
@@ -983,41 +971,47 @@ public class CoursePersistenceImpl
 	 * Returns an ordered range of all the courses.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>QueryUtil#ALL_POS</code> will return the full result set. If
+	 * <code>orderByComparator</code> is specified, then the query will include the
+	 * given ORDER BY logic. If <code>orderByComparator</code> is absent, then the
+	 * query will include the default ORDER BY logic from
+	 * <code>CourseModelImpl</code>.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of courses
-	 * @param end the upper bound of the range of courses (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param start             the lower bound of the range of courses
+	 * @param end               the upper bound of the range of courses (not
+	 *                          inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally
+	 *                          <code>null</code>)
+	 * @param useFinderCache    whether to use the finder cache
 	 * @return the ordered range of courses
 	 */
 	@Override
-	public List<Course> findAll(
-		int start, int end, OrderByComparator<Course> orderByComparator,
-		boolean useFinderCache) {
+	public List<Course> findAll(int start, int end, OrderByComparator<Course> orderByComparator,
+			boolean useFinderCache) {
 
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-			(orderByComparator == null)) {
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) && (orderByComparator == null)) {
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
 				finderArgs = FINDER_ARGS_EMPTY;
 			}
-		}
-		else if (useFinderCache) {
+		} else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] {start, end, orderByComparator};
+			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
 		List<Course> list = null;
 
 		if (useFinderCache) {
-			list = (List<Course>)finderCache.getResult(
-				finderPath, finderArgs, this);
+			list = (List<Course>) finderCache.getResult(finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -1025,17 +1019,14 @@ public class CoursePersistenceImpl
 			String sql = null;
 
 			if (orderByComparator != null) {
-				sb = new StringBundler(
-					2 + (orderByComparator.getOrderByFields().length * 2));
+				sb = new StringBundler(2 + (orderByComparator.getOrderByFields().length * 2));
 
 				sb.append(_SQL_SELECT_COURSE);
 
-				appendOrderByComparator(
-					sb, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
+				appendOrderByComparator(sb, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = sb.toString();
-			}
-			else {
+			} else {
 				sql = _SQL_SELECT_COURSE;
 
 				sql = sql.concat(CourseModelImpl.ORDER_BY_JPQL);
@@ -1048,23 +1039,20 @@ public class CoursePersistenceImpl
 
 				Query query = session.createQuery(sql);
 
-				list = (List<Course>)QueryUtil.list(
-					query, getDialect(), start, end);
+				list = (List<Course>) QueryUtil.list(query, getDialect(), start, end);
 
 				cacheResult(list);
 
 				if (useFinderCache) {
 					finderCache.putResult(finderPath, finderArgs, list);
 				}
-			}
-			catch (Exception exception) {
+			} catch (Exception exception) {
 				if (useFinderCache) {
 					finderCache.removeResult(finderPath, finderArgs);
 				}
 
 				throw processException(exception);
-			}
-			finally {
+			} finally {
 				closeSession(session);
 			}
 		}
@@ -1090,8 +1078,7 @@ public class CoursePersistenceImpl
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(
-			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
+		Long count = (Long) finderCache.getResult(_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1101,18 +1088,14 @@ public class CoursePersistenceImpl
 
 				Query query = session.createQuery(_SQL_COUNT_COURSE);
 
-				count = (Long)query.uniqueResult();
+				count = (Long) query.uniqueResult();
 
-				finderCache.putResult(
-					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
-			}
-			catch (Exception exception) {
-				finderCache.removeResult(
-					_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY, count);
+			} catch (Exception exception) {
+				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(exception);
-			}
-			finally {
+			} finally {
 				closeSession(session);
 			}
 		}
@@ -1148,39 +1131,27 @@ public class CoursePersistenceImpl
 		CourseModelImpl.setEntityCacheEnabled(entityCacheEnabled);
 		CourseModelImpl.setFinderCacheEnabled(finderCacheEnabled);
 
-		_finderPathWithPaginationFindAll = new FinderPath(
-			entityCacheEnabled, finderCacheEnabled, CourseImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(entityCacheEnabled, finderCacheEnabled, CourseImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(
-			entityCacheEnabled, finderCacheEnabled, CourseImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-			new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(entityCacheEnabled, finderCacheEnabled, CourseImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
 
-		_finderPathCountAll = new FinderPath(
-			entityCacheEnabled, finderCacheEnabled, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-			new String[0]);
+		_finderPathCountAll = new FinderPath(entityCacheEnabled, finderCacheEnabled, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 
-		_finderPathWithPaginationFindByGroupId = new FinderPath(
-			entityCacheEnabled, finderCacheEnabled, CourseImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Integer.class.getName(), OrderByComparator.class.getName()
-			});
+		_finderPathWithPaginationFindByGroupId = new FinderPath(entityCacheEnabled, finderCacheEnabled,
+				CourseImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
+				new String[] { Long.class.getName(), Integer.class.getName(), Integer.class.getName(),
+						OrderByComparator.class.getName() });
 
-		_finderPathWithoutPaginationFindByGroupId = new FinderPath(
-			entityCacheEnabled, finderCacheEnabled, CourseImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
-			new String[] {Long.class.getName()},
-			CourseModelImpl.GROUPID_COLUMN_BITMASK |
-			CourseModelImpl.COURSENAME_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByGroupId = new FinderPath(entityCacheEnabled, finderCacheEnabled,
+				CourseImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
+				new String[] { Long.class.getName() },
+				CourseModelImpl.GROUPID_COLUMN_BITMASK | CourseModelImpl.COURSENAME_COLUMN_BITMASK);
 
-		_finderPathCountByGroupId = new FinderPath(
-			entityCacheEnabled, finderCacheEnabled, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
-			new String[] {Long.class.getName()});
+		_finderPathCountByGroupId = new FinderPath(entityCacheEnabled, finderCacheEnabled, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId", new String[] { Long.class.getName() });
 	}
 
 	@Deactivate
@@ -1192,33 +1163,24 @@ public class CoursePersistenceImpl
 	}
 
 	@Override
-	@Reference(
-		target = CourseManagementPersistenceConstants.SERVICE_CONFIGURATION_FILTER,
-		unbind = "-"
-	)
+	@Reference(target = CourseManagementPersistenceConstants.SERVICE_CONFIGURATION_FILTER, unbind = "-")
 	public void setConfiguration(Configuration configuration) {
 		super.setConfiguration(configuration);
 
 		_columnBitmaskEnabled = GetterUtil.getBoolean(
-			configuration.get(
-				"value.object.column.bitmask.enabled.com.liferay.practice.course.management.model.Course"),
-			true);
+				configuration
+						.get("value.object.column.bitmask.enabled.com.liferay.practice.course.management.model.Course"),
+				true);
 	}
 
 	@Override
-	@Reference(
-		target = CourseManagementPersistenceConstants.ORIGIN_BUNDLE_SYMBOLIC_NAME_FILTER,
-		unbind = "-"
-	)
+	@Reference(target = CourseManagementPersistenceConstants.ORIGIN_BUNDLE_SYMBOLIC_NAME_FILTER, unbind = "-")
 	public void setDataSource(DataSource dataSource) {
 		super.setDataSource(dataSource);
 	}
 
 	@Override
-	@Reference(
-		target = CourseManagementPersistenceConstants.ORIGIN_BUNDLE_SYMBOLIC_NAME_FILTER,
-		unbind = "-"
-	)
+	@Reference(target = CourseManagementPersistenceConstants.ORIGIN_BUNDLE_SYMBOLIC_NAME_FILTER, unbind = "-")
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		super.setSessionFactory(sessionFactory);
 	}
@@ -1231,34 +1193,26 @@ public class CoursePersistenceImpl
 	@Reference
 	protected FinderCache finderCache;
 
-	private static final String _SQL_SELECT_COURSE =
-		"SELECT course FROM Course course";
+	private static final String _SQL_SELECT_COURSE = "SELECT course FROM Course course";
 
-	private static final String _SQL_SELECT_COURSE_WHERE =
-		"SELECT course FROM Course course WHERE ";
+	private static final String _SQL_SELECT_COURSE_WHERE = "SELECT course FROM Course course WHERE ";
 
-	private static final String _SQL_COUNT_COURSE =
-		"SELECT COUNT(course) FROM Course course";
+	private static final String _SQL_COUNT_COURSE = "SELECT COUNT(course) FROM Course course";
 
-	private static final String _SQL_COUNT_COURSE_WHERE =
-		"SELECT COUNT(course) FROM Course course WHERE ";
+	private static final String _SQL_COUNT_COURSE_WHERE = "SELECT COUNT(course) FROM Course course WHERE ";
 
 	private static final String _ORDER_BY_ENTITY_ALIAS = "course.";
 
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
-		"No Course exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Course exists with the primary key ";
 
-	private static final String _NO_SUCH_ENTITY_WITH_KEY =
-		"No Course exists with the key {";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Course exists with the key {";
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		CoursePersistenceImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(CoursePersistenceImpl.class);
 
 	static {
 		try {
 			Class.forName(CourseManagementPersistenceConstants.class.getName());
-		}
-		catch (ClassNotFoundException classNotFoundException) {
+		} catch (ClassNotFoundException classNotFoundException) {
 			throw new ExceptionInInitializerError(classNotFoundException);
 		}
 	}

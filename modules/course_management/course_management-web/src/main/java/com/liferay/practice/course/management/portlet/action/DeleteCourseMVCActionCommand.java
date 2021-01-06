@@ -16,10 +16,8 @@ import javax.portlet.ActionResponse;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(immediate = true, property = { 
-		"javax.portlet.name=" + CourseManagementMVCPortletKeys.COURSEMANAGEMENTMVC,
-		"mvc.command.name=" + MVCCommandNames.DELETE_COURSE }, 
-service = MVCActionCommand.class)
+@Component(immediate = true, property = { "javax.portlet.name=" + CourseManagementMVCPortletKeys.COURSEMANAGEMENTMVC,
+		"mvc.command.name=" + MVCCommandNames.DELETE_COURSE }, service = MVCActionCommand.class)
 public class DeleteCourseMVCActionCommand extends BaseMVCActionCommand {
 
 	@Override

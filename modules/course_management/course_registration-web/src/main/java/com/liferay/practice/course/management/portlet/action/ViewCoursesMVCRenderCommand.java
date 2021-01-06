@@ -23,19 +23,19 @@ import javax.portlet.RenderResponse;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(immediate = true, property = { "javax.portlet.name=" + CourseRegistrationMVCPortletKeys.COURSEREGISTRATIONMVC,
-		"mvc.command.name=/", "mvc.command.name=" + MVCCommandNames.VIEW_COURSES }, service = MVCRenderCommand.class)
+@Component(immediate = true, property = {
+		"javax.portlet.name=" + CourseRegistrationMVCPortletKeys.COURSEREGISTRATIONMVC, "mvc.command.name=/",
+		"mvc.command.name=" + MVCCommandNames.VIEW_COURSES }, service = MVCRenderCommand.class)
 public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
-		
+
 		addCourseListAttributes(renderRequest);
 
 		return "/view.jsp";
 	}
 
-	
 	private void addCourseListAttributes(RenderRequest renderRequest) {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay) renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
@@ -52,7 +52,6 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 		String orderByCol = ParamUtil.getString(renderRequest, "orderByCol", "courseName");
 		String orderByType = ParamUtil.getString(renderRequest, "orderByType", "asc");
 
-
 		OrderByComparator<Course> comparator = OrderByComparatorFactoryUtil.create("Course", orderByCol,
 				!("asc").equals(orderByType));
 
@@ -60,12 +59,12 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 
 		List<Course> courses = _courseService.getCoursesByKeywords(themeDisplay.getScopeGroupId(), keywords, start, end,
 				comparator);
-		
+
 		List<Course> visibleCourses = new ArrayList<>();
 
 		for (Course course : courses) {
 
-			if(course.getCourseStatus() == 1) {
+			if (course.getCourseStatus() == 1) {
 
 				visibleCourses.add(course);
 			}

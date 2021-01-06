@@ -30,7 +30,7 @@ import com.liferay.practice.course.management.validator.CourseValidator;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;	
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -88,7 +88,17 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 
 		return super.addCourse(course);
 	}
-	
+
+	@Override
+	public Course updateCourseStatus(long courseId, int status) throws PortalException {
+
+		Course course = getCourse(courseId);
+		course.setModifiedDate(new Date());
+		course.setCourseStatus(status);
+		course = super.updateCourse(course);
+
+		return course;
+	}
 
 	public Course updateCourse(long courseId, Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
 			Map<Locale, String> lecturerMap, Long duration, int courseStatus, ServiceContext serviceContext)
@@ -136,20 +146,19 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 		return courseLocalService.dynamicQueryCount(getKeywordSearchDynamicQuery(groupId, keywords));
 	}
 
-
 	@Override
 	public List<Long> getListCourseByUserId(long userId) {
-		
+
 		List<Long> courses = new ArrayList<>();
 		List<Course> allCourse = coursePersistence.findAll();
-		
+
 		for (Course course : allCourse) {
-			
-			if(course.getUserId() == userId) {
+
+			if (course.getUserId() == userId) {
 				courses.add(course.getCourseId());
 			}
 		}
-		
+
 		return courses;
 	}
 
@@ -180,4 +189,5 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 
 	@Reference
 	CourseValidator _courseValidator;
+
 }

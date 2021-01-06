@@ -5,7 +5,6 @@ package com.liferay.practice.course.management.registration.portlet.constants;
  */
 public class CourseRegistrationMVCPortletKeys {
 
-	public static final String COURSEREGISTRATIONMVC =
-		"com_liferay_practice_course_management_registration_portlet_CourseRegistrationMVCPortlet";
+	public static final String COURSEREGISTRATIONMVC = "com_liferay_practice_course_management_registration_portlet_CourseRegistrationMVCPortlet";
 
 }

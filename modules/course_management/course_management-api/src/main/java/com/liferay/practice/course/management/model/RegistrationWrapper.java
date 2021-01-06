@@ -30,9 +30,8 @@ import java.util.Map;
  * @see Registration
  * @generated
  */
-public class RegistrationWrapper
-	extends BaseModelWrapper<Registration>
-	implements ModelWrapper<Registration>, Registration {
+public class RegistrationWrapper extends BaseModelWrapper<Registration>
+		implements ModelWrapper<Registration>, Registration {
 
 	public RegistrationWrapper(Registration registration) {
 		super(registration);
@@ -57,56 +56,55 @@ public class RegistrationWrapper
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long registrationId = (Long)attributes.get("registrationId");
+		Long registrationId = (Long) attributes.get("registrationId");
 
 		if (registrationId != null) {
 			setRegistrationId(registrationId);
 		}
 
-		Long groupId = (Long)attributes.get("groupId");
+		Long groupId = (Long) attributes.get("groupId");
 
 		if (groupId != null) {
 			setGroupId(groupId);
 		}
 
-		Long companyId = (Long)attributes.get("companyId");
+		Long companyId = (Long) attributes.get("companyId");
 
 		if (companyId != null) {
 			setCompanyId(companyId);
 		}
 
-		Long userId = (Long)attributes.get("userId");
+		Long userId = (Long) attributes.get("userId");
 
 		if (userId != null) {
 			setUserId(userId);
 		}
 
-		String userName = (String)attributes.get("userName");
+		String userName = (String) attributes.get("userName");
 
 		if (userName != null) {
 			setUserName(userName);
 		}
 
-		Date createDate = (Date)attributes.get("createDate");
+		Date createDate = (Date) attributes.get("createDate");
 
 		if (createDate != null) {
 			setCreateDate(createDate);
 		}
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+		Date modifiedDate = (Date) attributes.get("modifiedDate");
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
 		}
 
-		Long courseId = (Long)attributes.get("courseId");
+		Long courseId = (Long) attributes.get("courseId");
 
 		if (courseId != null) {
 			setCourseId(courseId);
 		}
 
-		Integer registrationStatus = (Integer)attributes.get(
-			"registrationStatus");
+		Integer registrationStatus = (Integer) attributes.get("registrationStatus");
 
 		if (registrationStatus != null) {
 			setRegistrationStatus(registrationStatus);

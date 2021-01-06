@@ -20,11 +20,11 @@ import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * Provides the remote service utility for Registration. This utility wraps
- * <code>com.liferay.practice.course.management.service.impl.RegistrationServiceImpl</code> and is an
- * access point for service operations in application layer code running on a
- * remote server. Methods of this service are expected to have security checks
- * based on the propagated JAAS credentials because this service can be
- * accessed remotely.
+ * <code>com.liferay.practice.course.management.service.impl.RegistrationServiceImpl</code>
+ * and is an access point for service operations in application layer code
+ * running on a remote server. Methods of this service are expected to have
+ * security checks based on the propagated JAAS credentials because this service
+ * can be accessed remotely.
  *
  * @author Brian Wing Shun Chan
  * @see RegistrationService
@@ -35,24 +35,23 @@ public class RegistrationServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to <code>com.liferay.practice.course.management.service.impl.RegistrationServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to
+	 * <code>com.liferay.practice.course.management.service.impl.
+	 * RegistrationServiceImpl</code> and rerun ServiceBuilder to regenerate this
+	 * class.
 	 */
-	public static com.liferay.practice.course.management.model.Registration
-			deleteRegistration(long registrationId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static com.liferay.practice.course.management.model.Registration deleteRegistration(long registrationId)
+			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().deleteRegistration(registrationId);
 	}
 
-	public static java.util.List<Long> getListRegisteredCourseByUserId(
-		long userId) {
+	public static java.util.List<Long> getListRegisteredCourseByUserId(long userId) {
 
 		return getService().getListRegisteredCourseByUserId(userId);
 	}
 
-	public static java.util.List
-		<com.liferay.practice.course.management.model.Registration>
-			getListRegistration() {
+	public static java.util.List<com.liferay.practice.course.management.model.Registration> getListRegistration() {
 
 		return getService().getListRegistration();
 	}
@@ -66,19 +65,15 @@ public class RegistrationServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static com.liferay.practice.course.management.model.Registration
-			registerCourse(
-				long groupId, long courseId, int registerStatus,
-				com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static com.liferay.practice.course.management.model.Registration registerCourse(long groupId, long courseId,
+			int registerStatus, com.liferay.portal.kernel.service.ServiceContext serviceContext)
+			throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().registerCourse(
-			groupId, courseId, registerStatus, serviceContext);
+		return getService().registerCourse(groupId, courseId, registerStatus, serviceContext);
 	}
 
-	public static com.liferay.practice.course.management.model.Registration
-			updateRegistrationStatus(long registrationId, int status)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static com.liferay.practice.course.management.model.Registration updateRegistrationStatus(
+			long registrationId, int status) throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().updateRegistrationStatus(registrationId, status);
 	}
@@ -87,16 +82,13 @@ public class RegistrationServiceUtil {
 		return _serviceTracker.getService();
 	}
 
-	private static ServiceTracker<RegistrationService, RegistrationService>
-		_serviceTracker;
+	private static ServiceTracker<RegistrationService, RegistrationService> _serviceTracker;
 
 	static {
 		Bundle bundle = FrameworkUtil.getBundle(RegistrationService.class);
 
-		ServiceTracker<RegistrationService, RegistrationService>
-			serviceTracker =
-				new ServiceTracker<RegistrationService, RegistrationService>(
-					bundle.getBundleContext(), RegistrationService.class, null);
+		ServiceTracker<RegistrationService, RegistrationService> serviceTracker = new ServiceTracker<RegistrationService, RegistrationService>(
+				bundle.getBundleContext(), RegistrationService.class, null);
 
 		serviceTracker.open();
 

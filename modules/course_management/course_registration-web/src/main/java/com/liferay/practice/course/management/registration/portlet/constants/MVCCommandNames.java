@@ -1,7 +1,7 @@
 package com.liferay.practice.course.management.registration.portlet.constants;
 
 public class MVCCommandNames {
-	
+
 	public static final String REGISTER_COURSE = "/course_management/course/register";
 	public static final String CANCEL_REGISTER_COURSE = "/course_management/course/cancel-register";
 	public static final String VIEW_REGISTERED_COURSE = "/course_management/courses/view-registered";

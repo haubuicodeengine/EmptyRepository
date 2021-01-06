@@ -32,8 +32,7 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class RegistrationCacheModel
-	implements CacheModel<Registration>, Externalizable {
+public class RegistrationCacheModel implements CacheModel<Registration>, Externalizable {
 
 	@Override
 	public boolean equals(Object obj) {
@@ -45,8 +44,7 @@ public class RegistrationCacheModel
 			return false;
 		}
 
-		RegistrationCacheModel registrationCacheModel =
-			(RegistrationCacheModel)obj;
+		RegistrationCacheModel registrationCacheModel = (RegistrationCacheModel) obj;
 
 		if (registrationId == registrationCacheModel.registrationId) {
 			return true;
@@ -98,22 +96,19 @@ public class RegistrationCacheModel
 
 		if (userName == null) {
 			registrationImpl.setUserName("");
-		}
-		else {
+		} else {
 			registrationImpl.setUserName(userName);
 		}
 
 		if (createDate == Long.MIN_VALUE) {
 			registrationImpl.setCreateDate(null);
-		}
-		else {
+		} else {
 			registrationImpl.setCreateDate(new Date(createDate));
 		}
 
 		if (modifiedDate == Long.MIN_VALUE) {
 			registrationImpl.setModifiedDate(null);
-		}
-		else {
+		} else {
 			registrationImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
@@ -155,8 +150,7 @@ public class RegistrationCacheModel
 
 		if (userName == null) {
 			objectOutput.writeUTF("");
-		}
-		else {
+		} else {
 			objectOutput.writeUTF(userName);
 		}
 

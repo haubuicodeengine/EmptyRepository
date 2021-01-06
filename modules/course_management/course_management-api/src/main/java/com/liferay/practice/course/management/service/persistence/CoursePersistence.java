@@ -24,7 +24,8 @@ import org.osgi.annotation.versioning.ProviderType;
  * The persistence interface for the course service.
  *
  * <p>
- * Caching information and settings can be found in <code>portal.properties</code>
+ * Caching information and settings can be found in
+ * <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -37,7 +38,9 @@ public interface CoursePersistence extends BasePersistence<Course> {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link CourseUtil} to access the course persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 * Never modify or reference this interface directly. Always use {@link
+	 * CourseUtil} to access the course persistence. Modify <code>service.xml</code>
+	 * and rerun ServiceBuilder to regenerate this interface.
 	 */
 
 	/**
@@ -52,121 +55,139 @@ public interface CoursePersistence extends BasePersistence<Course> {
 	 * Returns a range of all the courses where groupId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>QueryUtil#ALL_POS</code> will return the full result set. If
+	 * <code>orderByComparator</code> is specified, then the query will include the
+	 * given ORDER BY logic. If <code>orderByComparator</code> is absent, then the
+	 * query will include the default ORDER BY logic from
+	 * <code>CourseModelImpl</code>.
 	 * </p>
 	 *
 	 * @param groupId the group ID
-	 * @param start the lower bound of the range of courses
-	 * @param end the upper bound of the range of courses (not inclusive)
+	 * @param start   the lower bound of the range of courses
+	 * @param end     the upper bound of the range of courses (not inclusive)
 	 * @return the range of matching courses
 	 */
-	public java.util.List<Course> findByGroupId(
-		long groupId, int start, int end);
+	public java.util.List<Course> findByGroupId(long groupId, int start, int end);
 
 	/**
 	 * Returns an ordered range of all the courses where groupId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>QueryUtil#ALL_POS</code> will return the full result set. If
+	 * <code>orderByComparator</code> is specified, then the query will include the
+	 * given ORDER BY logic. If <code>orderByComparator</code> is absent, then the
+	 * query will include the default ORDER BY logic from
+	 * <code>CourseModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
-	 * @param start the lower bound of the range of courses
-	 * @param end the upper bound of the range of courses (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param groupId           the group ID
+	 * @param start             the lower bound of the range of courses
+	 * @param end               the upper bound of the range of courses (not
+	 *                          inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally
+	 *                          <code>null</code>)
 	 * @return the ordered range of matching courses
 	 */
-	public java.util.List<Course> findByGroupId(
-		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Course>
-			orderByComparator);
+	public java.util.List<Course> findByGroupId(long groupId, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator<Course> orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the courses where groupId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>QueryUtil#ALL_POS</code> will return the full result set. If
+	 * <code>orderByComparator</code> is specified, then the query will include the
+	 * given ORDER BY logic. If <code>orderByComparator</code> is absent, then the
+	 * query will include the default ORDER BY logic from
+	 * <code>CourseModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
-	 * @param start the lower bound of the range of courses
-	 * @param end the upper bound of the range of courses (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param groupId           the group ID
+	 * @param start             the lower bound of the range of courses
+	 * @param end               the upper bound of the range of courses (not
+	 *                          inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally
+	 *                          <code>null</code>)
+	 * @param useFinderCache    whether to use the finder cache
 	 * @return the ordered range of matching courses
 	 */
-	public java.util.List<Course> findByGroupId(
-		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Course>
-			orderByComparator,
-		boolean useFinderCache);
+	public java.util.List<Course> findByGroupId(long groupId, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator<Course> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns the first course in the ordered set where groupId = &#63;.
 	 *
-	 * @param groupId the group ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @param groupId           the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally
+	 *                          <code>null</code>)
 	 * @return the first matching course
 	 * @throws NoSuchCourseException if a matching course could not be found
 	 */
-	public Course findByGroupId_First(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<Course>
-				orderByComparator)
-		throws NoSuchCourseException;
+	public Course findByGroupId_First(long groupId,
+			com.liferay.portal.kernel.util.OrderByComparator<Course> orderByComparator) throws NoSuchCourseException;
 
 	/**
 	 * Returns the first course in the ordered set where groupId = &#63;.
 	 *
-	 * @param groupId the group ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching course, or <code>null</code> if a matching course could not be found
+	 * @param groupId           the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally
+	 *                          <code>null</code>)
+	 * @return the first matching course, or <code>null</code> if a matching course
+	 *         could not be found
 	 */
-	public Course fetchByGroupId_First(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<Course>
-			orderByComparator);
+	public Course fetchByGroupId_First(long groupId,
+			com.liferay.portal.kernel.util.OrderByComparator<Course> orderByComparator);
 
 	/**
 	 * Returns the last course in the ordered set where groupId = &#63;.
 	 *
-	 * @param groupId the group ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @param groupId           the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally
+	 *                          <code>null</code>)
 	 * @return the last matching course
 	 * @throws NoSuchCourseException if a matching course could not be found
 	 */
-	public Course findByGroupId_Last(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<Course>
-				orderByComparator)
-		throws NoSuchCourseException;
+	public Course findByGroupId_Last(long groupId,
+			com.liferay.portal.kernel.util.OrderByComparator<Course> orderByComparator) throws NoSuchCourseException;
 
 	/**
 	 * Returns the last course in the ordered set where groupId = &#63;.
 	 *
-	 * @param groupId the group ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching course, or <code>null</code> if a matching course could not be found
+	 * @param groupId           the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally
+	 *                          <code>null</code>)
+	 * @return the last matching course, or <code>null</code> if a matching course
+	 *         could not be found
 	 */
-	public Course fetchByGroupId_Last(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<Course>
-			orderByComparator);
+	public Course fetchByGroupId_Last(long groupId,
+			com.liferay.portal.kernel.util.OrderByComparator<Course> orderByComparator);
 
 	/**
-	 * Returns the courses before and after the current course in the ordered set where groupId = &#63;.
+	 * Returns the courses before and after the current course in the ordered set
+	 * where groupId = &#63;.
 	 *
-	 * @param courseId the primary key of the current course
-	 * @param groupId the group ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @param courseId          the primary key of the current course
+	 * @param groupId           the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally
+	 *                          <code>null</code>)
 	 * @return the previous, current, and next course
-	 * @throws NoSuchCourseException if a course with the primary key could not be found
+	 * @throws NoSuchCourseException if a course with the primary key could not be
+	 *                               found
 	 */
-	public Course[] findByGroupId_PrevAndNext(
-			long courseId, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<Course>
-				orderByComparator)
-		throws NoSuchCourseException;
+	public Course[] findByGroupId_PrevAndNext(long courseId, long groupId,
+			com.liferay.portal.kernel.util.OrderByComparator<Course> orderByComparator) throws NoSuchCourseException;
 
 	/**
 	 * Removes all the courses where groupId = &#63; from the database.
@@ -198,7 +219,8 @@ public interface CoursePersistence extends BasePersistence<Course> {
 	public void cacheResult(java.util.List<Course> courses);
 
 	/**
-	 * Creates a new course with the primary key. Does not add the course to the database.
+	 * Creates a new course with the primary key. Does not add the course to the
+	 * database.
 	 *
 	 * @param courseId the primary key for the new course
 	 * @return the new course
@@ -206,30 +228,36 @@ public interface CoursePersistence extends BasePersistence<Course> {
 	public Course create(long courseId);
 
 	/**
-	 * Removes the course with the primary key from the database. Also notifies the appropriate model listeners.
+	 * Removes the course with the primary key from the database. Also notifies the
+	 * appropriate model listeners.
 	 *
 	 * @param courseId the primary key of the course
 	 * @return the course that was removed
-	 * @throws NoSuchCourseException if a course with the primary key could not be found
+	 * @throws NoSuchCourseException if a course with the primary key could not be
+	 *                               found
 	 */
 	public Course remove(long courseId) throws NoSuchCourseException;
 
 	public Course updateImpl(Course course);
 
 	/**
-	 * Returns the course with the primary key or throws a <code>NoSuchCourseException</code> if it could not be found.
+	 * Returns the course with the primary key or throws a
+	 * <code>NoSuchCourseException</code> if it could not be found.
 	 *
 	 * @param courseId the primary key of the course
 	 * @return the course
-	 * @throws NoSuchCourseException if a course with the primary key could not be found
+	 * @throws NoSuchCourseException if a course with the primary key could not be
+	 *                               found
 	 */
 	public Course findByPrimaryKey(long courseId) throws NoSuchCourseException;
 
 	/**
-	 * Returns the course with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the course with the primary key or returns <code>null</code> if it
+	 * could not be found.
 	 *
 	 * @param courseId the primary key of the course
-	 * @return the course, or <code>null</code> if a course with the primary key could not be found
+	 * @return the course, or <code>null</code> if a course with the primary key
+	 *         could not be found
 	 */
 	public Course fetchByPrimaryKey(long courseId);
 
@@ -244,11 +272,19 @@ public interface CoursePersistence extends BasePersistence<Course> {
 	 * Returns a range of all the courses.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>QueryUtil#ALL_POS</code> will return the full result set. If
+	 * <code>orderByComparator</code> is specified, then the query will include the
+	 * given ORDER BY logic. If <code>orderByComparator</code> is absent, then the
+	 * query will include the default ORDER BY logic from
+	 * <code>CourseModelImpl</code>.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of courses
-	 * @param end the upper bound of the range of courses (not inclusive)
+	 * @param end   the upper bound of the range of courses (not inclusive)
 	 * @return the range of courses
 	 */
 	public java.util.List<Course> findAll(int start, int end);
@@ -257,37 +293,52 @@ public interface CoursePersistence extends BasePersistence<Course> {
 	 * Returns an ordered range of all the courses.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>QueryUtil#ALL_POS</code> will return the full result set. If
+	 * <code>orderByComparator</code> is specified, then the query will include the
+	 * given ORDER BY logic. If <code>orderByComparator</code> is absent, then the
+	 * query will include the default ORDER BY logic from
+	 * <code>CourseModelImpl</code>.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of courses
-	 * @param end the upper bound of the range of courses (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param start             the lower bound of the range of courses
+	 * @param end               the upper bound of the range of courses (not
+	 *                          inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally
+	 *                          <code>null</code>)
 	 * @return the ordered range of courses
 	 */
-	public java.util.List<Course> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Course>
-			orderByComparator);
+	public java.util.List<Course> findAll(int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator<Course> orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the courses.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>CourseModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code>
+	 * instances. <code>start</code> and <code>end</code> are not primary keys, they
+	 * are indexes in the result set. Thus, <code>0</code> refers to the first
+	 * result in the set. Setting both <code>start</code> and <code>end</code> to
+	 * <code>QueryUtil#ALL_POS</code> will return the full result set. If
+	 * <code>orderByComparator</code> is specified, then the query will include the
+	 * given ORDER BY logic. If <code>orderByComparator</code> is absent, then the
+	 * query will include the default ORDER BY logic from
+	 * <code>CourseModelImpl</code>.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of courses
-	 * @param end the upper bound of the range of courses (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param start             the lower bound of the range of courses
+	 * @param end               the upper bound of the range of courses (not
+	 *                          inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally
+	 *                          <code>null</code>)
+	 * @param useFinderCache    whether to use the finder cache
 	 * @return the ordered range of courses
 	 */
-	public java.util.List<Course> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Course>
-			orderByComparator,
-		boolean useFinderCache);
+	public java.util.List<Course> findAll(int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator<Course> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Removes all the courses from the database.
