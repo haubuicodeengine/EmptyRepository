@@ -26,6 +26,7 @@ public class CourseModelListener extends BaseModelListener<Registration> {
 
 		List<Registration> registrations = _registrationService.getListRegistration();
 		int count = 0;
+
 		for (Registration registration : registrations) {
 
 			if (registration.getCourseId() == model.getCourseId()) {
@@ -37,7 +38,6 @@ public class CourseModelListener extends BaseModelListener<Registration> {
 		if (count <= 20) {
 
 			try {
-				long abc = model.getCourseId();
 				_courseService.updateCourseStatus(model.getCourseId(), 2);
 			} catch (PortalException e) {
 				// TODO Auto-generated catch block

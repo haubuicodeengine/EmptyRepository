@@ -95,6 +95,7 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 	}
 
 	@Override
+
 	public List<Registration> getListRegistration() {
 
 		return registrationPersistence.findAll();

@@ -6,9 +6,8 @@
  </liferay-ui:error>
  
  <liferay-ui:error key="alreadyRegistered" message="course-already-registered" />
- <liferay-ui:error key="fullRegistered" message="course-already-registered" />
+ <liferay-ui:error key="fullRegistered" message="course-full-registered" />
  
-
 <div class="container-fluid-1280">
 
 <liferay-ui:icon-menu markupView="lexicon">

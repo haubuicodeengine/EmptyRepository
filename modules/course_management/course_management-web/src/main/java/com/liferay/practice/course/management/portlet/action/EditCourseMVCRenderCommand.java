@@ -34,6 +34,7 @@ public class EditCourseMVCRenderCommand implements MVCRenderCommand {
 
 				course = _courseService.getCourse(courseId);
 			} catch (NoSuchCourseException nsae) {
+				// TODO Error page
 				nsae.printStackTrace();
 			} catch (PortalException pe) {
 				pe.printStackTrace();

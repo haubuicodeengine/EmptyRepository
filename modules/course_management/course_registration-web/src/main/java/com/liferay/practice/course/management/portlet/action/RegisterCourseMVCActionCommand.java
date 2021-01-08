@@ -10,7 +10,8 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.practice.course.management.exception.RegistrationValidatorException;
+import com.liferay.practice.course.management.exception.CourseAlreadyRegisteredException;
+import com.liferay.practice.course.management.exception.CourseFullRegisteredException;
 import com.liferay.practice.course.management.model.Registration;
 import com.liferay.practice.course.management.registration.portlet.constants.CourseRegistrationMVCPortletKeys;
 import com.liferay.practice.course.management.registration.portlet.constants.MVCCommandNames;
@@ -38,19 +39,19 @@ public class RegisterCourseMVCActionCommand extends BaseMVCActionCommand {
 		try {
 
 			_registrationService.registerCourse(themeDisplay.getCompanyGroupId(), courseId, 0, serviceContext);
-
 			SessionMessages.add(actionRequest, "RegistrationAdded");
 			sendRedirect(actionRequest, actionResponse);
-		} catch (RegistrationValidatorException ave) {
+		} catch (CourseAlreadyRegisteredException care) {
 
-			ave.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
+			SessionErrors.add(actionRequest, care.getMessage());
 			actionResponse.setRenderParameter("mvcRenderCommandName", MVCCommandNames.VIEW_COURSES);
-			ave.printStackTrace();
+		}catch (CourseFullRegisteredException cfre) {
+
+			SessionErrors.add(actionRequest, cfre.getMessage());
+			actionResponse.setRenderParameter("mvcRenderCommandName", MVCCommandNames.VIEW_COURSES);
 		} catch (PortalException pe) {
 
 			SessionErrors.add(actionRequest, "serviceErrorDetails", pe);
-			pe.printStackTrace();
-
 			actionResponse.setRenderParameter("mvcRenderCommandName", MVCCommandNames.VIEW_COURSES);
 		}
 	}

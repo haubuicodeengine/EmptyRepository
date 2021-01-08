@@ -24,18 +24,24 @@ public class ResponseRegistrationMVCActionCommand extends BaseMVCActionCommand {
 
 		String responseType = ParamUtil.getString(actionRequest, "responseType");
 
-		int status = 0;
+		int status = _WAITING_APPROVAL;
 
-		if (responseType.contentEquals("reject")) {
+		if (responseType.contentEquals(_STATUS_CHOOSED)) {
 
-			status = 2;
+			status = _REJECT;
 		} else {
 
-			status = 1;
+			status = _APPROVE;
 		}
+
 		_registrationService.updateRegistrationStatus(registrationId, status);
 	}
 
 	@Reference
 	protected RegistrationService _registrationService;
+
+	private final int _WAITING_APPROVAL = 0;
+	private final int _APPROVE = 1;
+	private final int _REJECT = 2;
+	private final String _STATUS_CHOOSED = "reject";
 }

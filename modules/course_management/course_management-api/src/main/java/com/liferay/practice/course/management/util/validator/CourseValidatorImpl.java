@@ -3,11 +3,11 @@ package com.liferay.practice.course.management.util.validator;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.practice.course.management.exception.CourseValidationException;
+import com.liferay.practice.course.management.exception.DurationValueException;
+import com.liferay.practice.course.management.exception.StringLengthException;
+import com.liferay.practice.course.management.exception.StringNullException;
 import com.liferay.practice.course.management.validator.CourseValidator;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -17,121 +17,103 @@ import org.osgi.service.component.annotations.Component;
 public class CourseValidatorImpl implements CourseValidator {
 
 	public void validate(Map<Locale, String> courseNameMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> lecturerMap, Long duration) throws CourseValidationException {
+			Map<Locale, String> lecturerMap, Long duration)
+			throws StringNullException, StringLengthException, DurationValueException {
 
-		List<String> errors = new ArrayList<>();
-
-		if (!isCourseValid(courseNameMap, descriptionMap, lecturerMap, duration, errors)) {
-
-			throw new CourseValidationException(errors);
-		}
+		isCourseNameValid(courseNameMap);
+		isDescriptionValid(descriptionMap);
+		isLecturerValid(lecturerMap);
+		isDurationValid(duration);
 	}
 
-	private boolean isCourseValid(final Map<Locale, String> courseNameMap, final Map<Locale, String> descriptionMap,
-			final Map<Locale, String> lecturerMap, final Long duration, final List<String> errors) {
-
-		boolean result = true;
-
-		result &= isCourseNameValid(courseNameMap, errors);
-		result &= isDescriptionValid(descriptionMap, errors);
-		result &= isLecturerValid(lecturerMap, errors);
-		result &= isDurationValid(duration, errors);
-
-		return result;
-	}
-
-	private boolean isDurationValid(final Long duration, final List<String> errors) {
-
-		boolean result = true;
+	private void isDurationValid(final Long duration) throws DurationValueException {
 
 		if (duration == null) {
-			errors.add("courseDurationEmpty");
-			result = false;
+
+			throw new DurationValueException("courseDurationEmpty");
 		} else {
 
-			if (duration > 40) {
-				errors.add("courseDurationValueInvalid");
-				result = false;
+			if (duration > _DURATION_MAX_LENGHT) {
+
+				throw new DurationValueException("courseDurationValueInvalid");
 			}
 		}
 
-		return result;
 	}
 
-	private boolean isLecturerValid(final Map<Locale, String> lecturerMap, final List<String> errors) {
-
-		boolean result = true;
+	private void isLecturerValid(final Map<Locale, String> lecturerMap)
+			throws StringNullException, StringLengthException {
 
 		if (MapUtil.isEmpty(lecturerMap)) {
-			errors.add("courseLecturerEmpty");
-			result = false;
+
+			throw new StringNullException("courseLecturerEmpty");
 		} else {
 
 			Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 			if ((Validator.isBlank(lecturerMap.get(defaultLocale)))) {
-				errors.add("courseLecturerEmpty");
-				result = false;
+
+				throw new StringNullException("courseLecturerEmpty");
 			} else {
-				if (lecturerMap.get(defaultLocale).length() > 75) {
-					errors.add("courseLecturerLengthInvalid");
-					result = false;
+
+				if (lecturerMap.get(defaultLocale).length() > _LECTURER_MAX_LENGHT) {
+
+					throw new StringLengthException("courseLecturerLengthInvalid");
 				}
 			}
 		}
-
-		return result;
-
 	}
 
-	private boolean isDescriptionValid(final Map<Locale, String> descriptionMap, final List<String> errors) {
-
-		boolean result = true;
+	private void isDescriptionValid(final Map<Locale, String> descriptionMap)
+			throws StringNullException, StringLengthException {
 
 		if (MapUtil.isEmpty(descriptionMap)) {
-			errors.add("courseDescriptionEmpty");
-			result = false;
+
+			throw new StringNullException("courseDescriptionEmpty");
 		} else {
 
 			Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 			if ((Validator.isBlank(descriptionMap.get(defaultLocale)))) {
-				errors.add("courseDescriptionEmpty");
-				result = false;
+
+				throw new StringNullException("courseDescriptionEmpty");
 			} else {
-				if (descriptionMap.get(defaultLocale).length() > 2000) {
-					errors.add("courseDescriptionLengthInvalid");
-					result = false;
+
+				if (descriptionMap.get(defaultLocale).length() > _DESCRIPTION_MAX_LENGHT) {
+
+					throw new StringLengthException("courseDescriptionLengthInvalid");
 				}
 			}
 		}
 
-		return result;
-
 	}
 
-	private boolean isCourseNameValid(final Map<Locale, String> courseNameMap, final List<String> errors) {
-
-		boolean result = true;
+	private void isCourseNameValid(final Map<Locale, String> courseNameMap)
+			throws StringNullException, StringLengthException {
 
 		if (MapUtil.isEmpty(courseNameMap)) {
-			errors.add("courseNameEmpty");
-			result = false;
+
+			throw new StringNullException("cousreNameEmpty");
+
 		} else {
 
 			Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 			if ((Validator.isBlank(courseNameMap.get(defaultLocale)))) {
-				errors.add("courseNameEmpty");
-				result = false;
+
+				throw new StringNullException("cousreNameEmpty");
 			} else {
-				if (courseNameMap.get(defaultLocale).length() > 20) {
-					errors.add("courseNameLengthInvalid");
-					result = false;
+
+				if (courseNameMap.get(defaultLocale).length() > _COURSE_NAME_MAX_LENGHT) {
+
+					throw new StringLengthException("courseNameLengthInvalid");
 				}
 			}
 		}
-
-		return result;
 	}
+
+	private final int _DURATION_MAX_LENGHT = 40;
+	private final int _COURSE_NAME_MAX_LENGHT = 20;
+	private final int _LECTURER_MAX_LENGHT = 75;
+	private final int _DESCRIPTION_MAX_LENGHT = 2000;
 }

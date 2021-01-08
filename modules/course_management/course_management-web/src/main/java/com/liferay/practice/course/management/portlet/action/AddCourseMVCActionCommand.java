@@ -11,7 +11,9 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.practice.course.management.exception.CourseValidationException;
+import com.liferay.practice.course.management.exception.DurationValueException;
+import com.liferay.practice.course.management.exception.StringLengthException;
+import com.liferay.practice.course.management.exception.StringNullException;
 import com.liferay.practice.course.management.model.Course;
 import com.liferay.practice.course.management.portlet.constants.CourseManagementMVCPortletKeys;
 import com.liferay.practice.course.management.portlet.constants.MVCCommandNames;
@@ -34,10 +36,13 @@ public class AddCourseMVCActionCommand extends BaseMVCActionCommand {
 	protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(Course.class.getName(), actionRequest);
+
 		Map<Locale, String> courseNameMap = LocalizationUtil.getLocalizationMap(actionRequest, "courseName");
 		Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(actionRequest, "description");
 		Map<Locale, String> lecturerMap = LocalizationUtil.getLocalizationMap(actionRequest, "lecturer");
+
 		String durationStr = ParamUtil.getString(actionRequest, "duration");
 		Long duration = Long.parseLong(durationStr);
 		String courseStatusStr = ParamUtil.getString(actionRequest, "courseStatus");
@@ -47,21 +52,22 @@ public class AddCourseMVCActionCommand extends BaseMVCActionCommand {
 
 			_courseService.addCourse(themeDisplay.getScopeGroupId(), courseNameMap, descriptionMap, lecturerMap,
 					duration, courseStatus, serviceContext);
-
 			SessionMessages.add(actionRequest, "courseAdded");
-
 			sendRedirect(actionRequest, actionResponse);
-		} catch (CourseValidationException ave) {
+		} catch (DurationValueException dve) {
 
-			ave.printStackTrace();
-			ave.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
+			SessionErrors.add(actionRequest, dve.getMessage());
 			actionResponse.setRenderParameter("mvcRenderCommandName", MVCCommandNames.EDIT_COURSE);
+		} catch (StringLengthException sle) {
 
+			SessionErrors.add(actionRequest, sle.getMessage());
+			actionResponse.setRenderParameter("mvcRenderCommandName", MVCCommandNames.EDIT_COURSE);
+		} catch (StringNullException sne) {
+
+			SessionErrors.add(actionRequest, sne.getMessage());
+			actionResponse.setRenderParameter("mvcRenderCommandName", MVCCommandNames.EDIT_COURSE);
 		} catch (PortalException pe) {
-
 			SessionErrors.add(actionRequest, "serviceErrorDetails", pe);
-			pe.printStackTrace();
-
 			actionResponse.setRenderParameter("mvcRenderCommandName", MVCCommandNames.EDIT_COURSE);
 		}
 	}

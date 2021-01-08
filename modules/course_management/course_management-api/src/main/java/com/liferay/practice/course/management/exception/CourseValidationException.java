@@ -2,24 +2,12 @@ package com.liferay.practice.course.management.exception;
 
 import com.liferay.portal.kernel.exception.PortalException;
 
-import java.util.List;
-
 public class CourseValidationException extends PortalException {
 
 	private static final long serialVersionUID = 1L;
 
-	public CourseValidationException(List<String> errors) {
-
-		super(String.join(",", errors));
-		_errors = errors;
-	}
-
-	public List<String> getErrors() {
-
-		return _errors;
-	}
-
 	public CourseValidationException() {
+
 	}
 
 	public CourseValidationException(String msg) {
@@ -33,6 +21,4 @@ public class CourseValidationException extends PortalException {
 	public CourseValidationException(Throwable cause) {
 		super(cause);
 	}
-
-	private List<String> _errors;
 }

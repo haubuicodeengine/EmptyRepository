@@ -1,30 +1,30 @@
 <%@ include file="../init.jsp"%>
 
-<liferay-ui:error key="serviceErrorDetails">
-	<liferay-ui:message key="error.course-service-error"
+<liferay-ui:error key="serviceErrorDetails"> 
+	<liferay-ui:message key="course-service-error"
 		arguments='<%=SessionErrors.get(liferayPortletRequest, "serviceErrorDetails")%>' />
 </liferay-ui:error>
-<liferay-ui:error key="courseNameEmpty"
-	message="error.course-name-empty" />
+<liferay-ui:error key="cousreNameEmpty"
+	message="course-name-empty" />
 
 <liferay-ui:error key="courseLecturerLengthInvalid"
-	message="error.course-lecturer-length-invalid" />
+	message="course-lecturer-length-invalid" />
 
 <liferay-ui:error key="courseNameLengthInvalid"
-	message="error.course-name-length-invalid" />
+	message="course-name-length-invalid" />
 
 <liferay-ui:error key="courseDescriptionLengthInvalid"
-	message="error.course-description-length-invalid" />
+	message="course-description-length-invalid" />
 
 <liferay-ui:error key="courseDurationValueInvalid"
-	message="error.course-duration-length-invalid" />
+	message="course-duration-length-invalid" />
 
 <liferay-ui:error key="courseDescriptionEmpty"
-	message="error.course-description-empty" />
+	message="course-description-empty" />
 <liferay-ui:error key="courseLecturerEmpty"
-	message="error.course-lecturer-empty" />
+	message="course-lecturer-empty" />
 <liferay-ui:error key="courseDurationEmpty"
-	message="error.course-duration-empty" />
+	message="course-duration-empty" />
 
 <c:choose>
 	<c:when test="${not empty course}">
@@ -62,8 +62,8 @@
 			<aui:fieldset>
 
 				<aui:input name="courseName">
-					<aui:validator name="required" />
-					<aui:validator name="rangeLength">[1,20]</aui:validator>
+					<%-- <aui:validator name="required" />
+					<aui:validator name="rangeLength">[1,20]</aui:validator> --%>
 				</aui:input>
 
 				<aui:input name="description">

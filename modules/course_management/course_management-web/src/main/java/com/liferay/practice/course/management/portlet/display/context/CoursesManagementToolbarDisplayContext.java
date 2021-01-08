@@ -40,8 +40,6 @@ public class CoursesManagementToolbarDisplayContext extends BaseManagementToolba
 
 	public CreationMenu getCreationMenu() {
 
-		// Create the menu.
-
 		return new CreationMenu() {
 			{
 				addDropdownItem(dropdownItem -> {
@@ -63,12 +61,13 @@ public class CoursesManagementToolbarDisplayContext extends BaseManagementToolba
 		String displayStyle = ParamUtil.getString(request, "displayStyle");
 
 		if (Validator.isNull(displayStyle)) {
+			
 			displayStyle = _portalPreferences.getValue(CourseManagementMVCPortletKeys.COURSEMANAGEMENTMVC,
 					"courses-display-style", "descriptive");
 		} else {
+			
 			_portalPreferences.setValue(CourseManagementMVCPortletKeys.COURSEMANAGEMENTMVC, "courses-display-style",
 					displayStyle);
-
 			request.setAttribute(WebKeys.SINGLE_PAGE_APPLICATION_CLEAR_CACHE, Boolean.TRUE);
 		}
 
@@ -103,6 +102,7 @@ public class CoursesManagementToolbarDisplayContext extends BaseManagementToolba
 
 	@Override
 	public List<ViewTypeItem> getViewTypeItems() {
+		
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter("mvcRenderCommandName", MVCCommandNames.VIEW_COURSES);

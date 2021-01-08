@@ -31,12 +31,8 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
-		// Add course list related attributes.
 
 		addCourseListAttributes(renderRequest);
-
-		// Add Clay management toolbar related attributes.
-
 		addManagementToolbarAttributes(renderRequest, renderResponse);
 
 		return "/view.jsp";
@@ -45,8 +41,6 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 	private void addCourseListAttributes(RenderRequest renderRequest) {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay) renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
-		// Resolve start and end for the search.
 
 		int currentPage = ParamUtil.getInteger(renderRequest, SearchContainer.DEFAULT_CUR_PARAM,
 				SearchContainer.DEFAULT_CUR);
@@ -57,35 +51,20 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 		int start = ((currentPage > 0) ? (currentPage - 1) : 0) * delta;
 		int end = start + delta;
 
-		// Get sorting options.
-		// Notice that this doesn't really sort on title because the field is
-		// stored in XML. In real world this search would be integrated to the
-		// search engine to get localized sort options.
-
 		String orderByCol = ParamUtil.getString(renderRequest, "orderByCol", "courseName");
 		String orderByType = ParamUtil.getString(renderRequest, "orderByType", "asc");
-
-		// Create comparator
 
 		OrderByComparator<Course> comparator = OrderByComparatorFactoryUtil.create("Course", orderByCol,
 				!("asc").equals(orderByType));
 
-		// Get keywords.
-		// Notice that cleaning keywords is not implemented.
-
 		String keywords = ParamUtil.getString(renderRequest, "keywords");
-
-		// Call the service to get the list of courses.
 
 		List<Course> courses = _courseService.getCoursesByKeywords(themeDisplay.getScopeGroupId(), keywords, start, end,
 				comparator);
 
-		// Set request attributes.
-
 		renderRequest.setAttribute("courses", courses);
 		renderRequest.setAttribute("courseCount",
 				_courseService.getCoursesCountByKeywords(themeDisplay.getScopeGroupId(), keywords));
-
 	}
 
 	private void addManagementToolbarAttributes(RenderRequest renderRequest, RenderResponse renderResponse) {

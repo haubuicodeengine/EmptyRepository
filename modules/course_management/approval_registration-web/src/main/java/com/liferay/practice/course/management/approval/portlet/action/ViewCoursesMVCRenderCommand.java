@@ -2,6 +2,8 @@ package com.liferay.practice.course.management.approval.portlet.action;
 
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
@@ -38,10 +40,11 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 		ServiceContext serviceContext = null;
 
 		try {
+
 			serviceContext = ServiceContextFactory.getInstance(Registration.class.getName(), renderRequest);
 		} catch (PortalException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+			_log.error(e);
 		}
 
 		long userId = serviceContext.getUserId();
@@ -74,9 +77,6 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 		List<Long> yourCourses = _courseService.getListCourseByUserId(userId);
 		List<Registration> registrations = _registrationService.getListRegistration();
 
-		List<Course> courses = _courseService.getCoursesByKeywords(themeDisplay.getScopeGroupId(), keywords, start, end,
-				comparator);
-
 		List<Course> visibleCourses = new ArrayList<>();
 		List<Registration> visibleRegistration = new ArrayList<>();
 
@@ -89,9 +89,10 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 				Course course = null;
 
 				try {
+
 					course = _courseService.getCourse(courseId);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					// TODO Auto-generated catch block  ERROR PAGE
 					e.printStackTrace();
 				}
 				if (course == null) {
@@ -117,4 +118,6 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 
 	@Reference
 	private Portal _portal;
+
+	private static Log _log = LogFactoryUtil.getLog(ViewCoursesMVCRenderCommand.class);
 }

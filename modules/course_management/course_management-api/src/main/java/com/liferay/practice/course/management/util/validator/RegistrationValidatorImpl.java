@@ -1,10 +1,10 @@
 package com.liferay.practice.course.management.util.validator;
 
-import com.liferay.practice.course.management.exception.RegistrationValidatorException;
+import com.liferay.practice.course.management.exception.CourseAlreadyRegisteredException;
+import com.liferay.practice.course.management.exception.CourseFullRegisteredException;
 import com.liferay.practice.course.management.model.Registration;
 import com.liferay.practice.course.management.validator.RegistrationValidator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -14,28 +14,14 @@ public class RegistrationValidatorImpl implements RegistrationValidator {
 
 	@Override
 	public void validate(long courseId, long userId, List<Registration> registrations)
-			throws RegistrationValidatorException {
+			throws CourseFullRegisteredException, CourseAlreadyRegisteredException {
 
-		List<String> errors = new ArrayList<>();
-
-		if (!_isRegistrationValid(courseId, userId, errors, registrations)) {
-
-			throw new RegistrationValidatorException(errors);
-		}
+		isCourseAlreadyRegistered(courseId, userId, registrations);
+		isCourseFullRegistered(courseId, registrations);
 	}
 
-	private boolean _isRegistrationValid(long courseId, long userId, List<String> errors,
-			List<Registration> registrations) {
-
-		boolean result = true;
-
-		result &= _isCourseAlreadyRegistered(courseId, userId, errors, registrations);
-		result &= _isCourseFullRegistered(courseId, errors, registrations);
-		return result;
-	}
-
-	private boolean _isCourseAlreadyRegistered(long courseId, long userId, List<String> errors,
-			List<Registration> registrations) {
+	private void isCourseAlreadyRegistered(long courseId, long userId, List<Registration> registrations)
+			throws CourseAlreadyRegisteredException {
 
 		if (!registrations.isEmpty()) {
 
@@ -43,16 +29,14 @@ public class RegistrationValidatorImpl implements RegistrationValidator {
 
 				if (registration.getUserId() == userId && registration.getCourseId() == courseId) {
 
-					errors.add("alreadyRegistered");
-					return false;
+					throw new CourseAlreadyRegisteredException("alreadyRegistered");
 				}
 			}
 		}
-
-		return true;
 	}
 
-	private boolean _isCourseFullRegistered(long courseId, List<String> errors, List<Registration> registrations) {
+	private void isCourseFullRegistered(long courseId, List<Registration> registrations)
+			throws CourseFullRegisteredException {
 
 		int registered = 0;
 
@@ -64,12 +48,11 @@ public class RegistrationValidatorImpl implements RegistrationValidator {
 			}
 		}
 
-		if (registered >= 20) {
+		if (registered >= _MAXIMUM_REGISTER_FOR_A_COURSE) {
 
-			errors.add("fullRegistered");
-			return false;
+			throw new CourseFullRegisteredException("fullRegistered");
 		}
-
-		return true;
 	}
+
+	private final int _MAXIMUM_REGISTER_FOR_A_COURSE = 20;
 }

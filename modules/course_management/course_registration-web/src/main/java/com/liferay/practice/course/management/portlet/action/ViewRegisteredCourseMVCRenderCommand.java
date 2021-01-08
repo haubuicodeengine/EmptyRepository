@@ -2,6 +2,8 @@ package com.liferay.practice.course.management.portlet.action;
 
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
@@ -32,17 +34,18 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.name=" + CourseRegistrationMVCPortletKeys.COURSEREGISTRATIONMVC, "mvc.command.name=/",
 		"mvc.command.name=" + MVCCommandNames.VIEW_REGISTERED_COURSE }, service = MVCRenderCommand.class)
 public class ViewRegisteredCourseMVCRenderCommand implements MVCRenderCommand {
-
+	
 	@Override
 	public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
 
 		ServiceContext serviceContext = null;
-
+		
 		try {
+
 			serviceContext = ServiceContextFactory.getInstance(Registration.class.getName(), renderRequest);
 		} catch (PortalException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+			_log.error(e);
 		}
 
 		long userId = serviceContext.getUserId();
@@ -103,4 +106,5 @@ public class ViewRegisteredCourseMVCRenderCommand implements MVCRenderCommand {
 	@Reference
 	private Portal _portal;
 
+	private static Log _log = LogFactoryUtil.getLog(ViewRegisteredCourseMVCRenderCommand.class);
 }

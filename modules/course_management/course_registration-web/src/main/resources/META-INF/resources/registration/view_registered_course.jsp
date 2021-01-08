@@ -30,7 +30,7 @@
 							<c:choose>
 							<c:when test="${registration.getRegistrationStatus() == 0}">
 
-						    	<aui:button href="#" value="Requested" disabled="true" style="color: blue;" cssClass="btn-requested"/>
+						    	<aui:button href="#" value="Waiting-approval" disabled="true" style="color: blue;" cssClass="btn-requested"/>
 							</c:when>
 
 							<c:when test="${registration.getRegistrationStatus() == 1}">

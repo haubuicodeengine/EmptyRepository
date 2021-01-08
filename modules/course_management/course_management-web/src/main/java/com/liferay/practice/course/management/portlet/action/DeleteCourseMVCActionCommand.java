@@ -26,8 +26,8 @@ public class DeleteCourseMVCActionCommand extends BaseMVCActionCommand {
 		long courseId = ParamUtil.getLong(actionRequest, "courseId");
 
 		try {
-			_courseService.deleteCourse(courseId);
 
+			_courseService.deleteCourse(courseId);
 			SessionMessages.add(actionRequest, "courseDeleted");
 
 		} catch (PortalException pe) {
