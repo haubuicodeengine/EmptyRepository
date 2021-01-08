@@ -1,0 +1,4 @@
+Bundle-Name: registration-approval-portlet-web
+Bundle-SymbolicName: com.liferay.course.register.approval
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.course.register.approval.constants

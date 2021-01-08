@@ -1,0 +1,12 @@
+Bundle-Name: course-portlet-api
+Bundle-SymbolicName: com.liferay.course.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.course.exception,\
+	com.liferay.course.model,\
+	com.liferay.course.service,\
+	com.liferay.course.service.persistence,\
+	com.liferay.course.util.validator,\
+	com.liferay.course.validator
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../course-portlet-service/service.xml

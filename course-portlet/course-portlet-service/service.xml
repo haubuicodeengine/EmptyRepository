@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_2_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="com.liferay.course">
+	<namespace>COURSE</namespace>
+
+	<entity local-service="true" name="Course">
+
+		<column name="courseId" primary="true" type="long"></column>
+		<column name="groupId" type="long"></column>
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<column name="status" type="String"></column>
+		<column name="duration" type="long"></column>
+		<column name="lecturer" type="String" localized="true"></column>
+		<column name="description" type="String" localized="true"></column>
+		<column name="courseName" type="String" localized="true"></column>
+
+		<order by="asc">
+			<order-column name="courseName" />
+		</order>
+
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+		</finder>
+
+		<reference entity="Group" package-path="com.liferay.portal"></reference>
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset"></reference>
+		<reference entity="AssetLink" package-path="com.liferay.portlet.asset"></reference>
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset"></reference>
+	</entity>
+	<entity local-service="true" name="CourseRegistration">
+
+		<column
+			name="courseRegistrationId"
+			primary="true"
+			type="long"
+		>
+		</column>
+
+		<column name="groupId" type="long"></column>
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<column name="courseId" type="long" />
+		<column name="status" type="String" />
+
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+		</finder>
+
+		<reference entity="Group" package-path="com.liferay.portal"></reference>
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset"></reference>
+		<reference entity="AssetLink" package-path="com.liferay.portlet.asset"></reference>
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset"></reference>
+	</entity>
+
+	<exceptions>
+		<exception>CourseValidation</exception>
+		<exception>CourseRegistrationValidation</exception>
+	</exceptions>
+</service-builder>

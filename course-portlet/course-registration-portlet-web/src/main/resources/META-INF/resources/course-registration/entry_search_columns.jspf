@@ -1,0 +1,7 @@
+<liferay-ui:search-container-column-text href="${viewCourseURL}" name="courseName" value="<%= entry.getCourseName(locale) %>" />
+
+<liferay-ui:search-container-column-user name="author" userId="${entry.userId}" />
+
+<liferay-ui:search-container-column-date name="create-date" property="createDate" />
+
+<liferay-ui:search-container-column-jsp name="actions" path="/course-registration/entry_actions.jsp" />
