@@ -1,0 +1,3 @@
+Bundle-Name: redirect_login_action
+Bundle-SymbolicName: com.liferay.practice.redirect
+Bundle-Version: 1.0.0
