@@ -30,7 +30,6 @@ public class CustomRedirectingLoginServiceWapper implements LifecycleAction {
 	public void processLifecycleEvent(LifecycleEvent lifecycleEvent) throws ActionException {
 
 		HttpServletRequest req = lifecycleEvent.getRequest();
-
 		User user;
 
 		try {
@@ -56,9 +55,11 @@ public class CustomRedirectingLoginServiceWapper implements LifecycleAction {
 				resp.sendRedirect("/web/guest/register");
 			}
 		} catch (PortalException e) {
-			e.printStackTrace();
+
+			_log.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+
+			_log.error(e);
 		}
 	}
 }

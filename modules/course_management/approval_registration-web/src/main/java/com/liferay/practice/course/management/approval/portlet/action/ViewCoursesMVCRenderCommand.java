@@ -74,32 +74,25 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 
 		String keywords = ParamUtil.getString(renderRequest, "keywords");
 
-		List<Long> yourCourses = _courseService.getListCourseByUserId(userId);
 		List<Registration> registrations = _registrationService.getListRegistration();
-
 		List<Course> visibleCourses = new ArrayList<>();
 		List<Registration> visibleRegistration = new ArrayList<>();
 
 		for (Registration registration : registrations) {
 
-			long courseId = registration.getCourseId();
-
-			if (yourCourses.contains(courseId) && registration.getRegistrationStatus() == 0) {
+			if (isCourseAvailble(userId, registration)) {
 
 				Course course = null;
 
 				try {
 
-					course = _courseService.getCourse(courseId);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block  ERROR PAGE
-					e.printStackTrace();
-				}
-				if (course == null) {
-					System.out.println("null object course");
-				} else {
+					course = _courseService.getCourse(registration.getCourseId());
 					visibleCourses.add(course);
 					visibleRegistration.add(registration);
+
+				} catch (Exception e) {
+
+					_log.error(e);
 				}
 			}
 		}
@@ -108,6 +101,19 @@ public class ViewCoursesMVCRenderCommand implements MVCRenderCommand {
 		renderRequest.setAttribute("courses", visibleCourses);
 		renderRequest.setAttribute("courseCount",
 				_courseService.getCoursesCountByKeywords(themeDisplay.getScopeGroupId(), keywords));
+	}
+
+	private boolean isCourseAvailble(long userId, Registration registration) {
+		
+		List<Long> yourCourses = _courseService.getListCourseByUserId(userId);
+		long courseId = registration.getCourseId();
+		
+		if (yourCourses.contains(courseId) && registration.getRegistrationStatus() == 0) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	@Reference

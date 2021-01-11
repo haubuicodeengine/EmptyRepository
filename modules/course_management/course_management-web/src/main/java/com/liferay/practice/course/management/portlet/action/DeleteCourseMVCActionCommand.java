@@ -1,6 +1,8 @@
 package com.liferay.practice.course.management.portlet.action;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -33,10 +35,12 @@ public class DeleteCourseMVCActionCommand extends BaseMVCActionCommand {
 		} catch (PortalException pe) {
 
 			SessionErrors.add(actionRequest, "serviceErrorDetails", pe);
-			pe.printStackTrace();
+			_log.error(pe);
 		}
 	}
 
 	@Reference
 	protected CourseService _courseService;
+
+	private static Log _log = LogFactoryUtil.getLog(DeleteCourseMVCActionCommand.class.getClass());
 }

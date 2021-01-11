@@ -2,6 +2,8 @@ package com.liferay.practice.course.management.model.listener;
 
 import com.liferay.portal.kernel.exception.ModelListenerException;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.practice.course.management.model.Registration;
@@ -38,12 +40,12 @@ public class CourseModelListener extends BaseModelListener<Registration> {
 		if (count <= 20) {
 
 			try {
+
 				_courseService.updateCourseStatus(model.getCourseId(), 2);
 			} catch (PortalException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 
+				_log.error(e);
+			}
 		}
 
 		super.onAfterCreate(model);
@@ -55,4 +57,6 @@ public class CourseModelListener extends BaseModelListener<Registration> {
 
 	@Reference
 	CourseService _courseService;
+
+	private static Log _log = LogFactoryUtil.getLog(CourseModelListener.class.getClass());
 }
