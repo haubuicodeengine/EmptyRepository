@@ -1,0 +1,1 @@
+create index IX_ADE02F5C on AMFRegistration_CustomUser (groupId);
