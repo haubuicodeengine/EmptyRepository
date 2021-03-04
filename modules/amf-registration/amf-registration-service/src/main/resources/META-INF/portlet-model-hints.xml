@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.amf.registration.model.CustomUser">
+		<field name="customUserId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="home_phone" type="String" />
+		<field name="mobile_phone" type="String" />
+		<field name="state" type="String" />
+		<field name="security_question" type="String" />
+		<field name="security_answer" type="String" />
+		<field name="accepted_tou" type="boolean" />
+	</model>
+</model-hints>
