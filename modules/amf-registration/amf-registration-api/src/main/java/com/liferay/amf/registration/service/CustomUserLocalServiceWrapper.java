@@ -45,6 +45,19 @@ public class CustomUserLocalServiceWrapper
 		return _customUserLocalService.addCustomUser(customUser);
 	}
 
+	@Override
+	public com.liferay.amf.registration.model.CustomUser addCustomUser(
+			long groupId, String home_phone, String mobile_phone, String state,
+			String security_question, String security_answer,
+			boolean accepted_tou,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _customUserLocalService.addCustomUser(
+			groupId, home_phone, mobile_phone, state, security_question,
+			security_answer, accepted_tou, serviceContext);
+	}
+
 	/**
 	 * Creates a new custom user with the primary key. Does not add the custom user to the database.
 	 *

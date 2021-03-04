@@ -124,8 +124,19 @@ public class CustomUserCacheModel
 			customUserImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
-		customUserImpl.setHome_phone(home_phone);
-		customUserImpl.setMobile_phone(mobile_phone);
+		if (home_phone == null) {
+			customUserImpl.setHome_phone("");
+		}
+		else {
+			customUserImpl.setHome_phone(home_phone);
+		}
+
+		if (mobile_phone == null) {
+			customUserImpl.setMobile_phone("");
+		}
+		else {
+			customUserImpl.setMobile_phone(mobile_phone);
+		}
 
 		if (state == null) {
 			customUserImpl.setState("");
@@ -167,10 +178,8 @@ public class CustomUserCacheModel
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
-
-		home_phone = objectInput.readInt();
-
-		mobile_phone = objectInput.readInt();
+		home_phone = objectInput.readUTF();
+		mobile_phone = objectInput.readUTF();
 		state = objectInput.readUTF();
 		security_question = objectInput.readUTF();
 		security_answer = objectInput.readUTF();
@@ -198,9 +207,19 @@ public class CustomUserCacheModel
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 
-		objectOutput.writeInt(home_phone);
+		if (home_phone == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(home_phone);
+		}
 
-		objectOutput.writeInt(mobile_phone);
+		if (mobile_phone == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(mobile_phone);
+		}
 
 		if (state == null) {
 			objectOutput.writeUTF("");
@@ -233,8 +252,8 @@ public class CustomUserCacheModel
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public int home_phone;
-	public int mobile_phone;
+	public String home_phone;
+	public String mobile_phone;
 	public String state;
 	public String security_question;
 	public String security_answer;

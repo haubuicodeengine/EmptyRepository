@@ -14,8 +14,11 @@
 
 package com.liferay.amf.registration.service.impl;
 
+import com.liferay.amf.registration.model.CustomUser;
 import com.liferay.amf.registration.service.base.CustomUserServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.service.ServiceContext;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -34,12 +37,20 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	property = {
-		"json.web.service.context.name=amfregistration",
+		"json.web.service.context.name=registration",
 		"json.web.service.context.path=CustomUser"
 	},
 	service = AopService.class
 )
 public class CustomUserServiceImpl extends CustomUserServiceBaseImpl {
+
+
+	public CustomUser addCustomUser(long groupId, String home_phone, String mobile_phone, String state,
+			String security_question, String security_answer, boolean accepted_tou, ServiceContext serviceContext)
+			throws PortalException {
+	
+		return customUserLocalService.addCustomUser(groupId, home_phone, mobile_phone, state, security_question, security_answer, accepted_tou, serviceContext);
+	}
 
 	/*
 	 * NOTE FOR DEVELOPERS:

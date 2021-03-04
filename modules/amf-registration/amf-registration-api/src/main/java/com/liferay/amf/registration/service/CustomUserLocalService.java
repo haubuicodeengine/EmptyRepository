@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -69,6 +70,12 @@ public interface CustomUserLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public CustomUser addCustomUser(CustomUser customUser);
+
+	public CustomUser addCustomUser(
+			long groupId, String home_phone, String mobile_phone, String state,
+			String security_question, String security_answer,
+			boolean accepted_tou, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	 * Creates a new custom user with the primary key. Does not add the custom user to the database.

@@ -103,13 +103,13 @@ public class CustomUserWrapper
 			setModifiedDate(modifiedDate);
 		}
 
-		Integer home_phone = (Integer)attributes.get("home_phone");
+		String home_phone = (String)attributes.get("home_phone");
 
 		if (home_phone != null) {
 			setHome_phone(home_phone);
 		}
 
-		Integer mobile_phone = (Integer)attributes.get("mobile_phone");
+		String mobile_phone = (String)attributes.get("mobile_phone");
 
 		if (mobile_phone != null) {
 			setMobile_phone(mobile_phone);
@@ -206,7 +206,7 @@ public class CustomUserWrapper
 	 * @return the home_phone of this custom user
 	 */
 	@Override
-	public int getHome_phone() {
+	public String getHome_phone() {
 		return model.getHome_phone();
 	}
 
@@ -216,7 +216,7 @@ public class CustomUserWrapper
 	 * @return the mobile_phone of this custom user
 	 */
 	@Override
-	public int getMobile_phone() {
+	public String getMobile_phone() {
 		return model.getMobile_phone();
 	}
 
@@ -381,7 +381,7 @@ public class CustomUserWrapper
 	 * @param home_phone the home_phone of this custom user
 	 */
 	@Override
-	public void setHome_phone(int home_phone) {
+	public void setHome_phone(String home_phone) {
 		model.setHome_phone(home_phone);
 	}
 
@@ -391,7 +391,7 @@ public class CustomUserWrapper
 	 * @param mobile_phone the mobile_phone of this custom user
 	 */
 	@Override
-	public void setMobile_phone(int mobile_phone) {
+	public void setMobile_phone(String mobile_phone) {
 		model.setMobile_phone(mobile_phone);
 	}
 

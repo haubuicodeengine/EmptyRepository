@@ -204,28 +204,30 @@ public interface CustomUserModel
 	 *
 	 * @return the home_phone of this custom user
 	 */
-	public int getHome_phone();
+	@AutoEscape
+	public String getHome_phone();
 
 	/**
 	 * Sets the home_phone of this custom user.
 	 *
 	 * @param home_phone the home_phone of this custom user
 	 */
-	public void setHome_phone(int home_phone);
+	public void setHome_phone(String home_phone);
 
 	/**
 	 * Returns the mobile_phone of this custom user.
 	 *
 	 * @return the mobile_phone of this custom user
 	 */
-	public int getMobile_phone();
+	@AutoEscape
+	public String getMobile_phone();
 
 	/**
 	 * Sets the mobile_phone of this custom user.
 	 *
 	 * @param mobile_phone the mobile_phone of this custom user
 	 */
-	public void setMobile_phone(int mobile_phone);
+	public void setMobile_phone(String mobile_phone);
 
 	/**
 	 * Returns the state of this custom user.

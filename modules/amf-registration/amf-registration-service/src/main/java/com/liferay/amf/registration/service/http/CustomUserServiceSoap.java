@@ -14,9 +14,15 @@
 
 package com.liferay.amf.registration.service.http;
 
+import com.liferay.amf.registration.service.CustomUserServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
- * <code>com.liferay.amf.registration.service.CustomUserServiceUtil</code> service
+ * <code>CustomUserServiceUtil</code> service
  * utility. The static methods of this class call the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -54,4 +60,32 @@ package com.liferay.amf.registration.service.http;
  * @generated
  */
 public class CustomUserServiceSoap {
+
+	public static com.liferay.amf.registration.model.CustomUserSoap
+			addCustomUser(
+				long groupId, String home_phone, String mobile_phone,
+				String state, String security_question, String security_answer,
+				boolean accepted_tou,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+
+		try {
+			com.liferay.amf.registration.model.CustomUser returnValue =
+				CustomUserServiceUtil.addCustomUser(
+					groupId, home_phone, mobile_phone, state, security_question,
+					security_answer, accepted_tou, serviceContext);
+
+			return com.liferay.amf.registration.model.CustomUserSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		CustomUserServiceSoap.class);
+
 }

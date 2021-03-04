@@ -9,8 +9,8 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="home_phone" type="int" />
-		<field name="mobile_phone" type="int" />
+		<field name="home_phone" type="String" />
+		<field name="mobile_phone" type="String" />
 		<field name="state" type="String" />
 		<field name="security_question" type="String" />
 		<field name="security_answer" type="String" />

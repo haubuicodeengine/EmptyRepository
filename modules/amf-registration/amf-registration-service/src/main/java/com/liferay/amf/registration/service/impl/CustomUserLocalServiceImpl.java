@@ -14,8 +14,15 @@
 
 package com.liferay.amf.registration.service.impl;
 
+import com.liferay.amf.registration.model.CustomUser;
 import com.liferay.amf.registration.service.base.CustomUserLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ServiceContext;
+
+import java.util.Date;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -37,6 +44,35 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class CustomUserLocalServiceImpl extends CustomUserLocalServiceBaseImpl {
+
+	@Override
+	public CustomUser addCustomUser(long groupId, String home_phone, String mobile_phone, String state,
+			String security_question, String security_answer, boolean accepted_tou, ServiceContext serviceContext)
+			throws PortalException {
+		
+		Group group = groupLocalService.getGroup(groupId);
+		long userId = serviceContext.getUserId();
+		User user = userLocalService.getUser(userId);
+		long customUserId = counterLocalService.increment(CustomUser.class.getName());
+		
+		CustomUser customUser = createCustomUser(customUserId);
+		
+		customUser.setCompanyId(group.getCompanyId());
+		customUser.setCreateDate(serviceContext.getCreateDate(new Date()));
+		customUser.setGroupId(groupId);
+		customUser.setModifiedDate(serviceContext.getModifiedDate(new Date()));
+		customUser.setUserId(userId);
+		customUser.setUserName(user.getScreenName());
+
+		customUser.setHome_phone(home_phone);
+		customUser.setMobile_phone(mobile_phone);
+		customUser.setState(state);
+		customUser.setSecurity_question(security_question);
+		customUser.setSecurity_answer(security_answer);
+		customUser.setAccepted_tou(accepted_tou);
+		
+		return super.addCustomUser(customUser);
+	}
 
 	/*
 	 * NOTE FOR DEVELOPERS:

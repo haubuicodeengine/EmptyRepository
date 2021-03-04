@@ -8,6 +8,8 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.core"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
 	compileOnly project(":modules:amf-registration:amf-registration-api")
+	compileOnly group: "javax.portlet", name: "portlet-api"
+ 	compileOnly group: "javax.servlet", name: "javax.servlet-api"
 }
 
 buildService {

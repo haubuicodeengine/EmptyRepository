@@ -37,6 +37,17 @@ public class CustomUserServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.amf.registration.service.impl.CustomUserServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.amf.registration.model.CustomUser addCustomUser(
+			long groupId, String home_phone, String mobile_phone, String state,
+			String security_question, String security_answer,
+			boolean accepted_tou,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().addCustomUser(
+			groupId, home_phone, mobile_phone, state, security_question,
+			security_answer, accepted_tou, serviceContext);
+	}
 
 	/**
 	 * Returns the OSGi service identifier.

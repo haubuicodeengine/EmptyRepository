@@ -3,10 +3,10 @@
 
 <service-builder dependency-injector="ds"
 	package-path="com.liferay.amf.registration">
-	<namespace>AMFRegistration</namespace>
 	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" 
 		remote-service="false" session-factory="sampleSessionFactory" table="foo" 
 		tx-manager="sampleTransactionManager uuid="true""> -->
+	<namespace>AMFRegistration</namespace>
 	<entity name="CustomUser" local-service="true">
 
 		<!-- PK fields -->
@@ -24,17 +24,17 @@
 		<column name="userName" type="String"></column>
 		<column name="createDate" type="Date"></column>
 		<column name="modifiedDate" type="Date"></column>
-		<column name="home_phone" type="int" />
-		<column name="mobile_phone" type="int" />
-		<column name="state" type="String" />
-		<column name="security_question" type="String" />
-		<column name="security_answer" type="String" />
-		<column name="accepted_tou" type="boolean" />
+		<column name="home_phone" type="String"></column>
+		<column name="mobile_phone" type="String"></column>
+		<column name="state" type="String"></column>
+		<column name="security_question" type="String"></column>
+		<column name="security_answer" type="String"></column>
+		<column name="accepted_tou" type="boolean"></column>
 
 		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId" />
 		</finder>
-		<!-- Reference to Group entity service -->
+
 		<reference entity="Group" package-path="com.liferay.portal" />
 		<!-- Entity services needed for the integration to Asset framework -->
 		<reference entity="AssetEntry"
@@ -44,7 +44,9 @@
 		<reference entity="AssetTag"
 			package-path="com.liferay.portlet.asset" />
 	</entity>
+
+
 	<exceptions>
-		<exception>CourseValidation</exception>
+		<exception>CustomUserValidation</exception>
 	</exceptions>
 </service-builder>

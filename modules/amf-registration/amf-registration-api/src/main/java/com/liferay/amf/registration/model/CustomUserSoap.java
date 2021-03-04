@@ -153,19 +153,19 @@ public class CustomUserSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public int getHome_phone() {
+	public String getHome_phone() {
 		return _home_phone;
 	}
 
-	public void setHome_phone(int home_phone) {
+	public void setHome_phone(String home_phone) {
 		_home_phone = home_phone;
 	}
 
-	public int getMobile_phone() {
+	public String getMobile_phone() {
 		return _mobile_phone;
 	}
 
-	public void setMobile_phone(int mobile_phone) {
+	public void setMobile_phone(String mobile_phone) {
 		_mobile_phone = mobile_phone;
 	}
 
@@ -212,8 +212,8 @@ public class CustomUserSoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private int _home_phone;
-	private int _mobile_phone;
+	private String _home_phone;
+	private String _mobile_phone;
 	private String _state;
 	private String _security_question;
 	private String _security_answer;

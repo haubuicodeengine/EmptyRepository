@@ -74,8 +74,8 @@ public class CustomUserModelImpl
 		{"customUserId", Types.BIGINT}, {"groupId", Types.BIGINT},
 		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
 		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
-		{"modifiedDate", Types.TIMESTAMP}, {"home_phone", Types.INTEGER},
-		{"mobile_phone", Types.INTEGER}, {"state_", Types.VARCHAR},
+		{"modifiedDate", Types.TIMESTAMP}, {"home_phone", Types.VARCHAR},
+		{"mobile_phone", Types.VARCHAR}, {"state_", Types.VARCHAR},
 		{"security_question", Types.VARCHAR},
 		{"security_answer", Types.VARCHAR}, {"accepted_tou", Types.BOOLEAN}
 	};
@@ -91,8 +91,8 @@ public class CustomUserModelImpl
 		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("home_phone", Types.INTEGER);
-		TABLE_COLUMNS_MAP.put("mobile_phone", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("home_phone", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("mobile_phone", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("state_", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("security_question", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("security_answer", Types.VARCHAR);
@@ -100,7 +100,7 @@ public class CustomUserModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table AMFRegistration_CustomUser (customUserId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,home_phone INTEGER,mobile_phone INTEGER,state_ VARCHAR(75) null,security_question VARCHAR(75) null,security_answer VARCHAR(75) null,accepted_tou BOOLEAN)";
+		"create table AMFRegistration_CustomUser (customUserId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,home_phone VARCHAR(75) null,mobile_phone VARCHAR(75) null,state_ VARCHAR(75) null,security_question VARCHAR(75) null,security_answer VARCHAR(75) null,accepted_tou BOOLEAN)";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table AMFRegistration_CustomUser";
@@ -336,12 +336,12 @@ public class CustomUserModelImpl
 		attributeGetterFunctions.put("home_phone", CustomUser::getHome_phone);
 		attributeSetterBiConsumers.put(
 			"home_phone",
-			(BiConsumer<CustomUser, Integer>)CustomUser::setHome_phone);
+			(BiConsumer<CustomUser, String>)CustomUser::setHome_phone);
 		attributeGetterFunctions.put(
 			"mobile_phone", CustomUser::getMobile_phone);
 		attributeSetterBiConsumers.put(
 			"mobile_phone",
-			(BiConsumer<CustomUser, Integer>)CustomUser::setMobile_phone);
+			(BiConsumer<CustomUser, String>)CustomUser::setMobile_phone);
 		attributeGetterFunctions.put("state", CustomUser::getState);
 		attributeSetterBiConsumers.put(
 			"state", (BiConsumer<CustomUser, String>)CustomUser::setState);
@@ -501,23 +501,33 @@ public class CustomUserModelImpl
 
 	@JSON
 	@Override
-	public int getHome_phone() {
-		return _home_phone;
+	public String getHome_phone() {
+		if (_home_phone == null) {
+			return "";
+		}
+		else {
+			return _home_phone;
+		}
 	}
 
 	@Override
-	public void setHome_phone(int home_phone) {
+	public void setHome_phone(String home_phone) {
 		_home_phone = home_phone;
 	}
 
 	@JSON
 	@Override
-	public int getMobile_phone() {
-		return _mobile_phone;
+	public String getMobile_phone() {
+		if (_mobile_phone == null) {
+			return "";
+		}
+		else {
+			return _mobile_phone;
+		}
 	}
 
 	@Override
-	public void setMobile_phone(int mobile_phone) {
+	public void setMobile_phone(String mobile_phone) {
 		_mobile_phone = mobile_phone;
 	}
 
@@ -746,7 +756,19 @@ public class CustomUserModelImpl
 
 		customUserCacheModel.home_phone = getHome_phone();
 
+		String home_phone = customUserCacheModel.home_phone;
+
+		if ((home_phone != null) && (home_phone.length() == 0)) {
+			customUserCacheModel.home_phone = null;
+		}
+
 		customUserCacheModel.mobile_phone = getMobile_phone();
+
+		String mobile_phone = customUserCacheModel.mobile_phone;
+
+		if ((mobile_phone != null) && (mobile_phone.length() == 0)) {
+			customUserCacheModel.mobile_phone = null;
+		}
 
 		customUserCacheModel.state = getState();
 
@@ -860,8 +882,8 @@ public class CustomUserModelImpl
 	private Date _createDate;
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
-	private int _home_phone;
-	private int _mobile_phone;
+	private String _home_phone;
+	private String _mobile_phone;
 	private String _state;
 	private String _security_question;
 	private String _security_answer;
