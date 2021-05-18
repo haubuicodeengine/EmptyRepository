@@ -9,6 +9,7 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.portal.security.audit.storage.service.AuditEventLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.security.audit.storage.model.AuditEvent" %>
+<%@ page import="com.liferay.amf.event.monitor.web.constants.AmfMonitorModelResourceKeys" %>
 
 <%@ page import="java.util.List" %>
 <%@ page import="com.liferay.portal.kernel.util.ListUtil" %>

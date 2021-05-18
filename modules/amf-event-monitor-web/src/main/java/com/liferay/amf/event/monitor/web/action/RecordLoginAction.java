@@ -1,4 +1,4 @@
-package com.liferay.portal.security.audit.event.generators.internal.events;
+package com.liferay.amf.event.monitor.web.action;
 
 import com.liferay.portal.kernel.audit.AuditMessage;
 import com.liferay.portal.kernel.audit.AuditRouter;
@@ -8,12 +8,11 @@ import com.liferay.portal.kernel.events.LifecycleAction;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.security.audit.event.generators.constants.EventTypes;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Bruno Farache
@@ -25,6 +24,11 @@ import org.osgi.service.component.annotations.Reference;
         service = LifecycleAction.class
 )
 public class RecordLoginAction extends Action {
+
+    @Reference
+    private AuditRouter _auditRouter;
+    @Reference
+    private Portal _portal;
 
     @Override
     public void run(
@@ -53,11 +57,4 @@ public class RecordLoginAction extends Action {
 
         _auditRouter.route(auditMessage);
     }
-
-    @Reference
-    private AuditRouter _auditRouter;
-
-    @Reference
-    private Portal _portal;
-
 }
