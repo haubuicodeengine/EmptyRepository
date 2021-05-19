@@ -1,0 +1,4 @@
+Bundle-Name: amf-event-monitor
+Bundle-SymbolicName: amf.event.monitor
+Bundle-Version: 1.0.0
+Export-Package: amf.event.monitor.constants
