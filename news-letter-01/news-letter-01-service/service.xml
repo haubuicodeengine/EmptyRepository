@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_2_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="com.liferay.training.news.letter">
+	<namespace>NEWSLETTER</namespace>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+
+    <entity name="NewsLetter" local-service="true">
+
+        <!-- PK fields -->
+
+        <column name="newsletterId" primary="true" type="long"></column>
+
+        <!-- Group instance -->
+
+        <column name="groupId" type="long"></column>
+
+        <!-- Audit fields -->
+
+        <column name="companyId" type="long"></column>
+        <column name="userId" type="long"></column>
+        <column name="userName" type="String"></column>
+        <column name="createDate" type="Date"></column>
+        <column name="issueDate" type="Date"></column>
+        <column name="issueNumber" type="Integer"></column>
+        <column name="title" type="String"></column>
+        <column name="description" type="String"></column>
+        <reference entity="Group" package-path="com.liferay.portal"></reference>
+    
+        <!-- Entity services needed for the integration to Asset framework -->
+
+        <reference entity="AssetEntry"
+            package-path="com.liferay.portlet.asset"></reference>
+        <reference entity="AssetLink"
+            package-path="com.liferay.portlet.asset"></reference>
+        <reference entity="AssetTag"
+            package-path="com.liferay.portlet.asset"></reference>
+    </entity>
+    
+    <entity name="NewsLetter_Articles" local-service="true">
+
+        <!-- PK fields -->
+
+        <column name="newsletter_articles_Id" primary="true" type="long"></column>
+
+        <!-- Group instance -->
+
+        <column name="groupId" type="long"></column>
+
+        <!-- Audit fields -->
+
+        <column name="companyId" type="long"></column>
+        <column name="userId" type="long"></column>
+        <column name="userName" type="String"></column>
+        <column name="createDate" type="Date"></column>
+        <column name="issueDate" type="Date"></column>
+        <column name="newsletterId" type="long"></column>
+        <column name="articlesId" type="long"></column>
+
+        <reference entity="Group" package-path="com.liferay.portal"></reference>
+        
+         <reference entity="AssetEntry"
+            package-path="com.liferay.portlet.asset"></reference>
+        <reference entity="AssetLink"
+            package-path="com.liferay.portlet.asset"></reference>
+        <reference entity="AssetTag"
+            package-path="com.liferay.portlet.asset"></reference>
+    </entity>
+</service-builder>
