@@ -1,0 +1,4 @@
+Bundle-Name: amf-search
+Bundle-SymbolicName: com.liferay.amf.search
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.amf.search.constants
