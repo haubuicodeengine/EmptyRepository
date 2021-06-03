@@ -1,0 +1,86 @@
+.amf-newsletter-web {
+  .newsletter--container {
+    background-blend-mode: multiply;
+    background-size: cover !important;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+
+    .title-label{
+      background-color: #93b4dc;
+      display: inline-grid;
+      grid-template-columns: 490px 1fr;
+      margin-top: 15px;
+      position: relative;
+      border-radius: 8px;
+      width: 100%;
+      text-align: center;
+      border: 1px solid #56aaf3;
+
+      p{
+        color: black;
+        font-weight: bold;
+        margin: 1% -150% 1% 150%;
+      }
+    }
+
+    .issue-title{
+      color: #0086fb;
+      font-weight: bold;
+      font-size: 20px;
+      text-transform: capitalize;
+      margin: -10px 0px 5px 0px;
+    }
+    .article-title{
+      color: #0086fb;
+      font-size: 18px;
+      text-transform: capitalize;
+      margin: 0% 0% 0% 1%;
+    }
+    .issue-date{
+      text-transform: capitalize;
+      margin: -10px 0px 5px 0px;
+      color: #8fc7f7;
+      font-size: 17px;
+      margin: 0px 0px 10px 0px;
+    }
+
+  }
+
+  .issue{
+    margin: -10px 0px 5px 0px;
+
+      a{
+        color: #0086fb;
+        font-weight: bold;
+        font-size: 25px;
+        text-transform: capitalize;
+      }
+
+    .issue-date{
+      text-transform: capitalize;
+      color: #8fc7f7;
+      font-size: 17px;
+    }
+
+    .description{
+      font-size: 17px;
+    }
+  }
+
+
+  .article{
+    margin: -10px 0px 5px 10px;
+    a{
+        color: #0086fb;
+        font-size: 20px;
+        text-transform: capitalize;
+    }
+
+    p{
+      font-size: 17px;
+    }
+
+  }
+
+}
