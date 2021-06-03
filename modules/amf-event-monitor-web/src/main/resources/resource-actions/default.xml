@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE resource-action-mapping PUBLIC "-//Liferay//DTD Resource Action Mapping 7.2.0//EN" "http://www.liferay.com/dtd/liferay-resource-action-mapping_7_2_0.dtd">
+<resource-action-mapping>
+    <model-resource>
+        <model-name>com.liferay.portal.security.audit.storage.model.AuditEvent</model-name>
+        <portlet-ref>
+            <portlet-name>com_liferay_amf_event_monitor_web_AmfMonitorPortlet</portlet-name>
+        </portlet-ref>
+        <permissions>
+            <supports>
+                <action-key>VIEW_ALL_ACTION</action-key>
+            </supports>
+            <site-member-defaults>
+                <action-key>VIEW_ALL_ACTION</action-key>
+            </site-member-defaults>
+        </permissions>
+    </model-resource>
+</resource-action-mapping>
