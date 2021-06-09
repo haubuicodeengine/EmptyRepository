@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -14,6 +14,7 @@
 
 package com.liferay.amf.newsletter.service.impl;
 
+import com.liferay.amf.newsletter.constants.NewsletterFields;
 import com.liferay.amf.newsletter.model.Newsletter;
 import com.liferay.amf.newsletter.service.base.NewsletterLocalServiceBaseImpl;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
@@ -22,7 +23,6 @@ import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.journal.util.JournalConverter;
 import com.liferay.portal.aop.AopService;
-
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
@@ -53,109 +53,116 @@ import java.util.List;
  * @see NewsletterLocalServiceBaseImpl
  */
 @Component(
-	property = "model.class.name=com.liferay.amf.newsletter.model.Newsletter",
-	service = AopService.class
+        property = "model.class.name=com.liferay.amf.newsletter.model.Newsletter",
+        service = AopService.class
 )
 public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 
-	public Newsletter addNewsletter(long groupId, long resourcePrimKey, long issueNumber, ServiceContext serviceContext) throws PortalException {
+    private static final Log _log = LogFactoryUtil.getLog(NewsletterLocalServiceImpl.class);
 
-		Group group = groupLocalService.getGroup(groupId);
+    @Reference
+    private JournalArticleLocalService _journalArticleLocalService;
 
-		long userId = serviceContext.getUserId();
+    @Reference
+    private JournalConverter _journalConverter;
 
-		User user = userLocalService.getUser(userId);
+    public Newsletter addNewsletter(long groupId, long resourcePrimKey, long issueNumber, ServiceContext serviceContext) throws PortalException {
 
-		Newsletter newsletter = createNewsletter(resourcePrimKey);
+        Group group = groupLocalService.getGroup(groupId);
 
-		newsletter.setCompanyId(group.getCompanyId());
-		newsletter.setCreateDate(serviceContext.getCreateDate(new Date()));
-		newsletter.setGroupId(groupId);
-		newsletter.setModifiedDate(serviceContext.getModifiedDate(new Date()));
-		newsletter.setUserId(userId);
-		newsletter.setUserName(user.getScreenName());
-		newsletter.setIssueNumber(issueNumber);
+        long userId = serviceContext.getUserId();
 
-		return super.addNewsletter(newsletter);
-	}
+        User user = userLocalService.getUser(userId);
 
-	public String getJournalArticleContent(DDMStructure ddmStructure, String content, String elementKey) {
+        Newsletter newsletter = createNewsletter(resourcePrimKey);
 
-		String result = null;
-		try {
-			Fields fields = _journalConverter.getDDMFields(ddmStructure, content);
+        newsletter.setCompanyId(group.getCompanyId());
+        newsletter.setCreateDate(serviceContext.getCreateDate(new Date()));
+        newsletter.setGroupId(groupId);
+        newsletter.setModifiedDate(serviceContext.getModifiedDate(new Date()));
+        newsletter.setUserId(userId);
+        newsletter.setUserName(user.getScreenName());
+        newsletter.setIssueNumber(issueNumber);
+        newsletter.setResourcePrimKey(resourcePrimKey);
 
-			result = String.valueOf(fields.get(elementKey).getValue());
-		} catch (PortalException e) {
-			_log.error(e);
-		} finally {
-			return result;
-		}
-	}
+        return super.addNewsletter(newsletter);
+    }
 
-	public List<Newsletter> getAllNewsletter() {
-		ClassLoader classLoader = getClass().getClassLoader();
+    public String getJournalArticleContent(DDMStructure ddmStructure, String content, String elementKey) {
+        String result = null;
+        Fields fields = null;
 
-		DynamicQuery entryQuery = null;
+        try {
+            fields = _journalConverter.getDDMFields(ddmStructure, content);
 
-		List<Newsletter> entries = new ArrayList<>();
+        } catch (PortalException e) {
+            _log.error(e);
+        } finally {
 
-		entryQuery = DynamicQueryFactoryUtil.forClass(Newsletter.class, classLoader);
+            if (fields.contains(elementKey)) {
 
-		entries = newsletterLocalService.dynamicQuery(entryQuery);
+                result = String.valueOf(fields.get(elementKey).getValue());
+            }
 
-		return entries;
-	}
+            return result;
+        }
+    }
 
-	public JournalArticle getNewsletterByIssueNumber(long issueNumber){
-		ClassLoader classLoader = getClass().getClassLoader();
+    public List<Newsletter> getAllNewsletter() {
+        ClassLoader classLoader = getClass().getClassLoader();
 
-		DynamicQuery entryQuery = null;
+        DynamicQuery entryQuery = null;
 
-		List<Newsletter> entries = new ArrayList<>();
+        List<Newsletter> entries = new ArrayList<>();
 
-		entryQuery = DynamicQueryFactoryUtil.forClass(Newsletter.class, classLoader).add(RestrictionsFactoryUtil.eq("issueNumber", issueNumber));
+        entryQuery = DynamicQueryFactoryUtil.forClass(Newsletter.class, classLoader);
 
-		entries = newsletterLocalService.dynamicQuery(entryQuery);
+        entries = newsletterLocalService.dynamicQuery(entryQuery);
 
-		JournalArticle newsletter = null;
+        return entries;
+    }
 
-		try {
-			newsletter = _journalArticleLocalService.getLatestArticle(entries.get(0).getResourcePrimKey());
+    public JournalArticle getNewsletterByIssueNumber(long issueNumber) {
+        ClassLoader classLoader = getClass().getClassLoader();
 
-		} catch (PortalException e) {
-			_log.error(e);
-		}
+        DynamicQuery entryQuery = null;
 
-		return newsletter;
-	}
+        List<Newsletter> entries = new ArrayList<>();
 
-	public List<JournalArticle> getNewsletters() {
-		List<Newsletter> newsletters = getAllNewsletter();
+        entryQuery = DynamicQueryFactoryUtil.forClass(Newsletter.class, classLoader).add(RestrictionsFactoryUtil.eq(NewsletterFields.ISSUE_NUMBER, issueNumber));
 
-		List<JournalArticle> journalArticles = new ArrayList<>();
+        entries = newsletterLocalService.dynamicQuery(entryQuery);
 
-		for (Newsletter newsletter : newsletters) {
-			JournalArticle JournalArticle = null;
+        JournalArticle newsletter = null;
 
-			try {
-				JournalArticle = _journalArticleLocalService.getLatestArticle(newsletter.getResourcePrimKey());
+        try {
+            newsletter = _journalArticleLocalService.getLatestArticle(entries.get(0).getResourcePrimKey());
 
-			} catch (PortalException e) {
-				_log.error(e);
-			}
+        } catch (PortalException e) {
+            _log.error(e);
+        }
 
-			journalArticles.add(JournalArticle);
-		}
+        return newsletter;
+    }
 
-		return journalArticles;
-	}
+    public List<JournalArticle> getNewsletters() {
+        List<Newsletter> newsletters = getAllNewsletter();
 
-	@Reference
-	JournalArticleLocalService _journalArticleLocalService;
+        List<JournalArticle> journalArticles = new ArrayList<>();
 
-	@Reference
-	JournalConverter _journalConverter;
-	
-	private static Log _log = LogFactoryUtil.getLog(NewsletterLocalServiceImpl.class);
+        for (Newsletter newsletter : newsletters) {
+            JournalArticle JournalArticle = null;
+
+            try {
+                JournalArticle = _journalArticleLocalService.getLatestArticle(newsletter.getResourcePrimKey());
+
+            } catch (PortalException e) {
+                _log.error(e);
+            }
+
+            journalArticles.add(JournalArticle);
+        }
+
+        return journalArticles;
+    }
 }

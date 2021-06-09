@@ -1,86 +1,52 @@
 .amf-newsletter-web {
-  .newsletter--container {
-    background-blend-mode: multiply;
-    background-size: cover !important;
-    box-sizing: border-box;
-    position: relative;
+
+  .month-label {
     width: 100%;
+    text-align: center;
+    background-color: #8fc7f7;
+    height: 31px;
+    font-size: 22px;
+    border-radius: 10px;
+  }
 
-    .title-label{
-      background-color: #93b4dc;
-      display: inline-grid;
-      grid-template-columns: 490px 1fr;
-      margin-top: 15px;
-      position: relative;
-      border-radius: 8px;
-      width: 100%;
-      text-align: center;
-      border: 1px solid #56aaf3;
+  .issue-block {
+    margin-left: 6px;
+    padding: 20px 0px 20px 0px;
+    border-bottom: 4px dashed #cbd0d4;
 
-      p{
-        color: black;
-        font-weight: bold;
-        margin: 1% -150% 1% 150%;
-      }
+    .search-key-text {
+      font-size: 40px;
     }
 
-    .issue-title{
+    .search-key-color {
+      color: #8fc7f7;
+    }
+
+    .issue-title {
       color: #0086fb;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 25px;
       text-transform: capitalize;
-      margin: -10px 0px 5px 0px;
     }
-    .article-title{
-      color: #0086fb;
-      font-size: 18px;
+
+    .issue-date {
       text-transform: capitalize;
-      margin: 0% 0% 0% 1%;
-    }
-    .issue-date{
-      text-transform: capitalize;
-      margin: -10px 0px 5px 0px;
       color: #8fc7f7;
       font-size: 17px;
-      margin: 0px 0px 10px 0px;
     }
 
-  }
+    .description {
+      font-size: 17px;
+    }
 
-  .issue{
-    margin: -10px 0px 5px 0px;
+    .article-block {
+      margin: 14px 0px 0px 20px;
 
-      a{
+      .article-title {
         color: #0086fb;
-        font-weight: bold;
-        font-size: 25px;
+        font-size: 18px;
         text-transform: capitalize;
       }
-
-    .issue-date{
-      text-transform: capitalize;
-      color: #8fc7f7;
-      font-size: 17px;
-    }
-
-    .description{
-      font-size: 17px;
     }
   }
-
-
-  .article{
-    margin: -10px 0px 5px 10px;
-    a{
-        color: #0086fb;
-        font-size: 20px;
-        text-transform: capitalize;
-    }
-
-    p{
-      font-size: 17px;
-    }
-
-  }
-
 }

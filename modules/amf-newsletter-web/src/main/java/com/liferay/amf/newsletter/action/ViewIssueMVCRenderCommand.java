@@ -18,9 +18,9 @@ import java.util.List;
 @Component(immediate = true, property = {"javax.portlet.name=" + AmfNewsletterPortletKeys.AMFNEWSLETTER,
         "mvc.command.name=" + MVCCommandNames.VIEW_ISSUE}, service = MVCRenderCommand.class)
 public class ViewIssueMVCRenderCommand implements MVCRenderCommand {
-
     @Reference
     private ArticleLocalService _articleLocalService;
+
     @Reference
     private NewsletterLocalService _newsletterLocalService;
 
