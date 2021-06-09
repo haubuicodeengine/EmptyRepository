@@ -1,0 +1,11 @@
+dependencies {
+	compile project(":modules:amf-newsletter:amf-newsletter-api")
+
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+}
+
+buildService {
+	apiDir = "../amf-newsletter-api/src/main/java"
+}
+
+group = "com.liferay.amf.newsletter"
