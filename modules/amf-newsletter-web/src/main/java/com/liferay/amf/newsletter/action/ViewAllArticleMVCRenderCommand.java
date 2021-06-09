@@ -2,6 +2,7 @@ package com.liferay.amf.newsletter.action;
 
 import com.liferay.amf.newsletter.Util.NewsletterUtil;
 import com.liferay.amf.newsletter.constants.AmfNewsletterPortletKeys;
+import com.liferay.amf.newsletter.constants.NewsletterFields;
 import com.liferay.amf.newsletter.listener.JournalArticleListener;
 import com.liferay.amf.newsletter.model.Article;
 import com.liferay.amf.newsletter.service.ArticleLocalService;
@@ -18,9 +19,10 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import java.text.DateFormatSymbols;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 @Component(immediate = true, property = {"javax.portlet.name=" + AmfNewsletterPortletKeys.AMFNEWSLETTER,
         "mvc.command.name=/"}, service = MVCRenderCommand.class)
@@ -28,8 +30,10 @@ public class ViewAllArticleMVCRenderCommand implements MVCRenderCommand {
 
     private static final Log _log = LogFactoryUtil.getLog(
             JournalArticleListener.class);
+
     @Reference
     private ArticleLocalService _articleLocalService;
+
     @Reference
     private NewsletterLocalService _newsletterLocalService;
 
@@ -37,18 +41,22 @@ public class ViewAllArticleMVCRenderCommand implements MVCRenderCommand {
     public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
         List<JournalArticle> issues = _newsletterLocalService.getNewsletters();
 
+        Map<String, Map<String, Map<String, List<JournalArticle>>>> dd = arrangeArticles(issues);
+
         renderRequest.setAttribute("arrangedArticles", arrangeArticles(issues));
+
+        renderRequest.setAttribute("tabs", generateTabs(dd.keySet()));
 
         return "/view.jsp";
     }
 
     public Map<String, Map<String, Map<String, List<JournalArticle>>>> arrangeArticles(List<JournalArticle> newsletter) {
 
-        Map<String, Map<String, Map<String, List<JournalArticle>>>> arrangedArticles = new LinkedHashMap<>();
+        Map<String, Map<String, Map<String, List<JournalArticle>>>> arrangedArticles = new HashMap<>();
 
         for (JournalArticle article : newsletter) {
 
-            String date = _newsletterLocalService.getJournalArticleContent(article.getDDMStructure(), article.getContent(), "issueDate");
+            String date = _newsletterLocalService.getJournalArticleContent(article.getDDMStructure(), article.getContent(), NewsletterFields.ISSUE_DATE);
 
             String yKey = NewsletterUtil.splitDate(date, 0);
 
@@ -77,7 +85,7 @@ public class ViewAllArticleMVCRenderCommand implements MVCRenderCommand {
         }
 
         for (JournalArticle article : newsletter) {
-            String date = _newsletterLocalService.getJournalArticleContent(article.getDDMStructure(), article.getContent(), "issueDate");
+            String date = _newsletterLocalService.getJournalArticleContent(article.getDDMStructure(), article.getContent(), NewsletterFields.ISSUE_DATE);
 
             String yKey = NewsletterUtil.splitDate(date, 0);
 
@@ -85,7 +93,7 @@ public class ViewAllArticleMVCRenderCommand implements MVCRenderCommand {
 
             String mKey = new DateFormatSymbols().getMonths()[Integer.parseInt(strMonth) - 1];
 
-            String issueKey = _newsletterLocalService.getJournalArticleContent(article.getDDMStructure(), article.getContent(), "issueNumber");
+            String issueKey = _newsletterLocalService.getJournalArticleContent(article.getDDMStructure(), article.getContent(), NewsletterFields.ISSUE_NUMBER);
 
             List<Article> articles = _articleLocalService.getArticlesByNewsletter(Long.parseLong(issueKey));
 
@@ -96,5 +104,21 @@ public class ViewAllArticleMVCRenderCommand implements MVCRenderCommand {
         }
 
         return arrangedArticles;
+    }
+
+    public String generateTabs(Set<String> arrangedArticles){
+        String tabs = null;
+
+        for (String key : arrangedArticles) {
+            if (tabs == null) {
+                tabs = key + ", ";
+
+            } else {
+                tabs = tabs + key + ", ";
+
+            }
+        }
+
+        return tabs;
     }
 }

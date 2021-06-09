@@ -260,6 +260,12 @@ public class NewsletterLocalServiceUtil {
 		return getService().getIndexableActionableDynamicQuery();
 	}
 
+	public static com.liferay.journal.model.JournalArticle getIssueSearch(
+		long groupId, String articleId) {
+
+		return getService().getIssueSearch(groupId, articleId);
+	}
+
 	public static String getJournalArticleContent(
 		com.liferay.dynamic.data.mapping.model.DDMStructure ddmStructure,
 		String content, String elementKey) {

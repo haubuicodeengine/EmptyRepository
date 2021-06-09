@@ -227,6 +227,9 @@ public interface NewsletterLocalService
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public JournalArticle getIssueSearch(long groupId, String articleId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public String getJournalArticleContent(
 		DDMStructure ddmStructure, String content, String elementKey);
 

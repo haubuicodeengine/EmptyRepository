@@ -56,8 +56,9 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
     private static final Log _log = LogFactoryUtil.getLog(
             ArticleLocalServiceImpl.class);
+
     @Reference
-    JournalArticleLocalService _journalArticleLocalService;
+    private JournalArticleLocalService _journalArticleLocalService;
 
     public Article addArticle(long groupId, long resourcePrimKey, long issueNumber, ServiceContext serviceContext) throws PortalException {
 
@@ -113,9 +114,5 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
         return journalArticles;
     }
-    /*
-     * NOTE FOR DEVELOPERS:
-     *
-     * Never reference this class directly. Use <code>com.liferay.amf.newsletter.service.ArticleLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.newsletter.service.ArticleLocalServiceUtil</code>.
-     */
+
 }

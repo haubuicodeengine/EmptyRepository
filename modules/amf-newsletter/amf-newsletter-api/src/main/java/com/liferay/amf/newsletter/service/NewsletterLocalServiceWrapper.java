@@ -274,6 +274,13 @@ public class NewsletterLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.journal.model.JournalArticle getIssueSearch(
+		long groupId, String articleId) {
+
+		return _newsletterLocalService.getIssueSearch(groupId, articleId);
+	}
+
+	@Override
 	public String getJournalArticleContent(
 		com.liferay.dynamic.data.mapping.model.DDMStructure ddmStructure,
 		String content, String elementKey) {
