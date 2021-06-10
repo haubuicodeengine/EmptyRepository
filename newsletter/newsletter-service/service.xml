@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_2_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="com.liferay.training.newsletter">
+    <namespace>NEWSLETTER</namespace>
+    <entity name="Newsletter" local-service="true">
+
+
+        <!-- PK fields -->
+
+        <column name="newsletterId" primary="true" type="long"></column>
+
+        <!-- Group instance -->
+
+        <column name="groupId" type="long"></column>
+
+        <!-- Audit fields -->
+
+        <column name="companyId" type="long"></column>
+        <column name="userId" type="long"></column>
+        <column name="userName" type="String"></column>
+        <column name="createDate" type="Date"></column>
+        <column name="modifiedDate" type="Date"></column>
+        <column name="issueNumber" type="Integer"></column>
+        <column name="title" type="String"></column>
+        <column name="description" type="String"></column>
+        <column name="issueDate" type="Date"></column>
+        <column name="resourcePrimKey" type="long"></column>
+        <column name="status" type="int"></column>
+        
+        <reference entity="Group" package-path="com.liferay.portal"></reference>
+        <reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+        <reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+    
+    </entity>
+    <entity name="NewsletterArticle" local-service="true">
+
+        <!-- PK fields -->
+
+        <column name="newsletterArticleId" primary="true"
+            type="long">
+        </column>
+
+        <!-- Group instance -->
+
+        <column name="groupId" type="long"></column>
+
+        <!-- Audit fields -->
+
+        <column name="companyId" type="long"></column>
+        <column name="userId" type="long"></column>
+        <column name="author" type="String"></column>
+        <column name="createDate" type="Date"></column>
+        <column name="modifiedDate" type="Date"></column>
+        <column name="issueNumber" type="Integer"></column>
+        <column name="title" type="String"></column>
+        <column name="content" type="String"></column>
+        <column name="resourcePrimKey" type="long"></column>
+        <column name="status" type="int"></column>
+
+        <reference entity="Group" package-path="com.liferay.portal"></reference>
+        <reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+        <reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+    </entity>
+</service-builder>
