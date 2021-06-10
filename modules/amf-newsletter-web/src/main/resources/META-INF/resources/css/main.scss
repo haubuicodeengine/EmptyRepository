@@ -1,0 +1,52 @@
+.amf-newsletter-web {
+
+  .month-label {
+    width: 100%;
+    text-align: center;
+    background-color: #8fc7f7;
+    height: 31px;
+    font-size: 22px;
+    border-radius: 10px;
+  }
+
+  .issue-block {
+    margin-left: 6px;
+    padding: 20px 0px 20px 0px;
+    border-bottom: 4px dashed #cbd0d4;
+
+    .search-key-text {
+      font-size: 40px;
+    }
+
+    .search-key-color {
+      color: #8fc7f7;
+    }
+
+    .issue-title {
+      color: #0086fb;
+      font-weight: bold;
+      font-size: 25px;
+      text-transform: capitalize;
+    }
+
+    .issue-date {
+      text-transform: capitalize;
+      color: #8fc7f7;
+      font-size: 17px;
+    }
+
+    .description {
+      font-size: 17px;
+    }
+
+    .article-block {
+      margin: 14px 0px 0px 20px;
+
+      .article-title {
+        color: #0086fb;
+        font-size: 18px;
+        text-transform: capitalize;
+      }
+    }
+  }
+}
